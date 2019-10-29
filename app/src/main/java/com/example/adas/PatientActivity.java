@@ -59,7 +59,6 @@ public class PatientActivity extends AppCompatActivity {
     private void getPatientList() {
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        patientList = new ArrayList<>();
 
 
         CollectionReference ref = db.collection("users").document(auth.getCurrentUser().getUid()).collection("patientList");
@@ -67,7 +66,7 @@ public class PatientActivity extends AppCompatActivity {
         ref.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                Log.e(TAG, "Before task is successful");
+                patientList = new ArrayList<>();
                 if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         Patient patient = document.toObject(Patient.class);
@@ -75,7 +74,6 @@ public class PatientActivity extends AppCompatActivity {
                         patientList.add(patient);
 
                     }
-                    Log.e(TAG, "size of list " + patientList.size());
                     // set recycler view adapter
                     mAdapter = new PatientAdapter(patientList);
                     mRecycleView.setLayoutManager(mLayoutManager);
@@ -93,4 +91,11 @@ public class PatientActivity extends AppCompatActivity {
             startActivity(intent);
         });
     }
+    @Override
+    public void onResume() {
+        super.onResume();
+        // refresh the screen to show new vehicles
+        getPatientList();
+    }
+
 }

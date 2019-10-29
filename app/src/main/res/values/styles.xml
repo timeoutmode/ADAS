@@ -1,0 +1,50 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:navigationBarColor">@color/colorPrimary</item>
+        <item name="buttonStyle">@style/buttonStyle</item>
+        <item name="editTextStyle">@style/editTextStyle</item>
+        <item name="android:textViewStyle">@style/textViewStyle</item>
+        <item name="android:datePickerStyle">@style/CustomDatePickerStyle</item>
+    </style>
+
+    <!--  Style for default button -->
+    <style name="buttonStyle" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/main_button</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <!--  Style for default edit text -->
+    <style name="editTextStyle" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@drawable/main_edit_text</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:paddingEnd">10dp</item>
+        <item name="android:elevation">10dp</item>
+    </style>
+
+    <style name="loginEditTextStyle" parent="editTextStyle">
+        <item name="android:background">@drawable/login_edit_text</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:textColorHint">#c1c8c9</item>
+    </style>
+
+    <style name="textViewStyle">
+        <item name="android:textColor">@color/main_text_colour</item>
+        <item name="android:fontFamily">@font/sf_pro</item>
+    </style>
+
+
+    <style name="CustomDatePickerStyle" parent="@android:style/Widget.Material.Light.DatePicker">
+        <item name="android:headerBackground">@color/colorPrimary</item>
+        <item name="android:datePickerMode">calendar</item>
+    </style>
+
+</resources>

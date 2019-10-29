@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">ADAS</string>
+
+    <!-- Ethnicity   -->
+    <string-array name="ethnicity">
+        <item>Ethnicity</item>
+        <item>European</item>
+        <item>Māori</item>
+        <item>Asian</item>
+        <item>Pacific People</item>
+        <item>Middle Eastern</item>
+        <item>African</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>Gender</item>
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+</resources>

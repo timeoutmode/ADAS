@@ -7,8 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 
-import com.example.adas.R;
-
 public class HomeActivity extends AppCompatActivity {
     private static final String TAG = "HomeActivity";
     private ConstraintLayout clPatients, clAssessment, clAccount;
@@ -19,11 +17,11 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        initaliseObjects();
+        initialiseObjects();
         setOnClickListeners();
     }
 
-    private void initaliseObjects() {
+    private void initialiseObjects() {
         clPatients = findViewById(R.id.cl_patients);
         clAssessment = findViewById(R.id.cl_assessment);
         clAccount = findViewById(R.id.cl_account);

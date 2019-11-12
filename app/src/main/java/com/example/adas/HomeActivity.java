@@ -36,7 +36,7 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         clAssessment.setOnClickListener(c -> {
-            navigateToActivity(SpeechRecognition.class);
+            navigateToActivity(AssessmentLandingPageActivity.class);
         });
 
         clAccount.setOnClickListener(c -> {

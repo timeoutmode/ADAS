@@ -24,7 +24,7 @@ public class WordRecall extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wordrecall);
 
-            randtv = (TextView) findViewById(R.id.randWord);
+            randtv = findViewById(R.id.randWord);
             randbtn = (Button) findViewById(R.id.btn_generate);
             randbtn.setOnClickListener(new View.OnClickListener() {
 

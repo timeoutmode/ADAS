@@ -21,4 +21,11 @@
         <item>Male</item>
         <item>Female</item>
     </string-array>
+
+
+    <string name="Guess_the_finger_title">
+         Now I am going to point to a part of your hand and I want
+    you to tell me what it’s called. What is this?
+
+    </string>
 </resources>

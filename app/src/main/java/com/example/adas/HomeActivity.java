@@ -7,8 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 
-import com.example.adas.SpeechComprehension.SpeechRecognition;
-
 public class HomeActivity extends AppCompatActivity {
     private static final String TAG = "HomeActivity";
     private ConstraintLayout clPatients, clAssessment, clAccount;

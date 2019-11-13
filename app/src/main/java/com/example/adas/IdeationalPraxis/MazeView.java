@@ -5,7 +5,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import androidx.annotation.Nullable;
 import java.util.ArrayList;
@@ -15,22 +14,25 @@ import java.util.Stack;
 public class MazeView extends View {
 
     private Cell[][] cells;
+    private Cell player, exit;
     private static final int COLS = 5, ROWS = 10;
     private static final float WALL_THICKNESS = 6;
     private float cellSize, hMargin, vMargin;
-    private Paint wallPaint;
+    private Paint wallPaint, playerPaint, exitPaint;
     private Random random;
 
     public MazeView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
         initialiseObjects();
-        setWallPaint();
+        setPaint();
         generateMaze();
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
+        canvas.drawColor(Color.GRAY);
+
         int width = getWidth();
         int height = getHeight();
 
@@ -87,15 +89,38 @@ public class MazeView extends View {
                 }
             }
         }
+
+        float rectMargin = cellSize/5;
+
+        canvas.drawRect(
+                player.col * cellSize + rectMargin,
+                player.row * cellSize + rectMargin,
+                (player.col + 1) * cellSize - rectMargin,
+                (player.row + 1) * cellSize - rectMargin,
+                playerPaint
+        );
+
+        canvas.drawRect(
+                exit.col * cellSize + rectMargin,
+                exit.row * cellSize + rectMargin,
+                (exit.col + 1) * cellSize - rectMargin,
+                (exit.row + 1) * cellSize - rectMargin,
+                exitPaint
+        );
     }
 
-    private void setWallPaint() {
+    private void setPaint() {
         wallPaint.setColor(Color.BLACK);
         wallPaint.setStrokeWidth(WALL_THICKNESS);
+
+        playerPaint.setColor(Color.BLUE);
+        exitPaint.setColor(Color.RED);
     }
 
     private void initialiseObjects() {
         wallPaint = new Paint();
+        playerPaint = new Paint();
+        exitPaint = new Paint();
         random = new Random();
     }
 
@@ -110,6 +135,9 @@ public class MazeView extends View {
                 cells[x][y] = new Cell(x, y);
             }
         }
+
+        player = cells[0][0];
+        exit = cells[COLS - 1][ROWS - 1];
 
         currentCell = cells[0][0];
         currentCell.visited = true;

@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 import androidx.annotation.Nullable;
 import java.util.ArrayList;
@@ -12,6 +13,10 @@ import java.util.Random;
 import java.util.Stack;
 
 public class MazeView extends View {
+
+    private enum Direction {
+        UP, DOWN, LEFT, RIGHT
+    }
 
     private Cell[][] cells;
     private Cell player, exit;
@@ -31,7 +36,7 @@ public class MazeView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        canvas.drawColor(Color.GRAY);
+        canvas.drawColor(Color.LTGRAY);
 
         int width = getWidth();
         int height = getHeight();
@@ -90,7 +95,7 @@ public class MazeView extends View {
             }
         }
 
-        float rectMargin = cellSize/5;
+        float rectMargin = cellSize/15;
 
         canvas.drawRect(
                 player.col * cellSize + rectMargin,
@@ -107,6 +112,43 @@ public class MazeView extends View {
                 (exit.row + 1) * cellSize - rectMargin,
                 exitPaint
         );
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) return true;
+
+        if (event.getAction() == MotionEvent.ACTION_MOVE) {
+            float x = event.getX();
+            float y = event.getY();
+
+            float playerCenterX = hMargin + (player.col + 0.5f) * cellSize;
+            float playerCenterY = vMargin + (player.row + 0.5f) * cellSize;
+
+
+            // difference in coordinates between player touch and player rectangle
+            float dx = x - playerCenterX;
+            float dy = y - playerCenterY;
+
+            float absDx = Math.abs(dx);
+            float absDy = Math.abs(dy);
+
+            if (absDx > cellSize || absDy > cellSize) {
+                if (absDx > absDy) {
+                    if (dx > 0)
+                        movePlayer(Direction.RIGHT);
+                    else
+                        movePlayer(Direction.LEFT);
+                } else {
+                    if (dy > 0)
+                        movePlayer(Direction.DOWN);
+                    else
+                        movePlayer(Direction.UP);
+                }
+            }
+        }
+
+        return super.onTouchEvent(event);
     }
 
     private void setPaint() {
@@ -213,6 +255,37 @@ public class MazeView extends View {
         if (c1.col == c2.col - 1 && c1.row == c2.row) {
             c1.rightWall = false;
             c2.leftWall = false;
+        }
+    }
+    
+    private void movePlayer(Direction direction) {
+        switch (direction) {
+            case UP:
+                if (!player.topWall)
+                    player = cells[player.col][player.row - 1];
+                break;
+            case DOWN:
+                if (!player.bottomWall)
+                    player = cells[player.col][player.row + 1];
+                break;
+            case LEFT:
+                if (!player.leftWall)
+                    player = cells[player.col - 1][player.row];
+                break;
+            case RIGHT:
+                if (!player.rightWall)
+                    player = cells[player.col + 1][player.row];
+                break;
+        }
+
+        checkExit();
+        invalidate();
+    }
+
+    private void checkExit() {
+        if (player == exit)
+        {
+            generateMaze();
         }
     }
 

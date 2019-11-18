@@ -1,4 +1,4 @@
-package com.example.adas.SpeechComprehension;
+package com.example.adas;
 
 import android.Manifest;
 import android.content.Intent;

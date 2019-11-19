@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Build;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -26,8 +27,6 @@ import java.util.Locale;
 
 public class SpeechTask extends AppCompatActivity {
 
-    private QuestionLibrary mQuestionLibrary = new QuestionLibrary();
-
     private TextView mScoreView;
     private ImageButton mQuestionView;
     private RadioButton mButtonChoice1;
@@ -35,6 +34,7 @@ public class SpeechTask extends AppCompatActivity {
     private RadioButton mButtonChoice3;
     private RadioButton mButtonChoice4;
     private RadioGroup radiogroup;
+    private ImageButton mPhraseView;
     private Button mSubmitButton;
     TextToSpeech tts;
     private String mAnswer;
@@ -131,7 +131,7 @@ public class SpeechTask extends AppCompatActivity {
         mButtonChoice3 = findViewById(R.id.choice3);
         mButtonChoice4 = findViewById(R.id.choice4);
         mSubmitButton = findViewById(R.id.submitButton);
-
+        mPhraseView = findViewById(R.id.phrase);
         radiogroup = findViewById(R.id.radiogroup);
         updateQuestion();
 
@@ -156,6 +156,7 @@ public class SpeechTask extends AppCompatActivity {
                 }
 
 
+                    itemcounter++;
                }
             }
         });
@@ -179,9 +180,24 @@ public class SpeechTask extends AppCompatActivity {
             }
         });
 
+        mPhraseView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+                {
+                    tts.speak(mquestion.getPhrase(), TextToSpeech.QUEUE_FLUSH,null,null);
+                }
+                else
+                {
+                    tts.speak(mquestion.getPhrase(), TextToSpeech.QUEUE_FLUSH,null);
+                }
+            }
+        });
+
 
         mQuestionView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+               // Log.e("Current Question:", mquestion.getListofitems().get(0).getQuestion());
                 if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
                 {
                     tts.speak(mquestion.getListofitems().get(itemcounter).getQuestion(), TextToSpeech.QUEUE_FLUSH,null,null);
@@ -207,7 +223,7 @@ public class SpeechTask extends AppCompatActivity {
         mButtonChoice3.setChecked(false);
         mButtonChoice4.setChecked(false);
 
-        itemcounter++;
+
     }
 
     private void updateScore(int point) {

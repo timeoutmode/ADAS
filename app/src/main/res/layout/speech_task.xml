@@ -79,60 +79,75 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.326" />
 
-
-    <RadioButton
-        android:id="@+id/choice1"
-        android:layout_width="414dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="12dp"
-        android:background="@color/colorPrimaryDark"
-        android:padding="8dp"
-        android:text="Yes"
-        android:textColor="#fff"
+    <RadioGroup
+        android:id="@+id/radiogroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/question" />
+        app:layout_constraintTop_toBottomOf="@id/question">
 
-    <RadioButton
-        android:id="@+id/choice2"
-        android:layout_width="413dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="16dp"
-        android:background="#9C27B0"
-        android:padding="8dp"
-        android:text="No"
-        android:textColor="#fff"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/choice1" />
+        <RadioButton
+            android:id="@+id/choice1"
+            android:layout_width="414dp"
+            android:layout_height="41dp"
+            android:layout_marginTop="12dp"
+            android:background="@color/colorPrimaryDark"
+            android:padding="8dp"
+            android:text="Yes"
+            android:textColor="#fff"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/question" />
 
-    <RadioButton
-        android:id="@+id/choice3"
-        android:layout_width="414dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="20dp"
-        android:background="@color/colorPrimaryDark"
-        android:padding="8dp"
-        android:text="Maybe"
-        android:textColor="#fff"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/choice2" />
+        <RadioButton
+            android:id="@+id/choice2"
+            android:layout_width="413dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="16dp"
+            android:background="#9C27B0"
+            android:padding="8dp"
+            android:text="No"
+            android:textColor="#fff"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/choice1" />
 
-    <RadioButton
-        android:id="@+id/choice4"
-        android:layout_width="415dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="20dp"
-        android:background="#9C27B0"
-        android:padding="8dp"
-        android:text="Idk"
-        android:textColor="#fff"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/choice3" />
+        <RadioButton
+            android:id="@+id/choice3"
+            android:layout_width="414dp"
+            android:layout_height="46dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorPrimaryDark"
+            android:padding="8dp"
+            android:text="Maybe"
+            android:textColor="#fff"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/choice2" />
+
+        <RadioButton
+            android:id="@+id/choice4"
+            android:layout_width="415dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="20dp"
+            android:background="#9C27B0"
+            android:padding="8dp"
+            android:text="Idk"
+            android:textColor="#fff"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/choice3" />
+
+
+    </RadioGroup>
+
+
+
 
     <Button
         android:id="@+id/submitButton"
@@ -143,7 +158,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/choice4" />
+        app:layout_constraintTop_toBottomOf="@+id/radiogroup" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

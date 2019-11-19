@@ -12,12 +12,12 @@
         <activity android:name=".AddPatientActivity"/>
         <activity android:name=".AssessmentLandingPageActivity"></activity>
         <activity android:name=".WordRecall.WordRecall"></activity>
-        <activity android:name=".AddPatientActivity" />
         <activity android:name=".AssessmentActivity" />
         <activity android:name=".AccountActivity" />
         <activity android:name=".PatientActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".RegisterActivity" />
+        <activity android:name=".Orientation.OrientationViewPager"/>
         <activity android:name=".SpeechComprehension.SpeechTask"/>
         <activity android:name=".LoginActivity">
            <intent-filter>

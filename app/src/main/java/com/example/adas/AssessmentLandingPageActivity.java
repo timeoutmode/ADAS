@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.adas.Orientation.OrientationViewPager;
 import com.example.adas.SpeechComprehension.SpeechTask;
 import com.example.adas.WordRecall.WordRecall;
 
@@ -56,6 +57,12 @@ public class AssessmentLandingPageActivity extends AppCompatActivity {
         btn3.setOnClickListener(c -> {
             navigateToActivity(SpeechTask.class);
         });
+
+        btn4.setOnClickListener(c -> {
+            navigateToActivity(OrientationViewPager.class);
+        });
+
+
     }
 
     // method helper for starting a new activity

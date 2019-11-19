@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 
+import com.example.adas.Orientation.OrientationTaskActivity;
+import com.example.adas.R;
 import com.example.adas.SpeechComprehension.SpeechTask;
 
 public class HomeActivity extends AppCompatActivity {
@@ -19,11 +21,11 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        initialiseObjects();
+        initaliseObjects();
         setOnClickListeners();
     }
 
-    private void initialiseObjects() {
+    private void initaliseObjects() {
         clPatients = findViewById(R.id.cl_patients);
         clAssessment = findViewById(R.id.cl_assessment);
         clAccount = findViewById(R.id.cl_account);

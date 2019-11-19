@@ -19,6 +19,8 @@
         <item name="android:background">@drawable/main_button</item>
         <item name="android:textColor">#fff</item>
         <item name="android:textAllCaps">false</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
     </style>
 
     <!--  Style for default edit text -->

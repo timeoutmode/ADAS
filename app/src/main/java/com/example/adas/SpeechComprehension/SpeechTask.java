@@ -2,7 +2,6 @@ package com.example.adas.SpeechComprehension;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
@@ -10,10 +9,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
+
 import android.widget.TextView;
 import android.widget.Toast;
+;
 
 import com.example.adas.R;
+
 
 import java.util.Locale;
 
@@ -32,11 +34,15 @@ public class SpeechTask extends AppCompatActivity {
     private String mAnswer;
     private int mScore = 0;
     private int mQuestionNumber = 0;
+    int counter = 4;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.speech_task);
+
 
         mScoreView = (TextView) findViewById(R.id.score);
         mQuestionView = (ImageButton) findViewById((R.id.question));
@@ -52,148 +58,80 @@ public class SpeechTask extends AppCompatActivity {
         mSubmitButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view)
             {
-               switch(mQuestionNumber)
-               {
-                   case 1:
-                   {
-                       if (mButtonChoice1.isChecked())
-                       {
-                           mScore = mScore + 1;
-                           updateScore(mScore);
-                           updateQuestion();
-                       }
-                       else
-                       {
-                           Toast.makeText(SpeechTask.this, "WRONG", Toast.LENGTH_SHORT).show();
-                           updateQuestion();
-                       }
-                   }
-                   break;
-                   case 2:
-                   {
-                       if (mButtonChoice2.isChecked())
-                       {
-                           mScore = mScore + 1;
-                           updateScore(mScore);
-                           updateQuestion();
-                       }
-                       else
-                       {
-                           Toast.makeText(SpeechTask.this, "WRONG", Toast.LENGTH_SHORT).show();
-                           updateQuestion();
-                       }
-                   }
-                   break;
-                   case 3:
-                   {
-                       if (mButtonChoice3.isChecked())
-                       {
-                           mScore = mScore + 1;
-                           updateScore(mScore);
-                           updateQuestion();
-                       }
-                       else
-                       {
-                           Toast.makeText(SpeechTask.this, "WRONG", Toast.LENGTH_SHORT).show();
-                           updateQuestion();
-                       }
-                   }
-                   break;
-                   case 4:
-                   {
-                       if (mButtonChoice4.isChecked())
-                       {
-                           mScore = mScore + 1;
-                           updateScore(mScore);
-                           updateQuestion();
-                       }
-                       else
-                       {
-                           Toast.makeText(SpeechTask.this, "WRONG", Toast.LENGTH_SHORT).show();
-                           updateQuestion();
-                       }
-                   }
-                   break;
+                if (counter != 0)
+                {
+                    switch(mQuestionNumber)
+                    {
+                        case 1:
+                        {
+                            if (mButtonChoice1.isChecked())
+                            {
+                                mScore = mScore + 1;
+                                updateScore(mScore);
+                                updateQuestion();
+                            }
+                            else
+                            {
+                                Toast.makeText(SpeechTask.this, "WRONG", Toast.LENGTH_SHORT).show();
+                                updateQuestion();
+                            }
+                        }
+                        break;
+                        case 2:
+                        {
+                            if (mButtonChoice2.isChecked())
+                            {
+                                mScore = mScore + 1;
+                                updateScore(mScore);
+                                updateQuestion();
+                            }
+                            else
+                            {
+                                Toast.makeText(SpeechTask.this, "WRONG", Toast.LENGTH_SHORT).show();
+                                updateQuestion();
+                            }
+                        }
+                        break;
+                        case 3:
+                        {
+                            if (mButtonChoice3.isChecked())
+                            {
+                                mScore = mScore + 1;
+                                updateScore(mScore);
+                                updateQuestion();
+                            }
+                            else
+                            {
+                                Toast.makeText(SpeechTask.this, "WRONG", Toast.LENGTH_SHORT).show();
+                                updateQuestion();
+                            }
+                        }
+                        break;
+                        case 4:
+                        {
+                            if (mButtonChoice4.isChecked())
+                            {
+                                mScore = mScore + 1;
+                                updateScore(mScore);
+                                updateQuestion();
+                            }
+                            else
+                            {
+                                Toast.makeText(SpeechTask.this, "WRONG", Toast.LENGTH_SHORT).show();
+                                updateQuestion();
+                            }
+                        }
+                        break;
+                }
+                counter--;
+
 
 
 
                }
             }
         });
-       /* //Start of Button Listener for Button1
-        mButtonChoice1.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                if (mButtonChoice1.getText() == mAnswer) {
-                    mScore = mScore + 1;
-                    updateScore(mScore);
-                    updateQuestion();
-                    //Message
-                    Toast.makeText(SpeechTask.this, "correct", Toast.LENGTH_SHORT).show();
 
-                } else {
-                    //message
-                    Toast.makeText(SpeechTask.this, "WRONG", Toast.LENGTH_SHORT).show();
-                    updateQuestion();
-                }
-            }
-        });
-        // End of Button Listener for Button1
-
-        //Start of Button Listener for Button2
-        mButtonChoice2.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                if (mButtonChoice2.getText() == mAnswer) {
-                    mScore = mScore + 1;
-                    updateScore(mScore);
-                    updateQuestion();
-                    //Message
-                    Toast.makeText(SpeechTask.this, "correct", Toast.LENGTH_SHORT).show();
-
-                } else {
-                    //message
-                    Toast.makeText(SpeechTask.this, "WRONG", Toast.LENGTH_SHORT).show();
-                    updateQuestion();
-                }
-            }
-        });
-        // End of Button Listener for Button2
-
-        //Start of Button Listener for Button3
-        mButtonChoice3.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                if (mButtonChoice3.getText() == mAnswer) {
-                    mScore = mScore + 1;
-                    updateScore(mScore);
-                    updateQuestion();
-                    //Message
-                    Toast.makeText(SpeechTask.this, "correct", Toast.LENGTH_SHORT).show();
-
-                } else {
-                    //message
-                    Toast.makeText(SpeechTask.this, "WRONG", Toast.LENGTH_SHORT).show();
-                    updateQuestion();
-                }
-            }
-        });
-        // End of Button Listener for Button3
-
-        //Start of Button Listener for Button4
-        mButtonChoice4.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                if (mButtonChoice4.getText() == mAnswer) {
-                    mScore = mScore + 1;
-                    updateScore(mScore);
-                    updateQuestion();
-
-
-                } else {
-
-                    Toast.makeText(SpeechTask.this, "WRONG", Toast.LENGTH_SHORT).show();
-                    updateQuestion();
-                }
-            }
-        });
-        // End of Button Listener for Button4*/
 
     }
 

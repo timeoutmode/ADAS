@@ -19,6 +19,7 @@
         <activity android:name=".PatientActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".RegisterActivity" />
+        <activity android:name=".SpeechComprehension.SpeechTask"/>
         <activity android:name=".LoginActivity">
            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

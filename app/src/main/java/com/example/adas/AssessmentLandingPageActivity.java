@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.adas.SpeechComprehension.SpeechTask;
 import com.example.adas.WordRecall.WordRecall;
 
 import java.util.Locale;
@@ -50,6 +51,10 @@ public class AssessmentLandingPageActivity extends AppCompatActivity {
 
         btn2.setOnClickListener(c -> {
             navigateToActivity(SpeechRecognizer.class);
+        });
+
+        btn3.setOnClickListener(c -> {
+            navigateToActivity(SpeechTask.class);
         });
     }
 

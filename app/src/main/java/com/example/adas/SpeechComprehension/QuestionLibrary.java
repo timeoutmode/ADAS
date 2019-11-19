@@ -6,8 +6,8 @@ public class QuestionLibrary {
 
     // Array of questions go here
     private String mQuestions[] = {
-            "Question 1?",
-            "Question 2?",
+            "haha",
+            "jajaja?",
             "Question 3?",
             "Question 4?"
     };

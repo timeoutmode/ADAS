@@ -1,8 +1,5 @@
 <resources>
     <string name="app_name">ADAS</string>
-    <string name="start">Start</string>
-    <string name="week">Week:</string>
-    <string name="orientation_task">Orientation Task</string>
 
     <!-- Ethnicity   -->
     <string-array name="ethnicity">
@@ -58,4 +55,8 @@
         <item>November</item>
         <item>December</item>
     </string-array>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

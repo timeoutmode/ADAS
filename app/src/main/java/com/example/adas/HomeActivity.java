@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 
+import com.example.adas.Orientation.OrientationTaskActivity;
 import com.example.adas.R;
 
 public class HomeActivity extends AppCompatActivity {
@@ -36,7 +37,7 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         clAssessment.setOnClickListener(c -> {
-            navigateToActivity(AssessmentActivity.class);
+            navigateToActivity(OrientationTaskActivity.class);
         });
 
         clAccount.setOnClickListener(c -> {

@@ -1,4 +1,4 @@
-package com.example.adas;
+package com.example.adas.Orientation;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.adas.R;
 import com.google.android.libraries.places.api.Places;
 
 import java.util.Objects;

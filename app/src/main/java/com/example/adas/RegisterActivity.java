@@ -58,7 +58,7 @@ public class RegisterActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         // initialise Places SDK
-        Places.initialize(getApplicationContext(), "AIzaSyDTdQwtiqUknkl9HkEU_YdvuGjyGNDlChY");
+        //Places.initialize(getApplicationContext(), getResources().getString(R.string.places_api_key));
     }
 
     private void setOnClickListeners() {

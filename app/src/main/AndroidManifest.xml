@@ -14,14 +14,10 @@
         <activity android:name=".AccountActivity" />
         <activity android:name=".PatientActivity" />
         <activity android:name=".HomeActivity" />
-
-
-        <activity android:name=".OrientationActivity"/>
-
-
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".LoginActivity">
 
+
+        <activity android:name=".Orientation.OrientationViewPager">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

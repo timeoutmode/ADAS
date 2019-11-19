@@ -36,7 +36,7 @@ public class FragmentOneActivity extends Fragment {
         Calendar nowCalendar = Calendar.getInstance();
         String dayLongName = nowCalendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault());
         if(text.toLowerCase().equals(dayLongName.toLowerCase())) {
-                
+
         }
 
 

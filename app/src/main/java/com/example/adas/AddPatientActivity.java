@@ -85,7 +85,7 @@ public class AddPatientActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         // initialise Places SDK
-        Places.initialize(getApplicationContext(), getResources().getString(R.string.places_api_key));
+        //Places.initialize(getApplicationContext(), getResources().getString(R.string.places_api_key));
     }
 
     private void setOnClickListeners() {

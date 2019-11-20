@@ -22,6 +22,47 @@
         <item>Female</item>
     </string-array>
 
+    <!-- Day of the week  -->
+    <string-array name="week">
+        <item>Day of the Week</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+    </string-array>
+
+    <!-- Season  -->
+    <string-array name="season">
+        <item>Season</item>
+        <item>Winter</item>
+        <item>Spring</item>
+        <item>Summer</item>
+        <item>Fall</item>
+    </string-array>
+
+    <!-- Month  -->
+    <string-array name="month">
+        <item>Month</item>
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </string-array>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
     <string name="Guess_the_finger_title">
          Now I am going to point to a part of your hand and I want

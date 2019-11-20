@@ -524,7 +524,7 @@ public class GuessTheImage extends AppCompatActivity {
             }
 
 
-        }, 17000);
+        }, 10000);
 
     }
 

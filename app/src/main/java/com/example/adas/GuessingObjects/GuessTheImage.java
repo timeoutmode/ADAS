@@ -108,7 +108,7 @@ public class GuessTheImage extends AppCompatActivity {
 
 
                 nextTurn();
-                handler.removeCallbacks(null);
+                handler.removeCallbacksAndMessages(null);
 
             } else if (editText.getText().toString().equalsIgnoreCase(list.get(turn - 1).getClues())) {
                 Toast.makeText(GuessTheImage.this, "Yes that is the function, but what is the name", Toast.LENGTH_LONG).show();
@@ -143,7 +143,7 @@ public class GuessTheImage extends AppCompatActivity {
 
 
                 nextTurn();
-                handler.removeCallbacks(null);
+                handler.removeCallbacksAndMessages(null);
 
             } else if (editText.getText().toString().equalsIgnoreCase(list.get(turn - 1).getClues())) {
                 Toast.makeText(GuessTheImage.this, "Yes that is the function, but what is the name", Toast.LENGTH_LONG).show();
@@ -177,7 +177,7 @@ public class GuessTheImage extends AppCompatActivity {
 
 
                 nextTurn();
-                handler.removeCallbacks(null);
+                handler.removeCallbacksAndMessages(null);
 
             } else if (editText.getText().toString().equalsIgnoreCase(list.get(turn - 1).getClues())) {
                 Toast.makeText(GuessTheImage.this, "Yes that is the function, but what is the name", Toast.LENGTH_LONG).show();
@@ -211,7 +211,7 @@ public class GuessTheImage extends AppCompatActivity {
 
 
                 nextTurn();
-                handler.removeCallbacks(null);
+                handler.removeCallbacksAndMessages(null);
 
             } else if (editText.getText().toString().equalsIgnoreCase(list.get(turn - 1).getClues())) {
                 Toast.makeText(GuessTheImage.this, "Yes that is the function, but what is the name", Toast.LENGTH_LONG).show();
@@ -246,7 +246,7 @@ public class GuessTheImage extends AppCompatActivity {
 
 
                 nextTurn();
-                handler.removeCallbacks(null);
+                handler.removeCallbacksAndMessages(null);
 
             } else if (editText.getText().toString().equalsIgnoreCase(list.get(turn - 1).getClues())) {
                 Toast.makeText(GuessTheImage.this,"Yes that is the function, but what is the name", Toast.LENGTH_LONG).show();
@@ -278,7 +278,7 @@ public class GuessTheImage extends AppCompatActivity {
 
 
                 nextTurn();
-                handler.removeCallbacks(null);
+                handler.removeCallbacksAndMessages(null);
 
             } else if (editText.getText().toString().equalsIgnoreCase("write") ||
                     editText.getText().toString().equalsIgnoreCase("write down") ||
@@ -312,8 +312,7 @@ public class GuessTheImage extends AppCompatActivity {
 
 
                 nextTurn();
-                handler.removeCallbacks(null);
-
+                handler.removeCallbacksAndMessages(null);
             } else if (editText.getText().toString().equalsIgnoreCase(list.get(turn - 1).getClues())) {
                 Toast.makeText(GuessTheImage.this, "Yes that is the function, but what is the name", Toast.LENGTH_LONG).show();
 
@@ -344,7 +343,7 @@ public class GuessTheImage extends AppCompatActivity {
 
 
                 nextTurn();
-                handler.removeCallbacks(null);
+                handler.removeCallbacksAndMessages(null);
 
             } else if (editText.getText().toString().equalsIgnoreCase(list.get(turn - 1).getClues())) {
                 Toast.makeText(GuessTheImage.this, "Yes that is the function, but what is the name", Toast.LENGTH_LONG).show();
@@ -372,7 +371,7 @@ public class GuessTheImage extends AppCompatActivity {
 
 
                 nextTurn();
-                handler.removeCallbacks(null);
+                handler.removeCallbacksAndMessages(null);
 
 
             } else if (editText.getText().toString().equalsIgnoreCase("clatter") ||
@@ -407,7 +406,7 @@ public class GuessTheImage extends AppCompatActivity {
                 // editText.getText().clear();
                 score = score + 1;
                 nextTurn();
-                handler.removeCallbacks(null);
+                handler.removeCallbacksAndMessages(null);
 
             } else if (editText.getText().toString().equalsIgnoreCase(list.get(turn - 1).getClues())) {
                 Toast.makeText(GuessTheImage.this, "Yes that is the function, but what is the name", Toast.LENGTH_LONG).show();
@@ -441,7 +440,7 @@ public class GuessTheImage extends AppCompatActivity {
 
 
                 nextTurn();
-                handler.removeCallbacks(null);
+                handler.removeCallbacksAndMessages(null);
 
             } else if (editText.getText().toString().equalsIgnoreCase(list.get(turn - 1).getClues())) {
                 Toast.makeText(GuessTheImage.this, "Yes that is the function, but what is the name", Toast.LENGTH_LONG).show();
@@ -474,7 +473,7 @@ public class GuessTheImage extends AppCompatActivity {
 
 
                 nextTurn();
-                handler.removeCallbacks(null);
+                handler.removeCallbacksAndMessages(null);
 
 
             } else if (editText.getText().toString().equalsIgnoreCase(list.get(turn - 1).getClues())) {

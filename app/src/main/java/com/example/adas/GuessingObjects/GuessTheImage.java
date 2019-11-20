@@ -34,6 +34,7 @@ public class GuessTheImage extends AppCompatActivity {
     int turn = 1;
 
     Handler handler;
+    Runnable hintRunnable, nextRunnable;
 
     boolean answer = false;
 
@@ -51,6 +52,9 @@ public class GuessTheImage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guess_the_image);
+
+        // initialise my runnables
+        initaliseRunnable();
 
         myRef = FirebaseDatabase.getInstance().getReference();
         database = FirebaseDatabase.getInstance();
@@ -104,6 +108,7 @@ public class GuessTheImage extends AppCompatActivity {
 
 
                 nextTurn();
+                handler.removeCallbacks(null);
 
             } else if (editText.getText().toString().equalsIgnoreCase(list.get(turn - 1).getClues())) {
                 Toast.makeText(GuessTheImage.this, "Yes that is the function, but what is the name", Toast.LENGTH_LONG).show();
@@ -118,8 +123,6 @@ public class GuessTheImage extends AppCompatActivity {
 
 
                 d();
-
-
             }
 
 
@@ -140,6 +143,7 @@ public class GuessTheImage extends AppCompatActivity {
 
 
                 nextTurn();
+                handler.removeCallbacks(null);
 
             } else if (editText.getText().toString().equalsIgnoreCase(list.get(turn - 1).getClues())) {
                 Toast.makeText(GuessTheImage.this, "Yes that is the function, but what is the name", Toast.LENGTH_LONG).show();
@@ -173,6 +177,7 @@ public class GuessTheImage extends AppCompatActivity {
 
 
                 nextTurn();
+                handler.removeCallbacks(null);
 
             } else if (editText.getText().toString().equalsIgnoreCase(list.get(turn - 1).getClues())) {
                 Toast.makeText(GuessTheImage.this, "Yes that is the function, but what is the name", Toast.LENGTH_LONG).show();
@@ -206,6 +211,7 @@ public class GuessTheImage extends AppCompatActivity {
 
 
                 nextTurn();
+                handler.removeCallbacks(null);
 
             } else if (editText.getText().toString().equalsIgnoreCase(list.get(turn - 1).getClues())) {
                 Toast.makeText(GuessTheImage.this, "Yes that is the function, but what is the name", Toast.LENGTH_LONG).show();
@@ -240,6 +246,7 @@ public class GuessTheImage extends AppCompatActivity {
 
 
                 nextTurn();
+                handler.removeCallbacks(null);
 
             } else if (editText.getText().toString().equalsIgnoreCase(list.get(turn - 1).getClues())) {
                 Toast.makeText(GuessTheImage.this,"Yes that is the function, but what is the name", Toast.LENGTH_LONG).show();
@@ -261,7 +268,7 @@ public class GuessTheImage extends AppCompatActivity {
 
         } else if (img.getDrawable().getConstantState().equals(getResources().getDrawable(R.drawable.pencil).getConstantState())) {
 
-            if (editText.getText().toString().equalsIgnoreCase("pencil")) {
+            if (!editText.getText().toString().equalsIgnoreCase("pencil")) {
 
                 Toast.makeText(GuessTheImage.this, "Correct", Toast.LENGTH_LONG).show();
                 // clicked = true;
@@ -271,6 +278,7 @@ public class GuessTheImage extends AppCompatActivity {
 
 
                 nextTurn();
+                handler.removeCallbacks(null);
 
             } else if (editText.getText().toString().equalsIgnoreCase("write") ||
                     editText.getText().toString().equalsIgnoreCase("write down") ||
@@ -304,6 +312,7 @@ public class GuessTheImage extends AppCompatActivity {
 
 
                 nextTurn();
+                handler.removeCallbacks(null);
 
             } else if (editText.getText().toString().equalsIgnoreCase(list.get(turn - 1).getClues())) {
                 Toast.makeText(GuessTheImage.this, "Yes that is the function, but what is the name", Toast.LENGTH_LONG).show();
@@ -335,6 +344,7 @@ public class GuessTheImage extends AppCompatActivity {
 
 
                 nextTurn();
+                handler.removeCallbacks(null);
 
             } else if (editText.getText().toString().equalsIgnoreCase(list.get(turn - 1).getClues())) {
                 Toast.makeText(GuessTheImage.this, "Yes that is the function, but what is the name", Toast.LENGTH_LONG).show();
@@ -362,6 +372,7 @@ public class GuessTheImage extends AppCompatActivity {
 
 
                 nextTurn();
+                handler.removeCallbacks(null);
 
 
             } else if (editText.getText().toString().equalsIgnoreCase("clatter") ||
@@ -396,6 +407,7 @@ public class GuessTheImage extends AppCompatActivity {
                 // editText.getText().clear();
                 score = score + 1;
                 nextTurn();
+                handler.removeCallbacks(null);
 
             } else if (editText.getText().toString().equalsIgnoreCase(list.get(turn - 1).getClues())) {
                 Toast.makeText(GuessTheImage.this, "Yes that is the function, but what is the name", Toast.LENGTH_LONG).show();
@@ -429,6 +441,7 @@ public class GuessTheImage extends AppCompatActivity {
 
 
                 nextTurn();
+                handler.removeCallbacks(null);
 
             } else if (editText.getText().toString().equalsIgnoreCase(list.get(turn - 1).getClues())) {
                 Toast.makeText(GuessTheImage.this, "Yes that is the function, but what is the name", Toast.LENGTH_LONG).show();
@@ -461,6 +474,7 @@ public class GuessTheImage extends AppCompatActivity {
 
 
                 nextTurn();
+                handler.removeCallbacks(null);
 
 
             } else if (editText.getText().toString().equalsIgnoreCase(list.get(turn - 1).getClues())) {
@@ -506,20 +520,29 @@ public class GuessTheImage extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-
-
-                if (!answer) {
-                    nextTurn();
-                } else {
-                    answer = false;
-                }
-
-
+                nextTurn();
             }
 
         }, 10000);
 
+    }
 
+    private void initaliseRunnable() {
+        hintRunnable = new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(GuessTheImage.this, list.get(turn - 1).getClues(), Toast.LENGTH_LONG).show();
+
+                d2();
+            }
+        };
+
+        nextRunnable = new Runnable() {
+            @Override
+            public void run() {
+                nextTurn();
+            }
+        };
     }
 
     public void buttonClicked(View view) {

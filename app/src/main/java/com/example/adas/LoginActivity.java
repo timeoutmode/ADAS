@@ -28,7 +28,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Objects;
 
-public class LoginActivity extends AppCompatActivity {
+public class  LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     private Button btnLogin;
     private TextView tvRegister;

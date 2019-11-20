@@ -278,7 +278,7 @@ public class GuessTheImage extends AppCompatActivity {
                 Toast.makeText(GuessTheImage.this, "Yes that is the function, but what is the name", Toast.LENGTH_LONG).show();
 
 
-            } else if (editText.getText().toString().equalsIgnoreCase("pencil")) {
+            } else if (!editText.getText().toString().equalsIgnoreCase("pencil")) {
                 Toast.makeText(GuessTheImage.this, "Incorrect", Toast.LENGTH_LONG).show();
                 editText.getText().clear();
 
@@ -516,7 +516,6 @@ public class GuessTheImage extends AppCompatActivity {
 
 
             }
-
 
         }, 10000);
 

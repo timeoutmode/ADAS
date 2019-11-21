@@ -268,7 +268,7 @@ public class GuessTheImage extends AppCompatActivity {
 
         } else if (img.getDrawable().getConstantState().equals(getResources().getDrawable(R.drawable.pencil).getConstantState())) {
 
-            if (!editText.getText().toString().equalsIgnoreCase("pencil")) {
+            if (editText.getText().toString().equalsIgnoreCase("pencil")) {
 
                 Toast.makeText(GuessTheImage.this, "Correct", Toast.LENGTH_LONG).show();
                 // clicked = true;

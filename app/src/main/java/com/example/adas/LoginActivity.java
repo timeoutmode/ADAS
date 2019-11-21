@@ -23,6 +23,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.adas.Helper.Helpers;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -92,6 +95,7 @@ public class  LoginActivity extends AppCompatActivity {
                 .addOnFailureListener(e -> {
                     Log.e(TAG, "onFailure");
                     Helpers.showToast(LoginActivity.this, e.getMessage());
+
         });
     }
 

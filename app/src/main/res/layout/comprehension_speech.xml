@@ -25,5 +25,5 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="98dp"
-        android:text="@string/hold_down_to_speak" />
+         />
 </RelativeLayout>

@@ -18,7 +18,8 @@ public class WordRecall extends AppCompatActivity {
     private TextView randtv;
     private Button randbtn;
 
-    private String wordbank1[] = {"bottle","potato","girl", "temple", "star","animal","forest","lake","clock","office"};
+    private String wordbank[] = {"bottle","potato","girl", "temple", "star","animal","forest","lake","clock","office"};
+
 
         @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,13 +28,14 @@ public class WordRecall extends AppCompatActivity {
 
             randtv =  findViewById(R.id.randWord);
             randbtn = findViewById(R.id.btn_generate);
+
             randbtn.setOnClickListener(new View.OnClickListener() {
 
                 @Override    public void onClick(View v)
                 {
                     Random random=new Random();
-                    int num = random.nextInt(wordbank1.length);
-                    randtv.setText(wordbank1[num]);
+                    int num = random.nextInt(wordbank.length);
+                    randtv.setText(wordbank[num]);
                 }
             });
     }

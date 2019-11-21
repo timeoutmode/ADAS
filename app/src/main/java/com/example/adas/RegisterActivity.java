@@ -99,6 +99,7 @@ public class RegisterActivity extends AppCompatActivity {
             // send verification email
             Log.i(TAG, "Right after createUser");
             FirebaseUser fbUser = firebaseAuth.getInstance().getCurrentUser();
+
             fbUser.sendEmailVerification().addOnCompleteListener(task -> {
                 if(task.isSuccessful()) {
                     Helpers.showToast(getApplicationContext(), "Please verify your email address.");

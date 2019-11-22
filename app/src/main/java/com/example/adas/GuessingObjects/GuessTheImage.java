@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -25,6 +26,7 @@ import java.util.Random;
 
 public class GuessTheImage extends AppCompatActivity {
 
+    TextView displayClue;
     Button button;
     EditText editText;
     ImageView img;
@@ -32,7 +34,7 @@ public class GuessTheImage extends AppCompatActivity {
     List<GameModel> list;
     Random r;
     int score = 0;
-    int wrong = 0;
+
     int turn = 1;
     int counter = 0;
     int length;
@@ -41,7 +43,7 @@ public class GuessTheImage extends AppCompatActivity {
 
     private ArrayList<ImageQuestion> imageQuestionArrayList;
 
-    boolean answer = false;
+
 
 
 
@@ -65,6 +67,7 @@ public class GuessTheImage extends AppCompatActivity {
         button = findViewById(R.id.button_submit);
         editText = findViewById(R.id.guessImageTextView);
         img = findViewById(R.id.ImageView);
+        displayClue = findViewById(R.id.displayClue);
 
 
         handler = new Handler();
@@ -98,9 +101,14 @@ public class GuessTheImage extends AppCompatActivity {
         if(counter < length) {
             Log.e("NewQuestion", "Called");
             ImageQuestion temp = imageQuestionArrayList.get(counter);
+            displayClue.setText("");
             img.setImageResource(temp.getImageid());
         } else {
             // message that it's finished
+            Intent intent = new Intent(GuessTheImage.this, NamingFingers.class);
+            startActivity(intent);
+
+            //When all th questions are fi
             Log.e("NewQuestion", "Counter > Length");
         }
 
@@ -153,20 +161,102 @@ public class GuessTheImage extends AppCompatActivity {
 
 
 
-        image4.setImageid(R.drawable.flower);
+        image4.setImageid(R.drawable.harmonica);
         image4.setAnswerList(new String[] {
-                "flower", "bloom", "blossom", "floret"
+                "harmonica", "mouth organ", "mouth harp", "Hobo Harp"
         });
-        image4.setClue("Grows in a garden");
+        image4.setClue("A musical instrument");
         image4.setFunctionList(new String[] {
-                "grows in a garden"
+                "play music"
         });
+
+        image5.setImageid(R.drawable.mask);
+        image5.setAnswerList(new String[] {
+                "mask", "false face", "disguise", "vail"
+        });
+        image5.setClue("Hides your face");
+        image5.setFunctionList(new String[] {
+                "Hides your face"
+        });
+
+        image6.setImageid(R.drawable.pencil);
+        image6.setAnswerList(new String[] {
+                "pencil"
+        });
+        image6.setClue("Used for writing");
+        image6.setFunctionList(new String[] {
+                "write","write down","jot down"
+        });
+
+        image7.setImageid(R.drawable.scissors);
+        image7.setAnswerList(new String[] {
+                "scissors","shears","rippers","shears"
+        });
+        image7.setClue("Cuts pape");
+        image7.setFunctionList(new String[] {
+                "Cuts things"
+        });
+
+        image8.setImageid(R.drawable.stethoscope);
+        image8.setAnswerList(new String[] {
+                "stethoscope"
+        });
+        image8.setClue("Doctor uses it to listen to your hear");
+        image8.setFunctionList(new String[] {
+                "listen to your hear"
+        });
+
+        image9.setImageid(R.drawable.tong);
+        image9.setAnswerList(new String[] {
+                "tong","pinchers", "pincers"
+        });
+        image9.setClue("Picks up food");
+        image9.setFunctionList(new String[] {
+                "Picks up food"
+        });
+
+        image10.setImageid(R.drawable.wallet);
+        image10.setAnswerList(new String[] {
+                "wallet","billfold", "notecase", "purse"
+        });
+        image10.setClue("Holds your money");
+        image10.setFunctionList(new String[] {
+                "Holds your money"
+        });
+
+        image11.setImageid(R.drawable.whistle);
+        image11.setAnswerList(new String[] {
+                "whistle"
+        });
+        image11.setClue("Makes a sound when you blow on it");
+        image11.setFunctionList(new String[] {
+                "Makes a sound when you blow on it"
+        });
+
+        image12.setImageid(R.drawable.rattle);
+        image12.setAnswerList(new String[] {
+                "rattle"
+        });
+        image12.setClue("A baby’s toy");
+        image12.setFunctionList(new String[] {
+                "A baby’s toy"
+        });
+
 
 
         imageQuestionArrayList = new ArrayList<>();
         imageQuestionArrayList.add(image1);
         imageQuestionArrayList.add(image2);
         imageQuestionArrayList.add(image3);
+        imageQuestionArrayList.add(image4);
+        imageQuestionArrayList.add(image5);
+        imageQuestionArrayList.add(image6);
+        imageQuestionArrayList.add(image7);
+        imageQuestionArrayList.add(image8);
+        imageQuestionArrayList.add(image9);
+        imageQuestionArrayList.add(image10);
+        imageQuestionArrayList.add(image11);
+        imageQuestionArrayList.add(image12);
         Collections.shuffle(imageQuestionArrayList);
 
     }
@@ -179,421 +269,22 @@ public class GuessTheImage extends AppCompatActivity {
             score++;
             counter++;
             newQuestion();
+            Toast.makeText(GuessTheImage.this, "Correct", Toast.LENGTH_LONG).show();
             handler.removeCallbacksAndMessages(null);
         } else if (currentImage.checkClue(answer)) {
+
             Toast.makeText(GuessTheImage.this, "Yes that is the function, but what is the name?", Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(GuessTheImage.this, "Incorrect", Toast.LENGTH_LONG).show();
-            d();
+            showClue();
         }
 
     }
 
-//    private void image() {
-//
-//        if (img.getDrawable().getConstantState().equals(getResources().getDrawable(R.drawable.bed).getConstantState())) {
-//
-//            if (editText.getText().toString().equalsIgnoreCase("bed") ||
-//                    editText.getText().toString().equalsIgnoreCase("berth") ||
-//                    editText.getText().toString().equalsIgnoreCase("billet") ||
-//                    editText.getText().toString().equalsIgnoreCase("kip")) {
-//
-//                Toast.makeText(GuessTheImage.this, "Correct", Toast.LENGTH_LONG).show();
-//                editText.getText().clear();
-//                // clicked = true;
-//                score = score + 1;
-//                answer = true;
-//
-//
-//                nextTurn();
-//                handler.removeCallbacksAndMessages(null);
-//
-//            } else if (editText.getText().toString().equalsIgnoreCase(list.get(turn - 1).getClues())) {
-//                Toast.makeText(GuessTheImage.this, "Yes that is the function, but what is the name", Toast.LENGTH_LONG).show();
-//
-//
-//            } else if (!editText.getText().toString().equalsIgnoreCase("bed") ||
-//                    !editText.getText().toString().equalsIgnoreCase("berth") ||
-//                    !editText.getText().toString().equalsIgnoreCase("billet") ||
-//                    !editText.getText().toString().equalsIgnoreCase("kip")) {
-//                Toast.makeText(GuessTheImage.this, "Incorrect", Toast.LENGTH_LONG).show();
-//                editText.getText().clear();
-//
-//
-//                d();
-//            }
-//
-//
-//        } else if (img.getDrawable().getConstantState().equals(getResources().getDrawable(R.drawable.comb).getConstantState())) {
-//
-//            if (editText.getText().toString().equalsIgnoreCase("comb") ||
-//                    editText.getText().toString().equalsIgnoreCase("groom") ||
-//                    editText.getText().toString().equalsIgnoreCase("untangle") ||
-//                    editText.getText().toString().equalsIgnoreCase("rake")) {
-//
-//                Toast.makeText(GuessTheImage.this, "Correct", Toast.LENGTH_LONG).show();
-//                // clicked = true;
-//                editText.getText().clear();
-//                answer = true;
-//
-//                score = score + 1;
-//                // addToFirebase();
-//
-//
-//                nextTurn();
-//                handler.removeCallbacksAndMessages(null);
-//
-//            } else if (editText.getText().toString().equalsIgnoreCase(list.get(turn - 1).getClues())) {
-//                Toast.makeText(GuessTheImage.this, "Yes that is the function, but what is the name", Toast.LENGTH_LONG).show();
-//
-//
-//            } else if (!editText.getText().toString().equalsIgnoreCase("comb") ||
-//                    !editText.getText().toString().equalsIgnoreCase("groom") ||
-//                    !editText.getText().toString().equalsIgnoreCase("untangle") ||
-//                    !editText.getText().toString().equalsIgnoreCase("rake")) {
-//
-//                Toast.makeText(GuessTheImage.this, "Incorrect", Toast.LENGTH_LONG).show();
-//                editText.getText().clear();
-//
-//                d();
-//
-//            }
-//
-//
-//        } else if (img.getDrawable().getConstantState().equals(getResources().getDrawable(R.drawable.flower).getConstantState())) {
-//
-//            if (editText.getText().toString().equalsIgnoreCase("flower") ||
-//                    editText.getText().toString().equalsIgnoreCase("bloom") ||
-//                    editText.getText().toString().equalsIgnoreCase("blossom") ||
-//                    editText.getText().toString().equalsIgnoreCase("floret")) {
-//                Toast.makeText(GuessTheImage.this, "Correct", Toast.LENGTH_LONG).show();
-//                //clicked = true;
-//                editText.getText().clear();
-//
-//                answer = true;
-//                score = score + 1;
-//
-//
-//                nextTurn();
-//                handler.removeCallbacksAndMessages(null);
-//
-//            } else if (editText.getText().toString().equalsIgnoreCase(list.get(turn - 1).getClues())) {
-//                Toast.makeText(GuessTheImage.this, "Yes that is the function, but what is the name", Toast.LENGTH_LONG).show();
-//
-//
-//            } else if (!editText.getText().toString().equalsIgnoreCase("flower") ||
-//                    !editText.getText().toString().equalsIgnoreCase("bloom") ||
-//                    !editText.getText().toString().equalsIgnoreCase("blossom") ||
-//                    !editText.getText().toString().equalsIgnoreCase("floret")) {
-//                Toast.makeText(GuessTheImage.this, "Incorrect", Toast.LENGTH_LONG).show();
-//                editText.getText().clear();
-//
-//
-//                d();
-//
-//            }
-//
-//
-//        } else if (img.getDrawable().getConstantState().equals(getResources().getDrawable(R.drawable.harmonica).getConstantState())) {
-//
-//            if (editText.getText().toString().equalsIgnoreCase("harmonica") ||
-//                    editText.getText().toString().equalsIgnoreCase("mouth organ") ||
-//                    editText.getText().toString().equalsIgnoreCase("mouth harp") ||
-//                    editText.getText().toString().equalsIgnoreCase("Hobo Harp")) {
-//
-//                Toast.makeText(GuessTheImage.this, "Correct", Toast.LENGTH_LONG).show();
-//                //clicked = true;
-//                editText.getText().clear();
-//                score = score + 1;
-//                answer = true;
-//
-//
-//                nextTurn();
-//                handler.removeCallbacksAndMessages(null);
-//
-//            } else if (editText.getText().toString().equalsIgnoreCase(list.get(turn - 1).getClues())) {
-//                Toast.makeText(GuessTheImage.this, "Yes that is the function, but what is the name", Toast.LENGTH_LONG).show();
-//
-//
-//            } else if (!editText.getText().toString().equalsIgnoreCase("harmonica") ||
-//                    !editText.getText().toString().equalsIgnoreCase("mouth organ") ||
-//                    !editText.getText().toString().equalsIgnoreCase("mouth harp") ||
-//                    !editText.getText().toString().equalsIgnoreCase("Hobo Harp")) {
-//
-//                Toast.makeText(GuessTheImage.this, "Incorrect", Toast.LENGTH_LONG).show();
-//                editText.getText().clear();
-//
-//
-//                d();
-//
-//            }
-//
-//
-//        } else if (img.getDrawable().getConstantState().equals(getResources().getDrawable(R.drawable.mask).getConstantState())) {
-//
-//            if (editText.getText().toString().equalsIgnoreCase("mask") ||
-//                    editText.getText().toString().equalsIgnoreCase("false face") ||
-//                    editText.getText().toString().equalsIgnoreCase("disguise") ||
-//                    editText.getText().toString().equalsIgnoreCase("vail")) {
-//
-//                Toast.makeText(GuessTheImage.this, "Correct", Toast.LENGTH_LONG).show();
-//                //clicked = true;
-//                editText.getText().clear();
-//                score = score + 1;
-//                answer = true;
-//
-//
-//                nextTurn();
-//                handler.removeCallbacksAndMessages(null);
-//
-//            } else if (editText.getText().toString().equalsIgnoreCase(list.get(turn - 1).getClues())) {
-//                Toast.makeText(GuessTheImage.this,"Yes that is the function, but what is the name", Toast.LENGTH_LONG).show();
-//
-//
-//            } else if (!editText.getText().toString().equalsIgnoreCase("mask") ||
-//                    !editText.getText().toString().equalsIgnoreCase("false face") ||
-//                    !editText.getText().toString().equalsIgnoreCase("disguise") ||
-//                    !editText.getText().toString().equalsIgnoreCase("vail")) {
-//
-//                Toast.makeText(GuessTheImage.this, "Incorrect", Toast.LENGTH_LONG).show();
-//                editText.getText().clear();
-//
-//
-//                d();
-//
-//            }
-//
-//
-//        } else if (img.getDrawable().getConstantState().equals(getResources().getDrawable(R.drawable.pencil).getConstantState())) {
-//
-//            if (!editText.getText().toString().equalsIgnoreCase("pencil")) {
-//
-//                Toast.makeText(GuessTheImage.this, "Correct", Toast.LENGTH_LONG).show();
-//                // clicked = true;
-//                editText.getText().clear();
-//                score = score + 1;
-//                answer = true;
-//
-//
-//                nextTurn();
-//                handler.removeCallbacksAndMessages(null);
-//
-//            } else if (editText.getText().toString().equalsIgnoreCase("write") ||
-//                    editText.getText().toString().equalsIgnoreCase("write down") ||
-//                    editText.getText().toString().equalsIgnoreCase("jot down")) {
-//                Toast.makeText(GuessTheImage.this, "Yes that is the function, but what is the name", Toast.LENGTH_LONG).show();
-//
-//
-//            } else if (editText.getText().toString().equalsIgnoreCase("pencil")) {
-//                Toast.makeText(GuessTheImage.this, "Incorrect", Toast.LENGTH_LONG).show();
-//                editText.getText().clear();
-//
-//                d();
-//
-//
-//            }
-//
-//
-//        } else if (img.getDrawable().getConstantState().equals(getResources().getDrawable(R.drawable.scissors).getConstantState())) {
-//
-//            if (editText.getText().toString().equalsIgnoreCase("scissors") ||
-//                    editText.getText().toString().equalsIgnoreCase("shears") ||
-//                    editText.getText().toString().equalsIgnoreCase("rippers") ||
-//                    editText.getText().toString().equalsIgnoreCase("shears")) {
-//
-//                Toast.makeText(GuessTheImage.this, "Correct", Toast.LENGTH_LONG).show();
-//                // clicked = true;
-//                editText.getText().clear();
-//
-//                score = score + 1;
-//                answer = true;
-//
-//
-//                nextTurn();
-//                handler.removeCallbacksAndMessages(null);
-//            } else if (editText.getText().toString().equalsIgnoreCase(list.get(turn - 1).getClues())) {
-//                Toast.makeText(GuessTheImage.this, "Yes that is the function, but what is the name", Toast.LENGTH_LONG).show();
-//
-//
-//            } else if (!editText.getText().toString().equalsIgnoreCase("scissors") ||
-//                    !editText.getText().toString().equalsIgnoreCase("shears") ||
-//                    !editText.getText().toString().equalsIgnoreCase("rippers") ||
-//                    !editText.getText().toString().equalsIgnoreCase("shears")) {
-//
-//                Toast.makeText(GuessTheImage.this, "Incorrect", Toast.LENGTH_LONG).show();
-//                editText.getText().clear();
-//
-//                d();
-//
-//
-//            }
-//
-//
-//        } else if (img.getDrawable().getConstantState().equals(getResources().getDrawable(R.drawable.stethoscope).getConstantState())) {
-//
-//            if (editText.getText().toString().equalsIgnoreCase("stethoscope")) {
-//
-//                Toast.makeText(GuessTheImage.this, "Correct", Toast.LENGTH_LONG).show();
-//                // clicked = true;
-//                editText.getText().clear();
-//                score = score + 1;
-//                answer = true;
-//
-//
-//                nextTurn();
-//                handler.removeCallbacksAndMessages(null);
-//
-//            } else if (editText.getText().toString().equalsIgnoreCase(list.get(turn - 1).getClues())) {
-//                Toast.makeText(GuessTheImage.this, "Yes that is the function, but what is the name", Toast.LENGTH_LONG).show();
-//
-//
-//            } else if (!editText.getText().toString().equalsIgnoreCase("stethoscope")) {
-//                Toast.makeText(GuessTheImage.this, "Incorrect", Toast.LENGTH_LONG).show();
-//                editText.getText().clear();
-//
-//                d();
-//
-//
-//            }
-//
-//
-//        } else if (img.getDrawable().getConstantState().equals(getResources().getDrawable(R.drawable.rattle).getConstantState())) {
-//
-//            if (editText.getText().toString().equalsIgnoreCase("rattle")) {
-//
-//                Toast.makeText(GuessTheImage.this, "Correct", Toast.LENGTH_LONG).show();
-//                //clicked = true;
-//                editText.getText().clear();
-//                answer = true;
-//                score = score + 1;
-//
-//
-//                nextTurn();
-//                handler.removeCallbacksAndMessages(null);
-//
-//
-//            } else if (editText.getText().toString().equalsIgnoreCase("clatter") ||
-//                    editText.getText().toString().equalsIgnoreCase("bang") ||
-//                    editText.getText().toString().equalsIgnoreCase("clang") ||
-//                    editText.getText().toString().equalsIgnoreCase("clink") ||
-//                    editText.getText().toString().equalsIgnoreCase("jingle") ||
-//                    editText.getText().toString().equalsIgnoreCase("tinkel")
-//
-//            ) {
-//                Toast.makeText(GuessTheImage.this, "Yes that is the function, but what is the name", Toast.LENGTH_LONG).show();
-//
-//
-//            } else if (!editText.getText().toString().equalsIgnoreCase("rattle")) {
-//                Toast.makeText(GuessTheImage.this, "Incorrect", Toast.LENGTH_LONG).show();
-//                editText.getText().clear();
-//                d();
-//
-//
-//            }
-////
-//
-//
-//        } else if (img.getDrawable().getConstantState().equals(getResources().getDrawable(R.drawable.tong).getConstantState())) {
-//            if (editText.getText().toString().equalsIgnoreCase("tong") ||
-//                    editText.getText().toString().equalsIgnoreCase("pinchers") ||
-//                    editText.getText().toString().equalsIgnoreCase("pincers") ||
-//                    editText.getText().toString().equalsIgnoreCase("pliers")) {
-//
-//                Toast.makeText(GuessTheImage.this, "Correct", Toast.LENGTH_LONG).show();
-//                //clicked = true;
-//                // editText.getText().clear();
-//                score = score + 1;
-//                nextTurn();
-//                handler.removeCallbacksAndMessages(null);
-//
-//            } else if (editText.getText().toString().equalsIgnoreCase(list.get(turn - 1).getClues())) {
-//                Toast.makeText(GuessTheImage.this, "Yes that is the function, but what is the name", Toast.LENGTH_LONG).show();
-//
-//
-//            } else if (!editText.getText().toString().equalsIgnoreCase("tong") ||
-//                    !editText.getText().toString().equalsIgnoreCase("pinchers") ||
-//                    !editText.getText().toString().equalsIgnoreCase("pincers") ||
-//                    !editText.getText().toString().equalsIgnoreCase("pliers")) {
-//
-//                Toast.makeText(GuessTheImage.this, "Incorrect", Toast.LENGTH_LONG).show();
-//                editText.getText().clear();
-//
-//                d();
-//
-//
-//            }
-//
-//        } else if (img.getDrawable().getConstantState().equals(getResources().getDrawable(R.drawable.wallet).getConstantState())) {
-//
-//            if (editText.getText().toString().equalsIgnoreCase("wallet") ||
-//                    editText.getText().toString().equalsIgnoreCase("billfold") ||
-//                    editText.getText().toString().equalsIgnoreCase("notecase") ||
-//                    editText.getText().toString().equalsIgnoreCase("purse")) {
-//
-//                Toast.makeText(GuessTheImage.this, "Correct", Toast.LENGTH_LONG).show();
-//                editText.getText().clear();
-//                // clicked = true;
-//                answer = true;
-//                score = score + 1;
-//
-//
-//                nextTurn();
-//                handler.removeCallbacksAndMessages(null);
-//
-//            } else if (editText.getText().toString().equalsIgnoreCase(list.get(turn - 1).getClues())) {
-//                Toast.makeText(GuessTheImage.this, "Yes that is the function, but what is the name", Toast.LENGTH_LONG).show();
-//
-//
-//            } else if (!editText.getText().toString().equalsIgnoreCase("wallet") ||
-//                    !editText.getText().toString().equalsIgnoreCase("billfold") ||
-//                    !editText.getText().toString().equalsIgnoreCase("notecase") ||
-//                    !editText.getText().toString().equalsIgnoreCase("purse")) {
-//
-//                Toast.makeText(GuessTheImage.this, "Incorrect", Toast.LENGTH_LONG).show();
-//                editText.getText().clear();
-//                //answer = false;
-//
-//
-//                d();
-//
-//
-//            }
-//
-//
-//        } else if (img.getDrawable().getConstantState().equals(getResources().getDrawable(R.drawable.whistle).getConstantState())) {
-//            if (editText.getText().toString().equalsIgnoreCase("whistle")) {
-//                Toast.makeText(GuessTheImage.this, "Correct", Toast.LENGTH_LONG).show();
-//                //  clicked = true;
-//                answer = true;
-//
-//                editText.getText().clear();
-//                score = score + 1;
-//
-//
-//                nextTurn();
-//                handler.removeCallbacksAndMessages(null);
-//
-//
-//            } else if (editText.getText().toString().equalsIgnoreCase(list.get(turn - 1).getClues())) {
-//                Toast.makeText(GuessTheImage.this,"Yes that is the function, but what is the name", Toast.LENGTH_LONG).show();
-//
-//
-//            } else if (!editText.getText().toString().equalsIgnoreCase("whistle")) {
-//                Toast.makeText(GuessTheImage.this, "Incorrect", Toast.LENGTH_LONG).show();
-//                editText.getText().clear();
-//                // answer = false;
-//
-//
-//                d();
-//
-//            }
-//        }
-//
-//
-//    }
 
 
-    private void d() {
+
+    private void showClue() {
 
 
         handler.postDelayed(new Runnable() {
@@ -603,9 +294,10 @@ public class GuessTheImage extends AppCompatActivity {
                 // yourMethod();
                 //Toast.makeText(GuessTheImage.this, list.get(turn - 1).getClues(), Toast.LENGTH_LONG).show();
                 ImageQuestion temp = imageQuestionArrayList.get(counter);
-                Toast.makeText(GuessTheImage.this, temp.getClue(), Toast.LENGTH_LONG).show();
+               // Toast.makeText(GuessTheImage.this, temp.getClue(), Toast.LENGTH_LONG).show();
+                displayClue.setText(temp.getClue());
 
-                d2();
+                moveToNextQuestion();
 
             }
         }, 3000);
@@ -614,7 +306,7 @@ public class GuessTheImage extends AppCompatActivity {
     }
 
 
-    private void d2() {
+    private void moveToNextQuestion() {
 
         handler.postDelayed(new Runnable() {
             @Override
@@ -634,25 +326,25 @@ public class GuessTheImage extends AppCompatActivity {
         image();
     }
 
-    private void nextTurn(){
-        if (turn < list.size()) {
-            turn++;
-            newQuestion();
-            addToFirebase();
-
-        } else {
-            Toast.makeText(GuessTheImage.this, "You are done", Toast.LENGTH_LONG).show();
-//                Intent intent = new Intent(MainActivity.this, HigestScoreActivity.class);
-//                intent.putExtra("Total Score", score);
-//                startActivity(intent);
-
-            addToFirebase();
-            Intent intent = new Intent(GuessTheImage.this, NamingFingers.class);
-            startActivity(intent);
-
-        }
-
-    }
+//    private void nextTurn(){
+//        if (turn < list.size()) {
+//            turn++;
+//            newQuestion();
+//            addToFirebase();
+//
+//        } else {
+//            Toast.makeText(GuessTheImage.this, "You are done", Toast.LENGTH_LONG).show();
+////                Intent intent = new Intent(MainActivity.this, HigestScoreActivity.class);
+////                intent.putExtra("Total Score", score);
+////                startActivity(intent);
+//
+//            addToFirebase();
+//            Intent intent = new Intent(GuessTheImage.this, NamingFingers.class);
+//            startActivity(intent);
+//
+//        }
+//
+//    }
 
     private void addToFirebase(){
 

@@ -80,7 +80,7 @@ public class GuessTheImage extends AppCompatActivity {
 
 
         //Shuffle the data
-        Collections.shuffle(list);
+//        Collections.shuffle(list);
 
 
 
@@ -140,9 +140,34 @@ public class GuessTheImage extends AppCompatActivity {
                 "comb hair"
         });
 
+
+
+        image3.setImageid(R.drawable.flower);
+        image3.setAnswerList(new String[] {
+                "flower", "bloom", "blossom", "floret"
+        });
+        image3.setClue("Grows in a garden");
+        image3.setFunctionList(new String[] {
+                "grows in a garden"
+        });
+
+
+
+        image4.setImageid(R.drawable.flower);
+        image4.setAnswerList(new String[] {
+                "flower", "bloom", "blossom", "floret"
+        });
+        image4.setClue("Grows in a garden");
+        image4.setFunctionList(new String[] {
+                "grows in a garden"
+        });
+
+
         imageQuestionArrayList = new ArrayList<>();
         imageQuestionArrayList.add(image1);
         imageQuestionArrayList.add(image2);
+        imageQuestionArrayList.add(image3);
+        Collections.shuffle(imageQuestionArrayList);
 
     }
 

@@ -28,11 +28,11 @@ public class HigestScoreActivity extends AppCompatActivity {
         setContentView(R.layout.activity_higest_score);
 
         final TextView imageRight = findViewById(R.id.imageright);
-        final TextView imageWrong = findViewById(R.id.imagewrong);
+       // final TextView imageWrong = findViewById(R.id.imagewrong);
         final TextView fingersRight = findViewById(R.id.fingersright);
-        final TextView fingersWrong = findViewById(R.id.fingerswrong);
+       // final TextView fingersWrong = findViewById(R.id.fingerswrong);
         final TextView totalRight  = findViewById(R.id.totalscore);
-        final TextView totalwrong = findViewById(R.id.totalwrong);
+       // final TextView totalwrong = findViewById(R.id.totalwrong);
 
 //        Intent intent = getIntent();
 //        int score = intent.getIntExtra("Total Score", 0);
@@ -56,12 +56,12 @@ public class HigestScoreActivity extends AppCompatActivity {
 
                 //  myRef.child("users").child("Score_2").child("wrong").setValue(wrong_2);
                 imageRight.setText(score_1);
-                imageWrong.setText(imgWrong);
+               // imageWrong.setText(imgWrong);
                 fingersRight.setText(score_2);
-                fingersWrong.setText(fingWrong);
+               // fingersWrong.setText(fingWrong);
 
                 totalRight.setText(score_1 + score_2);
-                totalwrong.setText(imgWrong + fingWrong);
+                //totalwrong.setText(imgWrong + fingWrong);
             }
 
             @Override

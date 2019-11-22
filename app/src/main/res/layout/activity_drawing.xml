@@ -16,15 +16,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageButton
-            android:id="@+id/brushClicked"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="123dp"
-            android:layout_marginEnd="71dp"
-            android:background="@drawable/brush"
+<!--        <ImageButton-->
+<!--            android:id="@+id/brushClicked"-->
+<!--            android:layout_width="40dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:layout_marginStart="123dp"-->
+<!--            android:layout_marginEnd="71dp"-->
+<!--            android:background="@drawable/brush"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/eraserClicked"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Draw"
+            android:textSize="30dp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/eraserClicked"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,13 +43,24 @@
             android:id="@+id/eraserClicked"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginStart="71dp"
-            android:layout_marginEnd="137dp"
+            android:layout_marginEnd="60dp"
             android:background="@drawable/eraser"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/brushClicked"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <!--        <Button-->
+<!--            android:layout_width="60dp"-->
+<!--            android:layout_height="60dp"-->
+<!--            android:layout_marginStart="23dp"-->
+<!--            android:layout_marginTop="29dp"-->
+<!--            android:layout_marginEnd="16dp"-->
+<!--            android:background="@android:color/white"-->
+<!--            android:onClick="go_btn"-->
+<!--            android:text="SUBMITE"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/brushClicked"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -53,6 +75,9 @@
         app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+
+
 
 
     </com.example.adas.Constructional_Praxis.PaintView>

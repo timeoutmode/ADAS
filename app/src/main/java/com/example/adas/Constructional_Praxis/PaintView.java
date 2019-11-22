@@ -21,26 +21,28 @@ public class PaintView extends View {
     private boolean erase = false;
     private Canvas drawCanvas;
     private Paint drawaPaint, canvasPaint;
-    private  int paintColor = 0XFF660000;
+    private int paintColor = 0XFF660000;
     private Bitmap canvasBitmap;
     private Paint paintLine;
     private float brushSize, lastBushSize;
+
     public PaintView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         setupDrawing();
     }
 
-    public void setErase(boolean isErase){
+
+
+    public void setErase(boolean isErase) {
         erase = isErase;
 
         if (erase) drawaPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
         else drawaPaint.setXfermode(null);
 
 
-
     }
 
-    public void clear(){
+    public void clear() {
         drawpath.reset();
         canvasBitmap.eraseColor(Color.WHITE);
         invalidate();
@@ -48,25 +50,25 @@ public class PaintView extends View {
     }
 
 
-    public void setBrushSize(float newSize){
-        float pixelAmount = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, newSize,getResources().getDisplayMetrics());
+    public void setBrushSize(float newSize) {
+        float pixelAmount = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, newSize, getResources().getDisplayMetrics());
         brushSize = pixelAmount;
         drawaPaint.setStrokeWidth(brushSize);
 
     }
 
-    public void setLastBrushSize(float lastSize){
+    public void setLastBrushSize(float lastSize) {
         lastBushSize = lastSize;
     }
 
-    public float getBrushSize(){
+    public float getBrushSize() {
         return lastBushSize;
-}
+    }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        canvasBitmap = Bitmap.createBitmap(w, h,Bitmap.Config.ARGB_8888);
+        canvasBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
         drawCanvas = new Canvas(canvasBitmap);
     }
 
@@ -75,21 +77,46 @@ public class PaintView extends View {
         canvas.drawBitmap(canvasBitmap, 0, 0, canvasPaint);
         canvas.drawPath(drawpath, drawaPaint);
 
-        //  canvas.drawCircle(getMeasuredWidth()/2, getMeasuredHeight()/2, 78 , paintLine);
+
+
+
+
+
+        // canvas.drawCircle(getMeasuredWidth()/2, getMeasuredHeight()/2, calculateRadius(7,7,7,7) , paintLine);
 
 
     }
 
+//    public boolean drawC(boolean isC){
+//
+////        drawpath.addCircle(0,0,78,null);
+//        //drawpath.addArc(0,0,50,50,0,360);
+//      //  return false;
+//
+//
+//        return isC;
+//    }
+
+
+    //    protected float calculateRadius(float x1, float y1, float x2, float y2) {
+//
+//        return (float) Math.sqrt(
+//                Math.pow(x1 - x2, 2) +
+//                        Math.pow(y1 - y2, 2)
+//        );
+//    }
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         float touchX = event.getX();
         float touchY = event.getY();
-        switch (event.getAction()){
+        switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 drawpath.moveTo(touchX, touchY);
                 break;
-            case  MotionEvent.ACTION_MOVE:
+            case MotionEvent.ACTION_MOVE:
                 drawpath.lineTo(touchX, touchY);
+               // drawpath.addArc(0,0,50,50,0,360);
+
 
                 break;
             case MotionEvent.ACTION_UP:
@@ -103,8 +130,9 @@ public class PaintView extends View {
         return true;
     }
 
+   //drawpath.addArc(0,0,50,50,0,360);
 
-    public void setupDrawing(){
+    public void setupDrawing() {
         drawpath = new Path();
         drawaPaint = new Paint();
         drawaPaint.setAntiAlias(true);
@@ -118,5 +146,6 @@ public class PaintView extends View {
         drawaPaint.setStrokeWidth(brushSize);
 
     }
+
 
 }

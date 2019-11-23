@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".GuessingObjects.HigestScoreActivity" />
         <activity android:name=".GuessingObjects.StartImageGame"/>
         <activity android:name=".Constructional_Praxis.DrawingActivity"></activity>
         <activity android:name=".GuessingObjects.GuessTheImage" />

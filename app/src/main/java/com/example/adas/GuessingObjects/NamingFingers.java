@@ -114,7 +114,7 @@ public class NamingFingers extends AppCompatActivity {
 
         image4.setImageId(R.drawable.ring);
         image4.setAnsList(new String[]{
-                "middle"
+                "ring"
         });
         image4.setClue("What is another name for this finger");
 

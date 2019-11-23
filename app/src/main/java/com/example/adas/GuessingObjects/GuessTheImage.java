@@ -1,7 +1,9 @@
 package com.example.adas.GuessingObjects;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,8 +16,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.adas.HomeActivity;
 import com.example.adas.Model.ImageQuestion;
 import com.example.adas.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -31,8 +36,8 @@ public class GuessTheImage extends AppCompatActivity {
     EditText editText;
     ImageView img;
 
-    List<GameModel> list;
-    Random r;
+
+
     int score = 0;
 
     int turn = 1;
@@ -41,6 +46,7 @@ public class GuessTheImage extends AppCompatActivity {
 
     Handler handler;
 
+
     private ArrayList<ImageQuestion> imageQuestionArrayList;
 
 
@@ -48,12 +54,12 @@ public class GuessTheImage extends AppCompatActivity {
 
 
 
-    GameModel gameModel;
-    //FirebaseAuth firebaseAuth;
+
+    FirebaseAuth firebaseAuth;
     FirebaseDatabase database;
     DatabaseReference myRef;
     int sum = 0;
-    // FirebaseUser user;
+     FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,9 +79,9 @@ public class GuessTheImage extends AppCompatActivity {
         handler = new Handler();
 
 
-        r = new Random();
 
-        list = new ArrayList<>();
+
+
 
 //        for (int i = 0; i < new ImageDatabase().imageList.length; i++) {
 //            list.add(new GameModel(new ImageDatabase().imageList[i], new ImageDatabase().clues[i]));
@@ -104,13 +110,44 @@ public class GuessTheImage extends AppCompatActivity {
             displayClue.setText("");
             img.setImageResource(temp.getImageid());
         } else {
-            // message that it's finished
-            Intent intent = new Intent(GuessTheImage.this, NamingFingers.class);
-            startActivity(intent);
 
-            //When all th questions are fi
+
+            //When all th questions are finished
+            arletinstructions();
+
+
+            // message that it's finished
             Log.e("NewQuestion", "Counter > Length");
         }
+
+    }
+
+
+    private void arletinstructions(){
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(GuessTheImage.this, R.style.MyDialogTheme);
+        alertDialog.setTitle("Guess the Finger");
+        alertDialog.setMessage("“Now I am going to point to a part of your hand and I want\n" +
+                         "you to tell me what it’s called.");
+
+        alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(GuessTheImage.this, NamingFingers.class);
+                startActivity(intent);
+            }
+        });
+
+        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(GuessTheImage.this, HomeActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
+
+        alertDialog.create().show();
 
     }
 
@@ -130,9 +167,11 @@ public class GuessTheImage extends AppCompatActivity {
 
         //
         image1.setImageid(R.drawable.bed);
+
         image1.setAnswerList(new String[] {
                 "bed", "berth", "billet", "kip"
         });
+
         image1.setClue("Used for sleeping in");
         image1.setFunctionList(new String[] {
                 "used for sleeping in"
@@ -260,6 +299,8 @@ public class GuessTheImage extends AppCompatActivity {
         Collections.shuffle(imageQuestionArrayList);
 
     }
+
+
 
     private void image() {
         ImageQuestion currentImage = imageQuestionArrayList.get(counter);

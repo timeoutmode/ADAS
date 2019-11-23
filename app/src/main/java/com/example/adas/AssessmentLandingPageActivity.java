@@ -14,6 +14,7 @@ import android.widget.Button;
 import com.example.adas.Constructional_Praxis.DrawingActivity;
 import com.example.adas.GuessingObjects.GuessTheImage;
 import com.example.adas.GuessingObjects.NamingFingers;
+import com.example.adas.GuessingObjects.StartImageGame;
 import com.example.adas.Orientation.OrientationViewPager;
 import com.example.adas.SpeechComprehension.SpeechTask;
 import com.example.adas.WordRecall.WordRecall;
@@ -66,7 +67,7 @@ public class AssessmentLandingPageActivity extends AppCompatActivity {
         });
 
         btn5.setOnClickListener(c -> {
-            navigateToActivity(GuessTheImage.class);
+            navigateToActivity(StartImageGame.class);
         });
 
         btn6.setOnClickListener(c -> {

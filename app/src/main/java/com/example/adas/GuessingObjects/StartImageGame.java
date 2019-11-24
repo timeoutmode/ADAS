@@ -24,9 +24,8 @@ public class StartImageGame extends AppCompatActivity {
     }
 
     public void btn_start(View view) {
-        arletinstructions();
-//        Intent intent = new Intent(StartImageGame.this, GuessTheImage.class);
-//        startActivity(intent);
+      arletinstructions();
+
     }
 
 
@@ -38,7 +37,7 @@ public class StartImageGame extends AppCompatActivity {
 
     private void arletinstructions(){
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(StartImageGame.this, R.style.MyDialogTheme);
-        alertDialog.setTitle("Guess the Finger");
+        alertDialog.setTitle("Guess the Image");
         alertDialog.setMessage(R.string.Guess_the_image_instructions);
 
         alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -49,14 +48,7 @@ public class StartImageGame extends AppCompatActivity {
             }
         });
 
-        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(StartImageGame.this, HomeActivity.class);
-                startActivity(intent);
 
-            }
-        });
 
 
         alertDialog.create().show();

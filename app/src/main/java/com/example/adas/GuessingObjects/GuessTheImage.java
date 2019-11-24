@@ -18,16 +18,16 @@ import android.widget.Toast;
 
 import com.example.adas.HomeActivity;
 import com.example.adas.Model.ImageQuestion;
+import com.example.adas.Model.Score_1;
+import com.example.adas.Model.TotalScore;
 import com.example.adas.R;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 public class GuessTheImage extends AppCompatActivity {
 
@@ -38,28 +38,30 @@ public class GuessTheImage extends AppCompatActivity {
 
 
 
+
     int score = 0;
 
     int turn = 1;
     int counter = 0;
     int length;
+    int len;
 
     Handler handler;
 
 
     private ArrayList<ImageQuestion> imageQuestionArrayList;
 
+    List<TotalScore> score_total;
+    int score_total_len;
 
 
 
 
 
 
-    FirebaseAuth firebaseAuth;
-    FirebaseDatabase database;
-    DatabaseReference myRef;
-    int sum = 0;
-     FirebaseUser user;
+
+    private FirebaseAuth firebaseAuth;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,31 +69,10 @@ public class GuessTheImage extends AppCompatActivity {
         setContentView(R.layout.activity_guess_the_image);
 
 
-        myRef = FirebaseDatabase.getInstance().getReference();
-        database = FirebaseDatabase.getInstance();
 
-        button = findViewById(R.id.button_submit);
-        editText = findViewById(R.id.guessImageTextView);
-        img = findViewById(R.id.ImageView);
-        displayClue = findViewById(R.id.displayClue);
-
-
-        handler = new Handler();
-
-
-
-
-
-
-//        for (int i = 0; i < new ImageDatabase().imageList.length; i++) {
-//            list.add(new GameModel(new ImageDatabase().imageList[i], new ImageDatabase().clues[i]));
-//        }
-
-
-        //Shuffle the data
-//        Collections.shuffle(list);
-
-
+        initialise();
+        initialiseFirebase();
+        initialiseViews();
 
         initialiseImages();
         length = imageQuestionArrayList.size();
@@ -100,6 +81,21 @@ public class GuessTheImage extends AppCompatActivity {
 
     }
 
+    private void initialise(){
+        handler = new Handler();
+    }
+
+    private void initialiseViews(){
+        button = findViewById(R.id.button_submit);
+        editText = findViewById(R.id.guessImageTextView);
+        img = findViewById(R.id.ImageView);
+        displayClue = findViewById(R.id.displayClue);
+    }
+
+    private void initialiseFirebase(){
+        firebaseAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+    }
 
     private void newQuestion() {
 
@@ -111,16 +107,16 @@ public class GuessTheImage extends AppCompatActivity {
             img.setImageResource(temp.getImageid());
         } else {
 
-
             //When all th questions are finished
             arletinstructions();
-
-
             // message that it's finished
             Log.e("NewQuestion", "Counter > Length");
         }
 
     }
+
+
+
 
 
     private void arletinstructions(){
@@ -133,18 +129,13 @@ public class GuessTheImage extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Intent intent = new Intent(GuessTheImage.this, NamingFingers.class);
+                Bundle bundle = new Bundle();
+                bundle.putInt("ImageScore", score);
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
 
-        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(GuessTheImage.this, HomeActivity.class);
-                startActivity(intent);
-
-            }
-        });
 
 
         alertDialog.create().show();
@@ -173,8 +164,9 @@ public class GuessTheImage extends AppCompatActivity {
         });
 
         image1.setClue("Used for sleeping in");
+
         image1.setFunctionList(new String[] {
-                "used for sleeping in"
+                "used for sleeping in","sleep","relax"
         });
 
 
@@ -183,8 +175,9 @@ public class GuessTheImage extends AppCompatActivity {
                 "comb", "groom", "untangle", "rake"
         });
         image2.setClue("Used on hair");
+
         image2.setFunctionList(new String[] {
-                "comb hair"
+                "comb hair", "to groom", "to untangle hair"
         });
 
 
@@ -195,7 +188,7 @@ public class GuessTheImage extends AppCompatActivity {
         });
         image3.setClue("Grows in a garden");
         image3.setFunctionList(new String[] {
-                "grows in a garden"
+                "grows in a garden", "smell", "gift","make bouquet", "bouquet", "beauty", "beautiful","colorful"
         });
 
 
@@ -206,7 +199,7 @@ public class GuessTheImage extends AppCompatActivity {
         });
         image4.setClue("A musical instrument");
         image4.setFunctionList(new String[] {
-                "play music"
+                "play music", "make sound", "sound", "music", "make noise", "noise"
         });
 
         image5.setImageid(R.drawable.mask);
@@ -215,7 +208,7 @@ public class GuessTheImage extends AppCompatActivity {
         });
         image5.setClue("Hides your face");
         image5.setFunctionList(new String[] {
-                "Hides your face"
+                "Hides your face", "hide face", "cover", "hide", "cover face"
         });
 
         image6.setImageid(R.drawable.pencil);
@@ -224,7 +217,7 @@ public class GuessTheImage extends AppCompatActivity {
         });
         image6.setClue("Used for writing");
         image6.setFunctionList(new String[] {
-                "write","write down","jot down"
+                "write","write down","jot down", "draw"
         });
 
         image7.setImageid(R.drawable.scissors);
@@ -233,16 +226,16 @@ public class GuessTheImage extends AppCompatActivity {
         });
         image7.setClue("Cuts pape");
         image7.setFunctionList(new String[] {
-                "Cuts things"
+                "Cuts things", "cuts", "cuts papers"
         });
 
         image8.setImageid(R.drawable.stethoscope);
         image8.setAnswerList(new String[] {
                 "stethoscope"
         });
-        image8.setClue("Doctor uses it to listen to your hear");
+        image8.setClue("Doctor uses it to listen to your heart");
         image8.setFunctionList(new String[] {
-                "listen to your hear"
+                "listen to your heart", "listen to heart", "listen"
         });
 
         image9.setImageid(R.drawable.tong);
@@ -251,7 +244,7 @@ public class GuessTheImage extends AppCompatActivity {
         });
         image9.setClue("Picks up food");
         image9.setFunctionList(new String[] {
-                "Picks up food"
+                "Picks up food", "pick"
         });
 
         image10.setImageid(R.drawable.wallet);
@@ -260,7 +253,7 @@ public class GuessTheImage extends AppCompatActivity {
         });
         image10.setClue("Holds your money");
         image10.setFunctionList(new String[] {
-                "Holds your money"
+                "Holds your money", "holds"
         });
 
         image11.setImageid(R.drawable.whistle);
@@ -269,7 +262,7 @@ public class GuessTheImage extends AppCompatActivity {
         });
         image11.setClue("Makes a sound when you blow on it");
         image11.setFunctionList(new String[] {
-                "Makes a sound when you blow on it"
+                "Makes a sound when you blow on it", "make sound", "sound", "noise", "make noise"
         });
 
         image12.setImageid(R.drawable.rattle);
@@ -278,7 +271,7 @@ public class GuessTheImage extends AppCompatActivity {
         });
         image12.setClue("A baby’s toy");
         image12.setFunctionList(new String[] {
-                "A baby’s toy"
+                "A baby’s toy" ,"make sound", "sound", "noise", "make noise", "play"
         });
 
 
@@ -300,19 +293,19 @@ public class GuessTheImage extends AppCompatActivity {
 
     }
 
-
-
     private void image() {
         ImageQuestion currentImage = imageQuestionArrayList.get(counter);
         String answer = editText.getText().toString().toLowerCase();
         if(currentImage.checkAnswer(answer)) {
             editText.setText("");
-            score++;
+            score = score + 1;
             counter++;
+            addToFirebase();
+            addTotalToFirebase();
             newQuestion();
             Toast.makeText(GuessTheImage.this, "Correct", Toast.LENGTH_LONG).show();
             handler.removeCallbacksAndMessages(null);
-        } else if (currentImage.checkClue(answer)) {
+        } else if (currentImage.checkFunction(answer)) {
 
             Toast.makeText(GuessTheImage.this, "Yes that is the function, but what is the name?", Toast.LENGTH_LONG).show();
         } else {
@@ -321,9 +314,6 @@ public class GuessTheImage extends AppCompatActivity {
         }
 
     }
-
-
-
 
     private void showClue() {
 
@@ -356,6 +346,7 @@ public class GuessTheImage extends AppCompatActivity {
                 Log.e("D2", "Called");
                 counter++;
                 newQuestion();
+                editText.getText().clear();
             }
 
         }, 10000);
@@ -367,30 +358,36 @@ public class GuessTheImage extends AppCompatActivity {
         image();
     }
 
-//    private void nextTurn(){
-//        if (turn < list.size()) {
-//            turn++;
-//            newQuestion();
-//            addToFirebase();
-//
-//        } else {
-//            Toast.makeText(GuessTheImage.this, "You are done", Toast.LENGTH_LONG).show();
-////                Intent intent = new Intent(MainActivity.this, HigestScoreActivity.class);
-////                intent.putExtra("Total Score", score);
-////                startActivity(intent);
-//
-//            addToFirebase();
-//            Intent intent = new Intent(GuessTheImage.this, NamingFingers.class);
-//            startActivity(intent);
-//
-//        }
-//
-//    }
+
 
     private void addToFirebase(){
 
-        Score_1 score_1 = new Score_1(score);
-        myRef.child("users").child("Score").child("right").setValue(score_1);
+
+
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DocumentReference uidRef = db.collection("users").document(uid);
+
+
+        Score_1 ImageScore = new Score_1();
+        ImageScore.setImageScroing(score);
+
+ //       uidRef.collection("Naming_Task_Scores").document("Images_Scores").set(ImageScore);
+        uidRef.collection("Images_Scores").document("Scores").set(ImageScore);
+                //add(ImageScore);
+
+
+    }
+
+
+
+    private void addTotalToFirebase(){
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DocumentReference uidRef = db.collection("users").document(uid);
+
+        TotalScore totalScore = new TotalScore();
+        totalScore.setTotalScoreing(score);
+
+        uidRef.collection("Total_Scores").document("Scores").set(totalScore);
 
     }
 }

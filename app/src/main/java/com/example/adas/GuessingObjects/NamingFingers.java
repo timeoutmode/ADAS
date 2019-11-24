@@ -12,10 +12,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.adas.Model.FingerQuestions;
-import com.example.adas.Model.ImageQuestion;
+import com.example.adas.Model.Score_2;
+import com.example.adas.Model.TotalScore;
 import com.example.adas.R;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -26,25 +28,23 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class NamingFingers extends AppCompatActivity {
 
+    private ArrayList<FingerQuestions> fingerQuestionsArrayList;
+
+    private FirebaseAuth firebaseAuth;
+    private FirebaseFirestore db;
+
     Button button;
     ImageView img;
     EditText editText;
     TextView displyQuery;
-
-    List<FingerModel> myList;
+    Handler handler;
     Random r;
 
-
     int score = 0;
-    Handler handler;
     int counter = 0;
+    int len;
+    int s;
 
-   int len;
-
-    FirebaseDatabase database;
-    DatabaseReference myRef;
-
-    private ArrayList<FingerQuestions> fingerQuestionsArrayList;
 
 
     @Override
@@ -52,19 +52,10 @@ public class NamingFingers extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_naming_fingers);
 
-        button = findViewById(R.id.button_submit);
-        editText = findViewById(R.id.fingerImageTextView);
-        img = findViewById(R.id.fingerImageView);
-        displyQuery = findViewById(R.id.displyQuery);
-
-        r = new Random();
-
-        myList = new ArrayList<>();
-        handler = new Handler();
-
-        myRef = FirebaseDatabase.getInstance().getReference();
-        database = FirebaseDatabase.getInstance();
-
+        initialiseViews();
+        initialise();
+        initialiseFirebase();
+        receiveintentData();
 
         initialiseImages();
         len = fingerQuestionsArrayList.size();
@@ -72,16 +63,29 @@ public class NamingFingers extends AppCompatActivity {
 
 
 
-//        for (int i = 0; i < new FingerDatabase().ans.length; i++) {
-//            myList.add(new FingerModel(new FingerDatabase().ans[i], new FingerDatabase().fingerImages[i]));
-//        }
 
+    }
 
+    private void initialiseViews(){
+        button = findViewById(R.id.button_submit);
+        editText = findViewById(R.id.fingerImageTextView);
+        img = findViewById(R.id.fingerImageView);
+        displyQuery = findViewById(R.id.displyQuery);
+    }
 
-//        Collections.shuffle(myList);
-//        nextQuestion(turn);
+    private void initialise(){
+        r = new Random();
+        handler = new Handler();
+    }
+    private void initialiseFirebase(){
+        firebaseAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
 
+    }
 
+    private void receiveintentData(){
+        Bundle b = getIntent().getExtras();
+        s = b.getInt("ImageScore");
     }
 
 
@@ -145,11 +149,8 @@ public class NamingFingers extends AppCompatActivity {
             img.setImageResource(temp.getImageId());
         } else {
             //When all th questions are finished
-            Intent intent = new Intent(NamingFingers.this, HigestScoreActivity.class);
+            Intent intent = new Intent(NamingFingers.this, HighScoreActivity.class);
             startActivity(intent);
-
-
-
             // message that it's finished
             Log.e("NewQuestion", "Counter > Length");
         }
@@ -160,11 +161,9 @@ public class NamingFingers extends AppCompatActivity {
 
         image();
 
-
-        //  attamp++;
     }
 
-//
+
 
     private void image() {
         FingerQuestions currentFinger = fingerQuestionsArrayList.get(counter);
@@ -173,6 +172,8 @@ public class NamingFingers extends AppCompatActivity {
             editText.setText("");
             score++;
             counter++;
+            addToFirebase();
+            addTotalToFirebase();
             nextQuestion();
             Toast.makeText(NamingFingers.this, "Correct", Toast.LENGTH_LONG).show();
             handler.removeCallbacksAndMessages(null);
@@ -191,19 +192,11 @@ public class NamingFingers extends AppCompatActivity {
 
         handler.postDelayed(new Runnable() {
             public void run() {
-
-
-                // yourMethod();
-                //Toast.makeText(GuessTheImage.this, list.get(turn - 1).getClues(), Toast.LENGTH_LONG).show();
                FingerQuestions temp = fingerQuestionsArrayList.get(counter);
-                // Toast.makeText(GuessTheImage.this, temp.getClue(), Toast.LENGTH_LONG).show();
                 displyQuery .setText(temp.getClue());
-
                 moveToNextQuestion();
-
             }
         }, 3000);
-
 
     }
 
@@ -213,10 +206,10 @@ public class NamingFingers extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                //nextTurn();
                 Log.e("D2", "Called");
                 counter++;
                 nextQuestion();
+                editText.getText().clear();
             }
 
         }, 10000);
@@ -226,18 +219,39 @@ public class NamingFingers extends AppCompatActivity {
     private void addToFirebase(){
 
 
-       Score_2 score_2 = new Score_2(score);
-//       Wrong_2 wrong_2 = new Wrong_2(wrong);
+
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DocumentReference uidRef = db.collection("users").document(uid);
 
 
-        myRef.child("users").child("Score_2").child("right").setValue(score_2);
-       // myRef.child("users").child("Score_2").child("wrong").setValue(wrong_2);
+        Score_2 fingerScore = new Score_2();
+        fingerScore.setFingerScoreing(score);
+//        fingerScore.setFingerScore(score);
 
-        //child(id).child("Goals").child("Steps").setValue(issues);
+        //uidRef.collection("Naming_Task_Scores").document("Fingers_Scores").set(fingerScore);
 
+        uidRef.collection("Fingers_Scores").document("Scores").set(fingerScore);
+                //document("Fingers_Scores").set(fingerScore);
+        //add(ImageScore);
 
 
     }
+
+    private void addTotalToFirebase(){
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DocumentReference uidRef = db.collection("users").document(uid);
+
+        int total = s + score;
+        TotalScore totalScore = new TotalScore();
+        totalScore.setTotalScoreing(total);
+
+        uidRef.collection("Total_Scores").document("Scores").set(totalScore);
+
+    }
+
+
+
+
 
 }
 

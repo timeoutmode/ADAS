@@ -11,22 +11,34 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AssessmentLandingPageActivity"></activity>
-        <activity android:name=".WordRecall.WordRecall"></activity>
+        <activity android:name=".DelayedRecall.DelayedRecallResults"></activity>
+        <activity android:name=".DelayedRecall.DelayedRecallAns" />
+        <activity android:name=".DelayedRecall.DelayedRecall" />
+        <activity android:name=".WordRecall.WordRecallResults" />
+        <activity android:name=".WordRecall.WordRecallAns" />
+        <activity android:name=".GuessingObjects.GuessTheImage" />
         <activity android:name=".AddPatientActivity" />
+        <activity android:name=".AssessmentLandingPageActivity" />
+        <activity android:name=".WordRecall.WordRecall" />
         <activity android:name=".AssessmentActivity" />
         <activity android:name=".AccountActivity" />
         <activity android:name=".PatientActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".SpeechComprehension.SpeechTask"/>
+        <activity android:name=".GuessingObjects.NamingFingers" />
+        <activity android:name=".Orientation.OrientationViewPager" />
+        <activity android:name=".SpeechComprehension.SpeechTask" />
         <activity android:name=".LoginActivity">
-           <intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="com.google.geo.API_KEY"
+            android:value="AIzaSyDTdQwtiqUknkl9HkEU_YdvuGjyGNDlChY" />
     </application>
 
 </manifest>

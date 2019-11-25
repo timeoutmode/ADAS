@@ -5,6 +5,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.util.DebugUtils;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import androidx.annotation.Nullable;
@@ -20,11 +22,14 @@ public class MazeView extends View {
 
     private Cell[][] cells;
     private Cell player, exit;
-    private static final int COLS = 5, ROWS = 10;
+    private static final int COLS = 5, ROWS = 5;
     private static final float WALL_THICKNESS = 6;
     private float cellSize, hMargin, vMargin;
     private Paint wallPaint, playerPaint, exitPaint;
     private Random random;
+
+    private static final int MAX_ROUNDS = 3;
+    private int curRounds;
 
     public MazeView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -36,7 +41,7 @@ public class MazeView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        canvas.drawColor(Color.LTGRAY);
+        //canvas.drawColor(Color.LTGRAY);
 
         int width = getWidth();
         int height = getHeight();
@@ -125,7 +130,6 @@ public class MazeView extends View {
             float playerCenterX = hMargin + (player.col + 0.5f) * cellSize;
             float playerCenterY = vMargin + (player.row + 0.5f) * cellSize;
 
-
             // difference in coordinates between player touch and player rectangle
             float dx = x - playerCenterX;
             float dy = y - playerCenterY;
@@ -164,6 +168,8 @@ public class MazeView extends View {
         playerPaint = new Paint();
         exitPaint = new Paint();
         random = new Random();
+
+        curRounds = 0;
     }
 
     private void generateMaze() {
@@ -257,7 +263,7 @@ public class MazeView extends View {
             c2.leftWall = false;
         }
     }
-    
+
     private void movePlayer(Direction direction) {
         switch (direction) {
             case UP:
@@ -285,7 +291,13 @@ public class MazeView extends View {
     private void checkExit() {
         if (player == exit)
         {
-            generateMaze();
+            if (curRounds < MAX_ROUNDS) {
+                curRounds++;
+
+                generateMaze();
+            } else {
+
+            }
         }
     }
 
@@ -299,7 +311,7 @@ public class MazeView extends View {
 
         int col, row;
 
-        public Cell(int col, int row) {
+        private Cell(int col, int row) {
             this.col = col;
             this.row = row;
         }

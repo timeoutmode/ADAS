@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">ADAS</string>
+    <string name="ideational_praxis">Ideational Praxis</string>
+    <string name="drag_the_blue_box_to_the_red_box">Drag the blue box to the red box</string>
 
     <!-- Ethnicity   -->
     <string-array name="ethnicity">

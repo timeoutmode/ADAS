@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     android:orientation="vertical"
-    tools:context=".WordRecall.WordRecall">
+    tools:context=".DelayedRecall.DelayedRecall">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -26,7 +26,7 @@
                 android:id="@+id/textView9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Word Recall"
+                android:text="Delayed Recall"
                 android:textColor="@android:color/white"
                 android:textSize="36sp"
                 android:textStyle="bold"
@@ -50,10 +50,11 @@
 
             android:id="@+id/word"
             android:layout_width="match_parent"
-            android:layout_height="500dp"
+            android:layout_height="480dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="35dp"
             android:layout_marginEnd="32dp"
+            android:layout_marginBottom="32dp"
             android:background="@drawable/main_white_frame"
             android:elevation="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -64,7 +65,7 @@
             app:layout_constraintVertical_bias="1.0">
 
             <TextView
-                android:id="@+id/randWord"
+                android:id="@+id/randWordDR"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:text=""
@@ -79,9 +80,12 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/btn_generate"
+                android:id="@+id/btn_generateDR"
                 android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="32dp"
                 android:text="NEXT"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"

@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.adas">
 
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,13 +11,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddPatientActivity"></activity>
+        <activity android:name=".DelayedRecall.DelayedRecallResults"></activity>
+        <activity android:name=".DelayedRecall.DelayedRecallAns" />
+        <activity android:name=".DelayedRecall.DelayedRecall" />
+        <activity android:name=".WordRecall.WordRecallResults" />
+        <activity android:name=".WordRecall.WordRecallAns" />
+        <activity android:name=".GuessingObjects.GuessTheImage" />
+        <activity android:name=".AddPatientActivity" />
+        <activity android:name=".AssessmentLandingPageActivity" />
+        <activity android:name=".WordRecall.WordRecall" />
         <activity android:name=".AssessmentActivity" />
         <activity android:name=".AccountActivity" />
         <activity android:name=".PatientActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".GuessingObjects.NamingFingers" />
+        <activity android:name=".Orientation.OrientationViewPager" />
+        <activity android:name=".SpeechComprehension.SpeechTask" />
+        <activity android:name=".LoginActivity">
         <activity android:name=".IdeationalPraxis.IdeationalPraxisActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

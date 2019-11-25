@@ -58,7 +58,7 @@ public class RegisterActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         // initialise Places SDK
-        Places.initialize(getApplicationContext(), "AIzaSyDTdQwtiqUknkl9HkEU_YdvuGjyGNDlChY");
+        Places.initialize(getApplicationContext(), getResources().getString(R.string.places_api_key));
     }
 
     private void setOnClickListeners() {
@@ -99,6 +99,7 @@ public class RegisterActivity extends AppCompatActivity {
             // send verification email
             Log.i(TAG, "Right after createUser");
             FirebaseUser fbUser = firebaseAuth.getInstance().getCurrentUser();
+
             fbUser.sendEmailVerification().addOnCompleteListener(task -> {
                 if(task.isSuccessful()) {
                     Helpers.showToast(getApplicationContext(), "Please verify your email address.");

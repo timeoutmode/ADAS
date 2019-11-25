@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     android:orientation="vertical"
-    tools:context=".WordRecall.WordRecall">
+    tools:context=".WordRecall.WordRecallResults">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -63,33 +63,90 @@
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
             app:layout_constraintVertical_bias="1.0">
 
+
             <TextView
-                android:id="@+id/randWord"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textAlignment="center"
-                android:textAllCaps="true"
-                android:textSize="35sp"
+                android:id="@+id/trial1"
+                android:layout_width="159dp"
+                android:layout_height="39dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="48dp"
+                android:layout_marginEnd="32dp"
+                android:gravity=""
+                android:text="Result First Trial"
+                android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <Button
-                android:id="@+id/btn_generate"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:text="NEXT"
+            <TextView
+                android:id="@+id/trial1res"
+                android:layout_width="77dp"
+                android:layout_height="29dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="48dp"
+                android:layout_marginEnd="32dp"
+                android:gravity="center"
+                android:text="0"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.502"
+                app:layout_constraintStart_toEndOf="@+id/trial1"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/trial2"
+                android:layout_width="0dp"
+                android:layout_height="55dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:gravity="center"
+                android:text="Result Second Trial"
+                android:textSize="20sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/randWord"
-                app:layout_constraintVertical_bias="0.629" />
+                app:layout_constraintTop_toBottomOf="@+id/trial1" />
+
+            <TextView
+                android:id="@+id/trial2res"
+                android:layout_width="76dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="48dp"
+                android:layout_marginEnd="32dp"
+                android:gravity="center"
+                android:text="00"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/trial2"
+                app:layout_constraintTop_toBottomOf="@+id/trial1res" />
+
+            <TextView
+                android:id="@+id/trial3"
+                android:layout_width="0dp"
+                android:layout_height="39dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:gravity="center"
+                android:text="Result Third Trial"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/trial2" />
+
+            <TextView
+                android:id="@+id/trial3res"
+                android:layout_width="76dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="48dp"
+                android:layout_marginEnd="32dp"
+                android:gravity="center"
+                android:text="000"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/trial3"
+                app:layout_constraintTop_toBottomOf="@+id/trial2res" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -95,7 +95,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Button7"
+        android:text="Delayed Recall"
         app:layout_constraintStart_toStartOf="@+id/button_4"
         app:layout_constraintTop_toBottomOf="@+id/button_4" />
 

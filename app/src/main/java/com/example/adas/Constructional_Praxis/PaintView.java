@@ -15,9 +15,13 @@ import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.example.adas.R;
+
 import java.util.HashMap;
 
 import androidx.annotation.Nullable;
+
+import static android.graphics.Color.rgb;
 
 public class PaintView extends View {
     public  static final float TOUCH_TOLERANCE = 10;
@@ -47,6 +51,7 @@ public class PaintView extends View {
         paintLine = new Paint();
         paintLine.setAntiAlias(true);
         paintLine.setStrokeWidth(23);
+        paintLine.setColor(getResources().getColor(R.color.colorPrimary));
         paintLine.setStyle(Paint.Style.STROKE);
         paintLine.setStrokeJoin(Paint.Join.ROUND);
         paintLine.setStrokeCap(Paint.Cap.ROUND);
@@ -56,6 +61,8 @@ public class PaintView extends View {
 
 
     }
+
+
 
 
 

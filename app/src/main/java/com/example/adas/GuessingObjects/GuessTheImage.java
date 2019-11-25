@@ -87,8 +87,9 @@ public class GuessTheImage extends AppCompatActivity {
 
         //Receiving score from previous activity
 
-//        Intent intent = getIntent();
-//        Result result = intent.getParcelableExtra("result");
+        Intent intent = getIntent();
+
+        Result result = intent.getParcelableExtra("result");
 //
 //        int wordRecallScore = result.getWordRecallScore();
 
@@ -145,6 +146,7 @@ public class GuessTheImage extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 Intent intent1 = new Intent(GuessTheImage.this, NamingFingers.class);
 
+                result.setNamingScore(score);
                 Bundle bundle = new Bundle();
                 bundle.putInt("ImageScore", score);
                 intent1.putExtras(bundle);

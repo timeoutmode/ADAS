@@ -46,6 +46,7 @@ public class NamingFingers extends AppCompatActivity  {
 
     int score = 0;
     int counter = 0;
+    int actualScroe = 0;
     int len;
     int s;
 
@@ -71,10 +72,10 @@ public class NamingFingers extends AppCompatActivity  {
 
 
 
-//        Intent intent = getIntent();
-//        Result result = intent.getParcelableExtra("result");
-//
-//        int wordRecallScore = result.getWordRecallScore();
+        Intent intent = getIntent();
+        Result result = intent.getParcelableExtra("result");
+
+
 
 
 
@@ -148,6 +149,7 @@ public class NamingFingers extends AppCompatActivity  {
          fingerQuestionsArrayList.add(image3);
          fingerQuestionsArrayList.add(image4);
          fingerQuestionsArrayList.add(image5);
+
          Collections.shuffle(fingerQuestionsArrayList);
 
 
@@ -164,6 +166,27 @@ public class NamingFingers extends AppCompatActivity  {
         } else {
             //When all th questions are finished
             Intent intent = new Intent(NamingFingers.this, HighScoreActivity.class);
+            int totalScore = result.getNamingScore() + score;
+
+
+            if(totalScore >= 15 && totalScore <= 17){
+                actualScroe = 5;
+            }else if (totalScore >= 14 && totalScore <= 12){
+                actualScroe = 4;
+
+
+            }else if (totalScore >= 11 && totalScore <= 9 ){
+                actualScroe = 3;
+            }else if (totalScore >= 8 && totalScore <= 6 ){
+                actualScroe = 2;
+            }else if (totalScore >= 5 && totalScore <= 3 ){
+                actualScroe = 1;
+            }else if (totalScore >= 2 && totalScore <= 0 ){
+                actualScroe = 0;
+            }
+
+
+            result.setNamingScore(actualScroe);
             intent.putExtra("result",result );
 
             startActivity(intent);

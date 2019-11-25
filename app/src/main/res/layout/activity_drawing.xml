@@ -28,6 +28,18 @@
         <!--            app:layout_constraintStart_toStartOf="parent"-->
         <!--            app:layout_constraintTop_toTopOf="parent" />-->
 
+
+        <ImageView
+            android:id="@+id/shapes"
+            android:layout_width="121dp"
+            android:layout_height="102dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginEnd="272dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -59,7 +71,6 @@
         android:layout_height="41dp"
         android:layout_marginStart="68dp"
         android:layout_marginTop="4dp"
-        android:text="Draw a Circle"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -67,6 +78,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
 
     <com.example.adas.Constructional_Praxis.PaintView
         android:id="@+id/drawing"
@@ -77,6 +89,7 @@
         app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView17">
+
 
 
     </com.example.adas.Constructional_Praxis.PaintView>

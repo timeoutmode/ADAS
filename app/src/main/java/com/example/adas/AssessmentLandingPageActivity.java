@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.adas.DelayedRecall.DelayedRecall;
 import com.example.adas.GuessingObjects.GuessTheImage;
 import com.example.adas.GuessingObjects.NamingFingers;
 import com.example.adas.Orientation.OrientationViewPager;
@@ -70,6 +71,10 @@ public class AssessmentLandingPageActivity extends AppCompatActivity {
 
         btn6.setOnClickListener(c -> {
             navigateToActivity(NamingFingers.class);
+        });
+
+        btn7.setOnClickListener(c ->{
+            navigateToActivity(DelayedRecall.class);
         });
 
     }

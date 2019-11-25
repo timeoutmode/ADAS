@@ -19,8 +19,11 @@ public class Result implements Parcelable {
         @Override
         public Object[] newArray(int i) {
             return new Result[i];
-        }
+    }
     };
+
+    public Result() {
+    }
 
     public Result(int wordRecallScore, int namingScore, int commandsScore, int constructionalPraxisScore, int ideationalPraxisScore, int orientationScore, int wordRecognitionTaskScore, int rememberingTestInstructionsScore, int spokenLanguageScore, int wordFindingScore, int comprehensionScore, int executiveFunctionScore, int numberCancellationScore, int numberCancellationErrors, int numberCancellationTargetHits, int numberCancellationTaskReminder, Patient patient) {
         this.wordRecallScore = wordRecallScore;

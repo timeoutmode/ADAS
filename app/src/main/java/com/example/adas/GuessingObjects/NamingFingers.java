@@ -3,6 +3,8 @@ package com.example.adas.GuessingObjects;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.adas.Model.FingerQuestions;
+import com.example.adas.Model.Result;
 import com.example.adas.Model.Score_2;
 import com.example.adas.Model.TotalScore;
 import com.example.adas.R;
@@ -26,7 +29,7 @@ import java.util.Random;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class NamingFingers extends AppCompatActivity {
+public class NamingFingers extends AppCompatActivity  {
 
     private ArrayList<FingerQuestions> fingerQuestionsArrayList;
 
@@ -39,6 +42,7 @@ public class NamingFingers extends AppCompatActivity {
     TextView displyQuery;
     Handler handler;
     Random r;
+    Result result;
 
     int score = 0;
     int counter = 0;
@@ -55,11 +59,25 @@ public class NamingFingers extends AppCompatActivity {
         initialiseViews();
         initialise();
         initialiseFirebase();
-        receiveintentData();
+        //receiveintentData();
 
         initialiseImages();
         len = fingerQuestionsArrayList.size();
         nextQuestion();
+
+        //Receiving score from image guessing activity
+        Bundle b = getIntent().getExtras();
+        s = b.getInt("ImageScore");
+
+
+
+//        Intent intent = getIntent();
+//        Result result = intent.getParcelableExtra("result");
+//
+//        int wordRecallScore = result.getWordRecallScore();
+
+
+
 
 
 
@@ -83,10 +101,6 @@ public class NamingFingers extends AppCompatActivity {
 
     }
 
-    private void receiveintentData(){
-        Bundle b = getIntent().getExtras();
-        s = b.getInt("ImageScore");
-    }
 
 
     private void initialiseImages(){
@@ -150,6 +164,8 @@ public class NamingFingers extends AppCompatActivity {
         } else {
             //When all th questions are finished
             Intent intent = new Intent(NamingFingers.this, HighScoreActivity.class);
+            intent.putExtra("result",result );
+
             startActivity(intent);
             // message that it's finished
             Log.e("NewQuestion", "Counter > Length");
@@ -170,7 +186,14 @@ public class NamingFingers extends AppCompatActivity {
         String answer = editText.getText().toString().toLowerCase();
         if(currentFinger.checkAnswer(answer)) {
             editText.setText("");
-            score++;
+             score = score + 1;
+             // adding score from images and fingers together
+            int total = s + score;
+            result = new Result();
+
+            // Setting the total to the Results model class
+            result.setNamingScore(total);
+           // score++;
             counter++;
             addToFirebase();
             addTotalToFirebase();
@@ -238,6 +261,9 @@ public class NamingFingers extends AppCompatActivity {
     }
 
     private void addTotalToFirebase(){
+
+
+
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         DocumentReference uidRef = db.collection("users").document(uid);
 
@@ -248,8 +274,6 @@ public class NamingFingers extends AppCompatActivity {
         uidRef.collection("Total_Scores").document("Scores").set(totalScore);
 
     }
-
-
 
 
 

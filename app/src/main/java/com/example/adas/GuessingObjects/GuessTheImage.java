@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.adas.HomeActivity;
 import com.example.adas.Model.ImageQuestion;
+import com.example.adas.Model.Result;
 import com.example.adas.Model.Score_1;
 import com.example.adas.Model.TotalScore;
 import com.example.adas.R;
@@ -48,11 +49,15 @@ public class GuessTheImage extends AppCompatActivity {
 
     Handler handler;
 
+   // ArrayList<Result> result;
 
     private ArrayList<ImageQuestion> imageQuestionArrayList;
 
     List<TotalScore> score_total;
     int score_total_len;
+
+   Result result;
+
 
 
 
@@ -70,6 +75,8 @@ public class GuessTheImage extends AppCompatActivity {
 
 
 
+
+
         initialise();
         initialiseFirebase();
         initialiseViews();
@@ -77,6 +84,14 @@ public class GuessTheImage extends AppCompatActivity {
         initialiseImages();
         length = imageQuestionArrayList.size();
         newQuestion();
+
+        //Receiving score from previous activity
+
+//        Intent intent = getIntent();
+//        Result result = intent.getParcelableExtra("result");
+//
+//        int wordRecallScore = result.getWordRecallScore();
+
 
 
     }
@@ -128,13 +143,16 @@ public class GuessTheImage extends AppCompatActivity {
         alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(GuessTheImage.this, NamingFingers.class);
+                Intent intent1 = new Intent(GuessTheImage.this, NamingFingers.class);
+
                 Bundle bundle = new Bundle();
                 bundle.putInt("ImageScore", score);
-                intent.putExtras(bundle);
-                startActivity(intent);
+                intent1.putExtras(bundle);
+                startActivity(intent1);
+
             }
         });
+
 
 
 
@@ -298,7 +316,8 @@ public class GuessTheImage extends AppCompatActivity {
         String answer = editText.getText().toString().toLowerCase();
         if(currentImage.checkAnswer(answer)) {
             editText.setText("");
-            score = score + 1;
+            score++;
+
             counter++;
             addToFirebase();
             addTotalToFirebase();

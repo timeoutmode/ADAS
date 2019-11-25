@@ -2,6 +2,8 @@ package com.example.adas.Constructional_Praxis;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -12,6 +14,8 @@ import com.example.adas.R;
 public class DrawingActivity extends AppCompatActivity implements View.OnClickListener {
     PaintView paintView;
     ImageButton drawBtn, eraser;
+    private Bitmap canvasBitmap;
+    float r = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +48,14 @@ public class DrawingActivity extends AppCompatActivity implements View.OnClickLi
             paintView.clear();
 
         }
+    }
+
+
+
+    public void go_btn_submit(View view) {
+
+
+
     }
 
 //    public void go_btn(View view) {

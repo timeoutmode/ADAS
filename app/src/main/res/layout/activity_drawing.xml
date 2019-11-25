@@ -16,17 +16,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-<!--        <ImageButton-->
-<!--            android:id="@+id/brushClicked"-->
-<!--            android:layout_width="40dp"-->
-<!--            android:layout_height="40dp"-->
-<!--            android:layout_marginStart="123dp"-->
-<!--            android:layout_marginEnd="71dp"-->
-<!--            android:background="@drawable/brush"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toStartOf="@+id/eraserClicked"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent" />-->
+        <!--        <ImageButton-->
+        <!--            android:id="@+id/brushClicked"-->
+        <!--            android:layout_width="40dp"-->
+        <!--            android:layout_height="40dp"-->
+        <!--            android:layout_marginStart="123dp"-->
+        <!--            android:layout_marginEnd="71dp"-->
+        <!--            android:background="@drawable/brush"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toStartOf="@+id/eraserClicked"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="parent" />-->
 
         <TextView
             android:layout_width="wrap_content"
@@ -49,37 +49,52 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!--        <Button-->
-<!--            android:layout_width="60dp"-->
-<!--            android:layout_height="60dp"-->
-<!--            android:layout_marginStart="23dp"-->
-<!--            android:layout_marginTop="29dp"-->
-<!--            android:layout_marginEnd="16dp"-->
-<!--            android:background="@android:color/white"-->
-<!--            android:onClick="go_btn"-->
-<!--            android:text="SUBMITE"-->
-<!--            app:layout_constraintEnd_toStartOf="@+id/brushClicked"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent" />-->
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="271dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="4dp"
+        android:text="Draw a Circle"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
     <com.example.adas.Constructional_Praxis.PaintView
         android:id="@+id/drawing"
-        android:layout_width="411dp"
-        android:layout_height="565dp"
-        android:layout_marginTop="96dp"
+        android:layout_width="402dp"
+        android:layout_height="436dp"
+        android:layout_marginTop="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-
-
+        app:layout_constraintTop_toBottomOf="@+id/textView17">
 
 
     </com.example.adas.Constructional_Praxis.PaintView>
+
+    <Button
+        android:layout_width="158dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="16dp"
+
+        android:background="@color/colorPrimary"
+        android:onClick="go_btn_submit"
+        android:text="SUBMIT"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/drawing" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

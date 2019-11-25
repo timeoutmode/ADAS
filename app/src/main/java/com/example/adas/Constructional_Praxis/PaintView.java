@@ -6,146 +6,188 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
+import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.util.HashMap;
+
 import androidx.annotation.Nullable;
 
 public class PaintView extends View {
+    public  static final float TOUCH_TOLERANCE = 10;
 
     private Path drawpath;
     private boolean erase = false;
-    private Canvas drawCanvas;
-    private Paint drawaPaint, canvasPaint;
+    private Canvas drawCanvas,bitmapCanvas;
+    private Paint drawaPaint, canvasPaint, paintScreen, painLine;
     private int paintColor = 0XFF660000;
     private Bitmap canvasBitmap;
+    private Bitmap bitmap;
     private Paint paintLine;
     private float brushSize, lastBushSize;
+    private HashMap<Integer, Path> pathMap;
+    private  HashMap<Integer, Point> previousPointMap;
 
     public PaintView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+
+
         setupDrawing();
     }
 
+    void  setupDrawing(){
+        paintScreen = new Paint();
 
+        paintLine = new Paint();
+        paintLine.setAntiAlias(true);
+        paintLine.setStrokeWidth(23);
+        paintLine.setStyle(Paint.Style.STROKE);
+        paintLine.setStrokeJoin(Paint.Join.ROUND);
+        paintLine.setStrokeCap(Paint.Cap.ROUND);
 
-    public void setErase(boolean isErase) {
-        erase = isErase;
-
-        if (erase) drawaPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-        else drawaPaint.setXfermode(null);
+        pathMap = new HashMap<>();
+        previousPointMap = new HashMap<>();
 
 
     }
+
+
+
 
     public void clear() {
-        drawpath.reset();
-        canvasBitmap.eraseColor(Color.WHITE);
+        pathMap.clear();
+        previousPointMap.clear();
+        bitmap.eraseColor(Color.WHITE);
         invalidate();
 
-    }
-
-
-    public void setBrushSize(float newSize) {
-        float pixelAmount = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, newSize, getResources().getDisplayMetrics());
-        brushSize = pixelAmount;
-        drawaPaint.setStrokeWidth(brushSize);
 
     }
 
-    public void setLastBrushSize(float lastSize) {
-        lastBushSize = lastSize;
-    }
 
-    public float getBrushSize() {
-        return lastBushSize;
-    }
+
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        canvasBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
-        drawCanvas = new Canvas(canvasBitmap);
+
+        bitmap = Bitmap.createBitmap(getWidth(),getHeight(), Bitmap.Config.ARGB_8888);
+        bitmapCanvas = new Canvas(bitmap);
+        bitmap.eraseColor(Color.WHITE);
     }
+
+
+
 
     @Override
     protected void onDraw(Canvas canvas) {
-        canvas.drawBitmap(canvasBitmap, 0, 0, canvasPaint);
-        canvas.drawPath(drawpath, drawaPaint);
+        canvas.drawBitmap(bitmap, 0, 0, paintScreen);
 
-
-
-
-
-
-        // canvas.drawCircle(getMeasuredWidth()/2, getMeasuredHeight()/2, calculateRadius(7,7,7,7) , paintLine);
-
+        for (Integer key: pathMap.keySet()){
+            canvas.drawPath(pathMap.get(key), paintLine);
+        }
 
     }
 
-//    public boolean drawC(boolean isC){
 //
-////        drawpath.addCircle(0,0,78,null);
-//        //drawpath.addArc(0,0,50,50,0,360);
-//      //  return false;
-//
-//
-//        return isC;
-//    }
-
-
-    //    protected float calculateRadius(float x1, float y1, float x2, float y2) {
-//
-//        return (float) Math.sqrt(
-//                Math.pow(x1 - x2, 2) +
-//                        Math.pow(y1 - y2, 2)
-//        );
-//    }
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        float touchX = event.getX();
-        float touchY = event.getY();
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                drawpath.moveTo(touchX, touchY);
-                break;
-            case MotionEvent.ACTION_MOVE:
-                drawpath.lineTo(touchX, touchY);
-               // drawpath.addArc(0,0,50,50,0,360);
+        int action  = event.getActionMasked();
+        int actionIndex  = event.getActionIndex();
 
-
-                break;
-            case MotionEvent.ACTION_UP:
-                drawCanvas.drawPath(drawpath, drawaPaint);
-                drawpath.reset();
-                break;
-            default:
-                return false;
+        if (action == MotionEvent.ACTION_DOWN ||
+            action == MotionEvent.ACTION_POINTER_DOWN){
+           
+            touchStarted(event.getX(actionIndex), 
+                    event.getY(actionIndex), 
+                    event.getPointerId(actionIndex));
+        }else if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_POINTER_UP){
+            touchEnded(event.getPointerId(actionIndex));
+        }else {
+            touchMoved(event);
         }
+
+//
+
         invalidate();
         return true;
     }
 
-   //drawpath.addArc(0,0,50,50,0,360);
+    private void touchMoved(MotionEvent event) {
+        for (int i = 0; i < event.getPointerCount(); i++){
+            int pointerId = event.getPointerId(i);
+            int pointerIndex =  event.findPointerIndex(pointerId);
 
-    public void setupDrawing() {
-        drawpath = new Path();
-        drawaPaint = new Paint();
-        drawaPaint.setAntiAlias(true);
-        drawaPaint.setStrokeWidth(5);
-        drawaPaint.setStyle(Paint.Style.STROKE);
-        drawaPaint.setStrokeJoin(Paint.Join.ROUND);
-        drawaPaint.setStrokeCap(Paint.Cap.ROUND);
-        canvasPaint = new Paint(Paint.DITHER_FLAG);
-        brushSize = 10;
-        lastBushSize = brushSize;
-        drawaPaint.setStrokeWidth(brushSize);
+            if (pathMap.containsKey(pointerId)){
+                float newx = event.getX(pointerIndex);
+                float newY = event.getY(pointerIndex);
+
+                Path path = pathMap.get(pointerId);
+                Point point = previousPointMap.get(pointerId);
+
+                //Calculate how far the user moved from the last update
+                float deltaX = Math.abs(newx - point.x);
+                float deltaY = Math.abs(newY - point.y);
+
+                if (deltaX >= TOUCH_TOLERANCE ||
+                    deltaY >= TOUCH_TOLERANCE){
+
+                    // Move the path to a new location
+                    path.quadTo(point.x, point.y,
+                            (newx + point.x)/2,
+                            (newY + point.y)/2);
+
+                    //Store the new coordinates
+                    point.x =(int)newx;
+                    point.y = (int)newY;
+
+                }
+
+             }
+        }
+    }
+
+    private void touchEnded(int pointerId) {
+        Path path = pathMap.get(pointerId);
+        bitmapCanvas.drawPath(path, paintLine); // draw to bitmap canvas
+        path.reset();
 
     }
+
+
+
+    private void touchStarted(float x, float y, int pointerId) {
+        Path path;
+        Point point;
+
+        if (pathMap.containsKey(pointerId)){
+            path = pathMap.get(pointerId);
+            point = previousPointMap.get(pointerId);
+
+        }else {
+            path = new Path();
+            pathMap.put(pointerId, path);
+            point = new Point();
+            previousPointMap.put(pointerId, point);
+        }
+
+        // move to the coordinates of the touch
+        path.moveTo(x, y);
+        point.x = (int)x;
+        point.y = (int)y;
+
+
+    }
+
+
+
+
+
 
 
 }

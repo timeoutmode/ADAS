@@ -223,16 +223,18 @@ public class SpeechTask extends AppCompatActivity {
             }
         });
 
-        Item temp = mquestion.getListofitems().get(itemcounter);
+
 
         if(isInitialized == true)
         {
             itemcounter++;
+            Item temp = mquestion.getListofitems().get(itemcounter);
             mButtonChoice1.setText(temp.getChoice1());
             mButtonChoice2.setText(temp.getChoice2());
             mButtonChoice3.setText(temp.getChoice3());
             mButtonChoice4.setText(temp.getChoice4());
         }else{
+            Item temp = mquestion.getListofitems().get(itemcounter);
             mButtonChoice1.setText(temp.getChoice1());
             mButtonChoice2.setText(temp.getChoice2());
             mButtonChoice3.setText(temp.getChoice3());

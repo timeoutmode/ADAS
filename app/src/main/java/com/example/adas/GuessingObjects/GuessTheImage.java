@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.adas.HomeActivity;
 import com.example.adas.Model.ImageQuestion;
+import com.example.adas.Model.Patient;
 import com.example.adas.Model.Result;
 import com.example.adas.Model.Score_1;
 import com.example.adas.Model.TotalScore;
@@ -76,6 +77,7 @@ public class GuessTheImage extends AppCompatActivity {
 
 
 
+        result = new Result();
 
         initialise();
         initialiseFirebase();
@@ -90,8 +92,8 @@ public class GuessTheImage extends AppCompatActivity {
         Intent intent = getIntent();
 
         Result result = intent.getParcelableExtra("result");
-//
-//        int wordRecallScore = result.getWordRecallScore();
+
+
 
 
 
@@ -145,11 +147,25 @@ public class GuessTheImage extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Intent intent1 = new Intent(GuessTheImage.this, NamingFingers.class);
+//                result = new Result();
+//                result.setNamingScore(score);
+//                Bundle bundle = new Bundle();
+//                bundle.putInt("ImageScore", score);
+               // intent1.putExtra("result",result );
+//                Result tempResult = new Result();
+//                tempResult.setNamingScore(score);
+//
+//                Result result = new Result();
+//                result.setCommandsScore(1);
+//                result.setComprehensionScore(1);
+//                Patient patient = new Patient();
+//                result.setPatient(patient);
+//                result.getPatient().setFirstName("Brian");
+//                Intent intent = new Intent(this, DemoActivity.class);
+//                intent.putExtra("result", result);
+               // startActivity(intent);
+                intent1.putExtra("result",result );
 
-                result.setNamingScore(score);
-                Bundle bundle = new Bundle();
-                bundle.putInt("ImageScore", score);
-                intent1.putExtras(bundle);
                 startActivity(intent1);
 
             }
@@ -320,9 +336,12 @@ public class GuessTheImage extends AppCompatActivity {
             editText.setText("");
             score++;
 
+
+            result.setNamingScore(score);
+
             counter++;
-            addToFirebase();
-            addTotalToFirebase();
+            //addToFirebase();
+            //addTotalToFirebase();
             newQuestion();
             Toast.makeText(GuessTheImage.this, "Correct", Toast.LENGTH_LONG).show();
             handler.removeCallbacksAndMessages(null);

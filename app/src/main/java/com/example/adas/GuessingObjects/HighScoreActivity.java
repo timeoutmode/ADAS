@@ -44,7 +44,6 @@ public class HighScoreActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Result result = intent.getParcelableExtra("result");
 
-//        int wordRecallScore = result.getWordRecallScore();
         int namingScore = result.getNamingScore();
 
         totalRight.setText(String.valueOf(namingScore));

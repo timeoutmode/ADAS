@@ -46,7 +46,7 @@ public class NamingFingers extends AppCompatActivity  {
 
     int score = 0;
     int counter = 0;
-    int actualScroe = 0;
+
     int len;
     int s;
 
@@ -57,6 +57,7 @@ public class NamingFingers extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_naming_fingers);
 
+        result = new Result();
         initialiseViews();
         initialise();
         initialiseFirebase();
@@ -67,8 +68,8 @@ public class NamingFingers extends AppCompatActivity  {
         nextQuestion();
 
         //Receiving score from image guessing activity
-        Bundle b = getIntent().getExtras();
-        s = b.getInt("ImageScore");
+//        Bundle b = getIntent().getExtras();
+//        s = b.getInt("ImageScore");
 
 
 
@@ -166,27 +167,11 @@ public class NamingFingers extends AppCompatActivity  {
         } else {
             //When all th questions are finished
             Intent intent = new Intent(NamingFingers.this, HighScoreActivity.class);
-            int totalScore = result.getNamingScore() + score;
+           // int totalScore = result.getNamingScore() + score;
+
+            result = new Result();
 
 
-            if(totalScore >= 15 && totalScore <= 17){
-                actualScroe = 5;
-            }else if (totalScore >= 14 && totalScore <= 12){
-                actualScroe = 4;
-
-
-            }else if (totalScore >= 11 && totalScore <= 9 ){
-                actualScroe = 3;
-            }else if (totalScore >= 8 && totalScore <= 6 ){
-                actualScroe = 2;
-            }else if (totalScore >= 5 && totalScore <= 3 ){
-                actualScroe = 1;
-            }else if (totalScore >= 2 && totalScore <= 0 ){
-                actualScroe = 0;
-            }
-
-
-            result.setNamingScore(actualScroe);
             intent.putExtra("result",result );
 
             startActivity(intent);
@@ -209,17 +194,35 @@ public class NamingFingers extends AppCompatActivity  {
         String answer = editText.getText().toString().toLowerCase();
         if(currentFinger.checkAnswer(answer)) {
             editText.setText("");
-             score = score + 1;
+            score++;
              // adding score from images and fingers together
-            int total = s + score;
-            result = new Result();
+          //  int total = s + score;
+            int totalScore = result.getNamingScore() + score;
+            int actualScroe = 0;
 
-            // Setting the total to the Results model class
-            result.setNamingScore(total);
+            if(totalScore >= 15 && totalScore <= 17){
+                actualScroe = 5;
+            }else if (totalScore >= 14 && totalScore <= 12){
+                actualScroe = 4;
+            }else if (totalScore >= 11 && totalScore <= 9 ){
+                actualScroe = 3;
+            }else if (totalScore >= 8 && totalScore <= 6 ){
+                actualScroe = 2;
+            }else if (totalScore >= 5 && totalScore <= 3 ){
+                actualScroe = 1;
+            }else if (totalScore >= 2 && totalScore <= 0 ){
+                actualScroe = 0;
+            }
+
+
+            result.setNamingScore(actualScroe);
+
+
+
            // score++;
             counter++;
-            addToFirebase();
-            addTotalToFirebase();
+//            addToFirebase();
+//            addTotalToFirebase();
             nextQuestion();
             Toast.makeText(NamingFingers.this, "Correct", Toast.LENGTH_LONG).show();
             handler.removeCallbacksAndMessages(null);

@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.example.adas.HomeActivity;
 import com.example.adas.Model.ImageQuestion;
+import com.example.adas.Model.Result;
 import com.example.adas.R;
 
 import androidx.appcompat.app.AlertDialog;
@@ -21,6 +22,10 @@ public class StartImageGame extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_image_game);
+
+        Intent intent = getIntent();
+
+        Result result = intent.getParcelableExtra("result");
     }
 
     public void btn_start(View view) {

@@ -19,7 +19,7 @@ public class DrawingActivity extends AppCompatActivity implements View.OnClickLi
     ImageView shapes;
     TextView textView17;
     private Bitmap canvasBitmap;
-    int click = 0;
+    int click = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,15 +66,15 @@ public class DrawingActivity extends AppCompatActivity implements View.OnClickLi
 
 
     public void go_btn_submit(View view) {
-        if (click == 1){
+        if (click <= 3){
 
-            shapes.setImageResource(R.drawable.brush);
+            shapes.setImageResource(R.drawable.cube);
             textView17.setText("Draw a Cube");
             paintView.clear();
 
 
-        }else if (click == 2){
-            shapes.setImageResource(R.drawable.bed);
+        }else if (click >= 3){
+            shapes.setImageResource(R.drawable.diamond);
             textView17.setText("Draw a Diamond");
             paintView.clear();
 

@@ -38,6 +38,7 @@ public class ImageQuestion {
         this.functionList = functionList;
     }
 
+
     public boolean checkAnswer(String answer) {
         for(String ans : answerList) {
             if(answer.toLowerCase().equals(ans.toLowerCase())) {

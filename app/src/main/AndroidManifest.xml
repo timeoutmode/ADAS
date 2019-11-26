@@ -16,6 +16,11 @@
         <activity android:name=".GuessingObjects.HigestScoreActivity" />
         <activity android:name=".GuessingObjects.StartImageGame" />
         <activity android:name=".Constructional_Praxis.DrawingActivity" />
+        <activity android:name=".DelayedRecall.DelayedRecallResults"></activity>
+        <activity android:name=".DelayedRecall.DelayedRecallAns" />
+        <activity android:name=".DelayedRecall.DelayedRecall" />
+        <activity android:name=".WordRecall.WordRecallResults" />
+        <activity android:name=".WordRecall.WordRecallAns" />
         <activity android:name=".GuessingObjects.GuessTheImage" />
         <activity android:name=".AddPatientActivity" />
         <activity android:name=".AssessmentLandingPageActivity" />
@@ -31,7 +36,6 @@
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

@@ -11,7 +11,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+
 import com.example.adas.Constructional_Praxis.DrawingActivity;
+import com.example.adas.DelayedRecall.DelayedRecall;
 import com.example.adas.GuessingObjects.GuessTheImage;
 import com.example.adas.GuessingObjects.NamingFingers;
 import com.example.adas.GuessingObjects.StartImageGame;
@@ -72,6 +74,10 @@ public class AssessmentLandingPageActivity extends AppCompatActivity {
 
         btn6.setOnClickListener(c -> {
             navigateToActivity(DrawingActivity.class);
+        });
+
+        btn7.setOnClickListener(c ->{
+            navigateToActivity(DelayedRecall.class);
         });
 
     }

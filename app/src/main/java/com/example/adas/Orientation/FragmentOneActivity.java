@@ -21,14 +21,16 @@ import java.util.Locale;
 public class FragmentOneActivity extends Fragment {
     Spinner dayOfWeek;
     View view;
+    Button button;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.activity_fragment_one, container, false);
+
+        button = view.findViewById(R.id.submit);
 
         dayOfWeek = view.findViewById(R.id.dayOfWeek);
         String text = dayOfWeek.getSelectedItem().toString();
@@ -38,6 +40,24 @@ public class FragmentOneActivity extends Fragment {
         if(text.toLowerCase().equals(dayLongName.toLowerCase())) {
 
         }
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int chosenDay = dayOfWeek.getSelectedItemPosition() -1;
+                Calendar c = Calendar.getInstance();
+                int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
+                int minDay = chosenDay -1;
+                int maxDay = chosenDay +1;
+
+                if(dayOfWeek >= minDay && dayOfWeek <= maxDay) {
+                    // add to score
+                } else if (chosenDay == 0) {
+
+                }
+
+            }
+        });
 
 
 

@@ -14,6 +14,7 @@ import android.widget.Button;
 import com.example.adas.DelayedRecall.DelayedRecall;
 import com.example.adas.GuessingObjects.GuessTheImage;
 import com.example.adas.GuessingObjects.NamingFingers;
+import com.example.adas.IdeationalPraxis.IdeationalPraxisActivity;
 import com.example.adas.Orientation.OrientationViewPager;
 import com.example.adas.SpeechComprehension.SpeechTask;
 import com.example.adas.WordRecall.WordRecall;
@@ -77,6 +78,9 @@ public class AssessmentLandingPageActivity extends AppCompatActivity {
             navigateToActivity(DelayedRecall.class);
         });
 
+        btn8.setOnClickListener(c ->{
+            navigateToActivity(IdeationalPraxisActivity.class);
+        });
     }
 
     // method helper for starting a new activity

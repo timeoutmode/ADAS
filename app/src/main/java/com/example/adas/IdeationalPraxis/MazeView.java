@@ -2,6 +2,7 @@ package com.example.adas.IdeationalPraxis;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -49,16 +50,12 @@ public class MazeView extends View {
     private long timeRemaining = 0;
     private TextView mTimerTextView;
 
-    IdeationalPraxisActivity activity;
-    Context mazeContext;
-
     public MazeView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
         initialiseObjects();
         setPaint();
         generateMaze();
-        mazeContext = context;
     }
 
     @Override
@@ -191,7 +188,6 @@ public class MazeView extends View {
         exitPaint = new Paint();
         random = new Random();
         curRounds = 0;
-        activity = (IdeationalPraxisActivity) IdeationalPraxisActivity.activity(mazeContext);
     }
 
     private void generateMaze() {
@@ -326,7 +322,8 @@ public class MazeView extends View {
     }
 
     public void completeMaze() {
-        activity.setScore(totalScore);
+        ((IdeationalPraxisActivity) getContext()).setScore(totalScore);
+        Log.i("IP Info", "Total Score: " + ((IdeationalPraxisActivity) getContext()).getScore());
     }
 
     private void endRound() {
@@ -334,9 +331,8 @@ public class MazeView extends View {
         {
             curRounds++;
             calculateScore();
-            cancelTimer();
         } else {
-            Log.w("DEBUGGING", "Total Score: " + totalScore);
+            cancelTimer();
         }
     }
 

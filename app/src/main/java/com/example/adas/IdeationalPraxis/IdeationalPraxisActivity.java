@@ -5,10 +5,12 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.adas.Model.Patient;
 import com.example.adas.Model.Result;
 import com.example.adas.R;
 
@@ -18,8 +20,6 @@ public class IdeationalPraxisActivity extends AppCompatActivity {
     private TextView mTimerTextView;
     private Result result;
 
-    private AppCompatActivity currentActivity;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,11 +27,14 @@ public class IdeationalPraxisActivity extends AppCompatActivity {
 
         initialiseObjects();
 
-        Intent intent = getIntent();
-        result = intent.getParcelableExtra("result");
+        //Intent intent = getIntent();
+        //result = intent.getParcelableExtra("result");
+
+        Patient patient = new Patient();
+
+        result = new Result(5, 5, 5, 5, 0, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, patient);
 
         mazeView.getTextView(mTimerTextView);
-
     }
 
     private void initialiseObjects() {
@@ -43,20 +46,7 @@ public class IdeationalPraxisActivity extends AppCompatActivity {
         result.setIdeationalPraxisScore(score);
     }
 
-    public static final Activity activity(Context context) {
-        while (!(context instanceof Activity)) {
-            if (!(context instanceof ContextWrapper)) {
-                context = null;
-            }
-            ContextWrapper contextWrapper = (ContextWrapper) context;
-            if (contextWrapper == null) {
-                return null;
-            }
-            context = contextWrapper.getBaseContext();
-            if (context == null) {
-                return null;
-            }
-        }
-        return (Activity) context;
+    public int getScore() {
+        return result.getIdeationalPraxisScore();
     }
 }

@@ -2,6 +2,7 @@ package com.example.adas.SpeechComprehension;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.adas.Model.Item;
+import com.example.adas.Model.Result;
 import com.example.adas.Model.SpeechRecogntionQuestion;
 
 import com.example.adas.R;
@@ -41,15 +43,16 @@ public class SpeechTask extends AppCompatActivity {
     private int mQuestionNumber = 0;
     int counter = 6;
     int itemcounter = 0;
+    Result result;
 
 
     private SpeechRecogntionQuestion mquestion;
 
     public void initializeQuestion(){
         mquestion = new SpeechRecogntionQuestion();
-        mquestion.setPhrase("In the freezing ocean waters of Antarctica,\n" +
-                "the planet's largest seals make their home in a\n" +
-                "frozen world. These giants are southern elephant\n" +
+        mquestion.setPhrase("One of the things I like best about my school is my art class.\n" +
+                "We have a great teacher named Mrs. Hilbert.\n" +
+                "She taught us how to mix paintings\n" +
                 "seals, and they can grow as long as the length of a\n" +
                 "car and weigh as much as two cars combined. The\n" +
                 "name “elephant seal” comes from both the males'\n" +
@@ -122,6 +125,8 @@ public class SpeechTask extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.speech_task);
 
+        Intent intent = getIntent();
+        result = intent.getParcelableExtra("result");
         initializeQuestion();
         mScoreView = findViewById(R.id.score);
         mQuestionView =  findViewById((R.id.question));
@@ -142,21 +147,22 @@ public class SpeechTask extends AppCompatActivity {
                 if (counter != 0)
                 {
                     counter--;
-
                     if (checkAnswer())
-                {
+                    {
                     mScore = mScore + 1;
                     updateScore(mScore);
                     updateQuestion();
-                }
-                else{
+                    } else {
                     Toast.makeText(SpeechTask.this, "WRONG", Toast.LENGTH_SHORT).show();
-                               updateQuestion();
-                }
-
-
+                    updateQuestion();
+                    }
                     itemcounter++;
-               }
+               } else{
+                    result.setComprehensionScore(mScore);
+                   // Intent intent = new Intent(this, g);
+                    intent.putExtra("result", result);
+
+                }
             }
         });
 

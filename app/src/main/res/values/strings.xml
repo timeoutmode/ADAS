@@ -25,12 +25,13 @@
     <!-- Day of the week  -->
     <string-array name="week">
         <item>Day of the Week</item>
+        <item>Sunday</item>
         <item>Monday</item>
         <item>Tuesday</item>
         <item>Thursday</item>
         <item>Friday</item>
         <item>Saturday</item>
-        <item>Sunday</item>
+
     </string-array>
 
     <!-- Season  -->

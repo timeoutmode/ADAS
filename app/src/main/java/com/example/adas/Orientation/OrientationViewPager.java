@@ -20,7 +20,7 @@ import java.util.List;
 
 public class OrientationViewPager extends AppCompatActivity {
 
-    private ViewPager pager;
+    public ViewPager pager;
     private PagerAdapter pagerAdapter;
     private Button mainButton;
     private Spinner spinner;
@@ -32,7 +32,6 @@ public class OrientationViewPager extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_viewpager);
         setContentView(R.layout.activity_viewpager);
 
         oScoreView = (TextView) findViewById(R.id.score1);
@@ -54,7 +53,7 @@ public class OrientationViewPager extends AppCompatActivity {
             pager.setCurrentItem(counter++);
         });
 
-        spinner = findViewById(R.id.dayOfWeek);
+        //spinner = findViewById(R.id.dayOfWeek);
 
         //DayOfWeek monday = DayOfWeek.MONDAY;
 

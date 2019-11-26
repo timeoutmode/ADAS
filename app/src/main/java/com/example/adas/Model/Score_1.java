@@ -1,7 +1,8 @@
-package com.example.adas.GuessingObjects;
+package com.example.adas.Model;
 
 public class Score_1 {
     int imageScroing;
+
 
     public Score_1() {
     }
@@ -12,5 +13,9 @@ public class Score_1 {
 
     public int getImageScroing() {
         return imageScroing;
+    }
+
+    public void setImageScroing(int imageScroing) {
+        this.imageScroing = imageScroing;
     }
 }

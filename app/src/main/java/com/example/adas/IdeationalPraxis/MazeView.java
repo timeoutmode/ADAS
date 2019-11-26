@@ -1,18 +1,29 @@
 package com.example.adas.IdeationalPraxis;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.os.CountDownTimer;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.DebugUtils;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.TextView;
+
 import androidx.annotation.Nullable;
+
+import com.example.adas.Helper.Helpers;
+import com.example.adas.Model.Result;
+import com.example.adas.R;
+
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Stack;
+import java.util.concurrent.TimeUnit;
 
 public class MazeView extends View {
 
@@ -28,8 +39,18 @@ public class MazeView extends View {
     private Paint wallPaint, playerPaint, exitPaint;
     private Random random;
 
-    private static final int MAX_ROUNDS = 3;
+    private static final int MAX_ROUNDS = 2;
     private int curRounds;
+
+    private double curScore = 0;
+    private int totalScore = 0;
+
+    private CountDownTimer cTimer = null;
+    private long timeRemaining = 0;
+    private TextView mTimerTextView;
+
+    IdeationalPraxisActivity activity;
+    Context mazeContext;
 
     public MazeView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -37,6 +58,7 @@ public class MazeView extends View {
         initialiseObjects();
         setPaint();
         generateMaze();
+        mazeContext = context;
     }
 
     @Override
@@ -168,8 +190,8 @@ public class MazeView extends View {
         playerPaint = new Paint();
         exitPaint = new Paint();
         random = new Random();
-
         curRounds = 0;
+        activity = (IdeationalPraxisActivity) IdeationalPraxisActivity.activity(mazeContext);
     }
 
     private void generateMaze() {
@@ -189,6 +211,8 @@ public class MazeView extends View {
 
         currentCell = cells[0][0];
         currentCell.visited = true;
+
+        startTimer();
 
         do {
             nextCell = getNeighbour(currentCell);
@@ -292,13 +316,73 @@ public class MazeView extends View {
         if (player == exit)
         {
             if (curRounds < MAX_ROUNDS) {
-                curRounds++;
-
                 generateMaze();
+                endRound();
             } else {
-
+                endRound();
+                completeMaze();
             }
         }
+    }
+
+    public void completeMaze() {
+        activity.setScore(totalScore);
+    }
+
+    private void endRound() {
+        if (curRounds < MAX_ROUNDS)
+        {
+            curRounds++;
+            calculateScore();
+            cancelTimer();
+        } else {
+            Log.w("DEBUGGING", "Total Score: " + totalScore);
+        }
+    }
+
+    private void calculateScore() {
+        double roundScore = (timeRemaining / 3) - 5;
+        curScore = curScore + roundScore;
+
+        totalScore = (int) curScore / curRounds;
+    }
+
+    private void startTimer() {
+        cancelTimer();
+
+        cTimer = new CountDownTimer(30000 + 1000, 1000) {
+            @Override
+            public void onTick(long milUntilFinish) {
+                timeRemaining = milUntilFinish / 1000;
+                updateTimerText(mTimerTextView, timeRemaining);
+            }
+
+            @Override
+            public void onFinish() {
+                generateMaze();
+                curRounds++;
+            }
+        };
+
+        cTimer.start();
+    }
+
+    private void cancelTimer() {
+        if(cTimer != null) {
+            cTimer.cancel();
+        }
+    }
+
+    private void updateTimerText(TextView textView, long seconds) {
+        textView.setText("Time Remaining: " + seconds);
+    }
+
+    public void getTextView(TextView textView) {
+        mTimerTextView = textView;
+    }
+
+    public int passScore() {
+        return totalScore;
     }
 
     private class Cell {

@@ -28,7 +28,7 @@
         <activity android:name=".GuessingObjects.NamingFingers" />
         <activity android:name=".Orientation.OrientationViewPager" />
         <activity android:name=".SpeechComprehension.SpeechTask" />
-        <activity android:name=".LoginActivity">
+        <activity android:name=".LoginActivity" />
         <activity android:name=".IdeationalPraxis.IdeationalPraxisActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

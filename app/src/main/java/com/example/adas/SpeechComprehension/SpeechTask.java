@@ -15,6 +15,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.adas.GuessingObjects.StartImageGame;
 import com.example.adas.Model.Item;
 import com.example.adas.Model.Result;
 import com.example.adas.Model.SpeechRecogntionQuestion;
@@ -43,6 +44,7 @@ public class SpeechTask extends AppCompatActivity {
     private int mQuestionNumber = 0;
     int counter = 6;
     int itemcounter = 0;
+    boolean isInitialized = false;
     Result result;
 
 
@@ -52,12 +54,19 @@ public class SpeechTask extends AppCompatActivity {
         mquestion = new SpeechRecogntionQuestion();
         mquestion.setPhrase("One of the things I like best about my school is my art class.\n" +
                 "We have a great teacher named Mrs. Hilbert.\n" +
-                "She taught us how to mix paintings\n" +
-                "seals, and they can grow as long as the length of a\n" +
-                "car and weigh as much as two cars combined. The\n" +
-                "name “elephant seal” comes from both the males'\n" +
-                "enormous size and from their giant trunk-like nose,\n" +
-                "called a proboscis");
+                "She taught us how to mix paint to make just the right colours for our paintings.\n" +
+                "She plays good music while we draw and paint.\n" +
+                "We draw an paint almost everyday in class.\n" +
+                "Some days we look at  pictures of other artists.\n" +
+                "It is interesting to do this.\n" +
+                "It helps me think of things that I want to paint or draw.\n" +
+                "We have an art exhibit May this year.\n" +
+                "Our work will be done in one of the banks in our town.\n" +
+                "We are inviting people from the community to our exhibit.\n" +
+                "Our parents are invited to go with us.\n" +
+                "I have three paintings I am working on now.\n" +
+                "I hope one of them will be chosen to be in the exhibit.\n" +
+                "I like having a goal to work toward.");
 
         Item item1 = new Item();
         Item item2 = new Item();
@@ -66,47 +75,47 @@ public class SpeechTask extends AppCompatActivity {
         Item item5 = new Item();
         Item item6 = new Item();
 
-        item1.setQuestion("question1?");
-        item1.setChoice1("yes");
-        item1.setChoice2("no");
-        item1.setChoice3("maybe");
-        item1.setChoice4("idk");
-        item1.setAnswer("yes");
+        item1.setQuestion("Which is one of the favourite classes of this student?");
+        item1.setChoice1("math");
+        item1.setChoice2("reading");
+        item1.setChoice3("art");
+        item1.setChoice4("music");
+        item1.setAnswer("art");
 
-        item2.setQuestion("question2?");
-        item2.setChoice1("yes");
-        item2.setChoice2("no");
-        item2.setChoice3("maybe");
-        item2.setChoice4("idk");
-        item2.setAnswer("yes");
+        item2.setQuestion("The author describes Mrs Hilbert as a?");
+        item2.setChoice1("nice lady");
+        item2.setChoice2("wonderful artist");
+        item2.setChoice3("sweet person");
+        item2.setChoice4("beautiful person");
+        item2.setAnswer("wonderful artist");
 
-        item3.setQuestion("question3?");
-        item3.setChoice1("yes");
-        item3.setChoice2("no");
-        item3.setChoice3("maybe");
-        item3.setChoice4("idk");
-        item3.setAnswer("yes");
+        item3.setQuestion("What did Mrs.Hilbert teach the class to do?");
+        item3.setChoice1("bake chocolate cake");
+        item3.setChoice2("write great stories");
+        item3.setChoice3("mix paint");
+        item3.setChoice4("do long division");
+        item3.setAnswer("mix paint");
 
-        item4.setQuestion("question4?");
-        item4.setChoice1("yes");
-        item4.setChoice2("no");
-        item4.setChoice3("maybe");
-        item4.setChoice4("idk");
-        item4.setAnswer("yes");
+        item4.setQuestion("Why does it help this student to see the works of other artists?");
+        item4.setChoice1("to learn to draw");
+        item4.setChoice2("mix paint");
+        item4.setChoice3("to think about what she wants to paint");
+        item4.setChoice4("none of these");
+        item4.setAnswer("to think about what she wants to paint");
 
-        item5.setQuestion("question5?");
-        item5.setChoice1("yes");
-        item5.setChoice2("no");
-        item5.setChoice3("maybe");
-        item5.setChoice4("idk");
-        item5.setAnswer("yes");
+        item5.setQuestion("Where will the art exhibit be?");
+        item5.setChoice1("at the library");
+        item5.setChoice2("at one of the banks");
+        item5.setChoice3("at the school");
+        item5.setChoice4("at one of the churches");
+        item5.setAnswer("at one of the banks");
 
-        item6.setQuestion("question6?");
-        item6.setChoice1("yes");
-        item6.setChoice2("no");
-        item6.setChoice3("maybe");
-        item6.setChoice4("idk");
-        item6.setAnswer("yes");
+        item6.setQuestion("What does this student hope will happen with her paintings?");
+        item6.setChoice1("one of them will be sold");
+        item6.setChoice2("one of them will be chosen for the exhibit");
+        item6.setChoice3("one of them will be of her younger sister");
+        item6.setChoice4("one of them will be lost");
+        item6.setAnswer("one of them will be chosen for the exhibit");
 
         ArrayList<Item> items = new ArrayList<Item>();
 
@@ -156,10 +165,10 @@ public class SpeechTask extends AppCompatActivity {
                     Toast.makeText(SpeechTask.this, "WRONG", Toast.LENGTH_SHORT).show();
                     updateQuestion();
                     }
-                    itemcounter++;
-               } else{
+                   // itemcounter++;
+                } else{
                     result.setComprehensionScore(mScore);
-                   // Intent intent = new Intent(this, g);
+                    Intent intent = new Intent(SpeechTask.this, StartImageGame.class);
                     intent.putExtra("result", result);
 
                 }
@@ -216,10 +225,21 @@ public class SpeechTask extends AppCompatActivity {
 
         Item temp = mquestion.getListofitems().get(itemcounter);
 
-        mButtonChoice1.setText(temp.getChoice1());
-        mButtonChoice2.setText(temp.getChoice2());
-        mButtonChoice3.setText(temp.getChoice3());
-        mButtonChoice4.setText(temp.getChoice4());
+        if(isInitialized == true)
+        {
+            itemcounter++;
+            mButtonChoice1.setText(temp.getChoice1());
+            mButtonChoice2.setText(temp.getChoice2());
+            mButtonChoice3.setText(temp.getChoice3());
+            mButtonChoice4.setText(temp.getChoice4());
+        }else{
+            mButtonChoice1.setText(temp.getChoice1());
+            mButtonChoice2.setText(temp.getChoice2());
+            mButtonChoice3.setText(temp.getChoice3());
+            mButtonChoice4.setText(temp.getChoice4());
+            isInitialized = true;
+        }
+
 
 
 

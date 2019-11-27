@@ -41,7 +41,7 @@ public class HighScoreActivity extends AppCompatActivity {
         initialiseFirebase();
         initialiseViews();
         totalRight  = findViewById(R.id.totalscore);
-       // loadData();
+        // loadData();
 
 //        result = new Result();
 //        Intent intent = getIntent();
@@ -63,6 +63,7 @@ public class HighScoreActivity extends AppCompatActivity {
 
 
     }
+
 
 
 //    private void loadData(){

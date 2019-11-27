@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -132,37 +133,37 @@ public class NamingFingers extends AppCompatActivity  {
 
         image2.setImageId(R.drawable.index);
         image2.setAnsList(new String[]{
-                "Index","forefinger", "pointer"
+                "Index","forefinger", "pointer","Index finger"
         });
         image2.setClue("What is another name for this finger");
 
         image3.setImageId(R.drawable.middel);
         image3.setAnsList(new String[]{
-                "middle"
+                "middle",  "middle finger"
         });
         image3.setClue("What is another name for this finger");
 
 
         image4.setImageId(R.drawable.ring);
         image4.setAnsList(new String[]{
-                "ring"
+                "ring", "ring finger"
         });
         image4.setClue("What is another name for this finger");
 
         image5.setImageId(R.drawable.pinky);
         image5.setAnsList(new String[]{
-                "pinky"
+                "pinky",  "last finger"
         });
         image5.setClue("What is another name for this finger");
 
-         fingerQuestionsArrayList = new ArrayList<>();
-         fingerQuestionsArrayList.add(image1);
-         fingerQuestionsArrayList.add(image2);
-         fingerQuestionsArrayList.add(image3);
-         fingerQuestionsArrayList.add(image4);
-         fingerQuestionsArrayList.add(image5);
+        fingerQuestionsArrayList = new ArrayList<>();
+        fingerQuestionsArrayList.add(image1);
+        fingerQuestionsArrayList.add(image2);
+        fingerQuestionsArrayList.add(image3);
+        fingerQuestionsArrayList.add(image4);
+        fingerQuestionsArrayList.add(image5);
 
-         Collections.shuffle(fingerQuestionsArrayList);
+        Collections.shuffle(fingerQuestionsArrayList);
 
 
     }
@@ -172,6 +173,7 @@ public class NamingFingers extends AppCompatActivity  {
 
 
     public void button_submit(View view) {
+
 
         image();
 
@@ -185,12 +187,12 @@ public class NamingFingers extends AppCompatActivity  {
         if(currentFinger.checkAnswer(answer)) {
             editText.setText("");
             score = score + 1;
-             // adding score from images and fingers together
+            // adding score from images and fingers together
 
-          //   totalScore = s + score;
+            //   totalScore = s + score;
 
-           //  totalScore = result.getNamingScore() + score;
-              sc = result.getNamingScore();
+            //  totalScore = result.getNamingScore() + score;
+            sc = result.getNamingScore();
 
             totalScore = sc + score;
             Log.e("TotalScore", String.valueOf(totalScore));
@@ -244,13 +246,11 @@ public class NamingFingers extends AppCompatActivity  {
             //When all th questions are finished
 
             Result result = new Result();
-           //int totalScore = result.getNamingScore() + score;
+            //int totalScore = result.getNamingScore() + score;
 
 
             result.setNamingScore(actualScroe);
-            Patient patient = new Patient();
-            result.setPatient(patient);
-            result.getPatient().setFirstName("Brian");
+
             Intent intent = new Intent(NamingFingers.this, HighScoreActivity.class);
             intent.putExtra("result", result);
             startActivity(intent);
@@ -258,7 +258,7 @@ public class NamingFingers extends AppCompatActivity  {
 
 
 
-             // startActivity(intent);
+            // startActivity(intent);
             // message that it's finished
             Log.e("NewQuestion", "Counter > Length");
         }
@@ -269,7 +269,7 @@ public class NamingFingers extends AppCompatActivity  {
 
         handler.postDelayed(new Runnable() {
             public void run() {
-               FingerQuestions temp = fingerQuestionsArrayList.get(counter);
+                FingerQuestions temp = fingerQuestionsArrayList.get(counter);
                 displyQuery .setText(temp.getClue());
                 moveToNextQuestion();
             }
@@ -294,7 +294,7 @@ public class NamingFingers extends AppCompatActivity  {
 
             }
 
-        }, 1000);
+        }, 10000);
 
     }//10000
 
@@ -313,7 +313,7 @@ public class NamingFingers extends AppCompatActivity  {
         //uidRef.collection("Naming_Task_Scores").document("Fingers_Scores").set(fingerScore);
 
         uidRef.collection("Fingers_Scores").document("Scores").set(fingerScore);
-                //document("Fingers_Scores").set(fingerScore);
+        //document("Fingers_Scores").set(fingerScore);
         //add(ImageScore);
 
 
@@ -333,6 +333,7 @@ public class NamingFingers extends AppCompatActivity  {
         uidRef.collection("Total_Scores").document("Scores").set(totalScore);
 
     }
+
 
 
 

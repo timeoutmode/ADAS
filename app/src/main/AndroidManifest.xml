@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".GuessingObjects.NamingObjetcs"></activity>
+        <activity android:name=".GuessingObjects.NamingObjects"></activity>
+        <activity android:name=".GuessingObjects.NamingObjetcs" />
         <activity android:name=".GuessingObjects.MainActivity" />
         <activity android:name=".GuessingObjects.HighScoreActivity" />
         <activity android:name=".GuessingObjects.HigestScoreActivity" />

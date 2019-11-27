@@ -11,7 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DelayedRecall.DelayedRecallResults"></activity>
+        <activity android:name=".WordRecognition.WordRecogResult"></activity>
+        <activity android:name=".WordRecognition.WordRecogAns" />
+        <activity android:name=".WordRecognition.WordRecog" />
+        <activity android:name=".DelayedRecall.DelayedRecallResults" />
         <activity android:name=".DelayedRecall.DelayedRecallAns" />
         <activity android:name=".DelayedRecall.DelayedRecall" />
         <activity android:name=".WordRecall.WordRecallResults" />

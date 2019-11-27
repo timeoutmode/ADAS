@@ -129,7 +129,7 @@
         android:id="@+id/button_11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button11"
+        android:text="Word Recognition"
         app:layout_constraintEnd_toStartOf="@+id/button_12"
         app:layout_constraintStart_toEndOf="@+id/button_10"
         app:layout_constraintTop_toTopOf="@+id/button_10" />

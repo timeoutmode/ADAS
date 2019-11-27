@@ -41,8 +41,8 @@
 
                 <Spinner
                     android:id="@+id/year_spinner"
-                    android:layout_width="340dp"
-                    android:layout_height="35dp"
+                    android:layout_width="343dp"
+                    android:layout_height="44dp"
                     android:background="@drawable/main_edit_text"
                     android:drawableEnd="@drawable/ic_dropdown_arrow"
                     android:elevation="10dp"

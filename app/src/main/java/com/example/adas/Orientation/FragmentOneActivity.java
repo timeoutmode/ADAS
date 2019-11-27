@@ -72,8 +72,6 @@ public class FragmentOneActivity extends Fragment {
         });
 
 
-
-
         return view;
     }
 

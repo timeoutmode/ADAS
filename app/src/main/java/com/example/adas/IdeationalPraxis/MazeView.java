@@ -324,6 +324,8 @@ public class MazeView extends View {
     public void completeMaze() {
         ((IdeationalPraxisActivity) getContext()).setScore(totalScore);
         Log.i("IP Info", "Total Score: " + ((IdeationalPraxisActivity) getContext()).getScore());
+
+        ((IdeationalPraxisActivity) getContext()).sendIntent();
     }
 
     private void endRound() {

@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.adas.Model.Patient;
 import com.example.adas.Model.Result;
+import com.example.adas.Orientation.OrientationViewPager;
 import com.example.adas.R;
 
 public class IdeationalPraxisActivity extends AppCompatActivity {
@@ -40,6 +41,13 @@ public class IdeationalPraxisActivity extends AppCompatActivity {
     private void initialiseObjects() {
         mazeView = findViewById(R.id.Maze);
         mTimerTextView = findViewById(R.id.timerTextView);
+    }
+
+    public void sendIntent() {
+        Intent intent = new Intent(this, OrientationViewPager.class);
+        intent.putExtra("result", result);
+
+        startActivity(intent);
     }
 
     public void setScore(int score) {

@@ -34,8 +34,6 @@ public class OrientationViewPager extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_viewpager);
 
-        //oScoreView = (TextView) findViewById(R.id.score1);
-
         List<Fragment> list = new ArrayList <>();
         list.add(new FragmentOneActivity());
         list.add(new FrgamentThreeActivity());
@@ -54,10 +52,6 @@ public class OrientationViewPager extends AppCompatActivity {
         mainButton.setOnClickListener(c -> {
             pager.setCurrentItem(counter++);
         });
-
-        //spinner = findViewById(R.id.dayOfWeek);
-
-        //DayOfWeek monday = DayOfWeek.MONDAY;
 
 
     }

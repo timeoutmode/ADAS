@@ -53,10 +53,11 @@ public class FragmentOneActivity extends Fragment {
                 int chosenDay = dayOfWeek.getSelectedItemPosition();
                 Calendar c = Calendar.getInstance();
                 int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
-                int minDay = chosenDay -1;
-                int maxDay = chosenDay +1;
+                //int minDay = chosenDay -1;
+                //int maxDay = chosenDay +1;
 
-                if(dayOfWeek >= minDay && dayOfWeek <= maxDay)
+                //if(dayOfWeek >= minDay && dayOfWeek <= maxDay)
+                if(dayOfWeek == chosenDay)
                 {
                     Toast.makeText(getActivity(),"Correct!",Toast.LENGTH_SHORT).show();
                     oScore ++;

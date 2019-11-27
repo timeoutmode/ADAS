@@ -20,7 +20,7 @@ public class FragmentFourActivity extends Fragment {
 
     Button button;
     View view;
-    TextView name;
+    TextView firstName, lastName;
     private int oScore;
 
     @Override
@@ -29,16 +29,18 @@ public class FragmentFourActivity extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.activity_fragment_four, container, false);
         button = view.findViewById(R.id.submit4);
-        name = view.findViewById(R.id.tv_name);
+        firstName = view.findViewById(R.id.tv_name);
+        lastName = view.findViewById(R.id.tv_name1);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                String name1 = name.getText().toString();
+                String name1 = firstName.getText().toString();
+                String name2 = lastName.getText().toString();
 
                 //test is only a place holder
-                if(name1.equals( "test"))
+                if(name1.equals( "test") && name2.equals("test"))
                 {
                     Toast.makeText(getActivity(),"Correct!",Toast.LENGTH_SHORT).show();
                     oScore ++;

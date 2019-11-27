@@ -10,6 +10,7 @@ import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
+import android.graphics.Region;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.MotionEvent;
@@ -25,6 +26,9 @@ import static android.graphics.Color.rgb;
 
 public class PaintView extends View {
     public  static final float TOUCH_TOLERANCE = 10;
+    Path p;
+    Region r;
+
 
     private Path drawpath;
     private boolean erase = false;
@@ -95,13 +99,33 @@ public class PaintView extends View {
     protected void onDraw(Canvas canvas) {
         canvas.drawBitmap(bitmap, 0, 0, paintScreen);
 
+//        Path p = new Path();
+//        canvas.drawCircle(10, 10, 75f, paintLine);
+
+
+//        p.moveTo(500, 500);
+//        p.lineTo(20, 50);
+//        p.lineTo(100, 100);
+//        p.lineTo(80, 100);
+//        p.close();
+
+
+      //  canvas.drawPath(p, paintLine);
+
+       // canvas.drawPath(p, paintLine);
+
+
+
+
         for (Integer key: pathMap.keySet()){
             canvas.drawPath(pathMap.get(key), paintLine);
         }
 
     }
 
-//
+
+
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         int action  = event.getActionMasked();

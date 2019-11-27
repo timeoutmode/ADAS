@@ -11,6 +11,7 @@ import android.widget.Button;
 
 import com.example.adas.Constructional_Praxis.DrawingActivity;
 import com.example.adas.DelayedRecall.DelayedRecall;
+
 import com.example.adas.GuessingObjects.StartImageGame;
 import com.example.adas.Model.Result;
 import com.example.adas.NumberCancellation.NumberCancellationActivity;
@@ -83,6 +84,11 @@ public class AssessmentLandingPageActivity extends AppCompatActivity {
 
         btn7.setOnClickListener(c ->{
             navigateToActivity(DelayedRecall.class);
+        });
+
+
+        btn8.setOnClickListener(c ->{
+            navigateToActivity(IdeationalPraxisActivity.class);
         });
 
         btn11.setOnClickListener(view -> {

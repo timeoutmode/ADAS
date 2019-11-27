@@ -5,25 +5,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.SpeechRecognizer;
-import android.speech.tts.TextToSpeech;
-import android.speech.tts.Voice;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 
 
 import com.example.adas.Constructional_Praxis.DrawingActivity;
 import com.example.adas.DelayedRecall.DelayedRecall;
-import com.example.adas.GuessingObjects.GuessTheImage;
-import com.example.adas.GuessingObjects.NamingFingers;
 import com.example.adas.GuessingObjects.StartImageGame;
 import com.example.adas.Model.Result;
 import com.example.adas.NumberCancellation.NumberCancellationActivity;
 import com.example.adas.Orientation.OrientationViewPager;
 import com.example.adas.SpeechComprehension.SpeechTask;
+import com.example.adas.SpokenLanguage.SpokenLanguageActivity;
 import com.example.adas.WordRecall.WordRecall;
-
-import java.util.Locale;
 
 public class AssessmentLandingPageActivity extends AppCompatActivity {
 
@@ -89,6 +83,10 @@ public class AssessmentLandingPageActivity extends AppCompatActivity {
 
         btn7.setOnClickListener(c ->{
             navigateToActivity(DelayedRecall.class);
+        });
+
+        btn11.setOnClickListener(view -> {
+            navigateToActivity(SpokenLanguageActivity.class);
         });
 
         btn12.setOnClickListener(c -> {

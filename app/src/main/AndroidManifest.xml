@@ -33,8 +33,9 @@
         <activity android:name=".GuessingObjects.NamingFingers" />
         <activity android:name=".Orientation.OrientationViewPager" />
         <activity android:name=".SpeechComprehension.SpeechTask" />
-        <activity android:name=".NumberCancellation.NumberCancellationActivity"
-            android:configChanges="orientation|screenSize"/>
+        <activity
+            android:name=".NumberCancellation.NumberCancellationActivity"
+            android:configChanges="orientation|screenSize" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,6 +43,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".SpokenLanguage.SpokenLanguageActivity"/>
 
         <meta-data
             android:name="com.google.geo.API_KEY"

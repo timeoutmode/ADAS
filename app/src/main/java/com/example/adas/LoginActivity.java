@@ -38,12 +38,14 @@ public class  LoginActivity extends AppCompatActivity {
     private EditText etUsername, etPassword;
     private ProgressBar progressBar;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    private static final int REQUEST_CODE = 1234;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        verifyPermissions();
         initialiseObjects();
         setOnClickListeners();
         setFireBaseListener();
@@ -135,6 +137,31 @@ public class  LoginActivity extends AppCompatActivity {
         if (mAuthListener != null) {
             FirebaseAuth.getInstance().removeAuthStateListener(mAuthListener);
         }
+    }
+
+    public void verifyPermissions() {
+        Log.d(TAG, "verifyPermissions: asking user for permissions.");
+        String[] permissions = {android.Manifest.permission.READ_EXTERNAL_STORAGE,
+                android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.CAMERA, Manifest.permission.CALL_PHONE,
+        Manifest.permission.RECORD_AUDIO};
+
+        boolean allPermissionsGranted = true;
+        for (String permission : permissions)
+            if (ContextCompat.checkSelfPermission(this.getApplicationContext(), permission) != PackageManager.PERMISSION_GRANTED) {
+                allPermissionsGranted = false;
+                break;
+            }
+        if (!allPermissionsGranted) {
+
+            ActivityCompat.requestPermissions(
+                    LoginActivity.this,
+                    permissions,
+                    REQUEST_CODE
+            );
+        }
+
+
     }
 
 }

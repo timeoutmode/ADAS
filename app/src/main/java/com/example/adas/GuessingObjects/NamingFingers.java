@@ -20,6 +20,7 @@ import com.example.adas.Model.Result;
 import com.example.adas.Model.Score_2;
 import com.example.adas.Model.TotalScore;
 import com.example.adas.R;
+import com.example.adas.SpeechComprehension.SpeechTask;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -251,7 +252,7 @@ public class NamingFingers extends AppCompatActivity  {
 
             result.setNamingScore(actualScroe);
 
-            Intent intent = new Intent(NamingFingers.this, HighScoreActivity.class);
+            Intent intent = new Intent(NamingFingers.this, SpeechTask.class);
             intent.putExtra("result", result);
             startActivity(intent);
 

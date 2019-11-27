@@ -35,20 +35,6 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.865" />
 
-                <ImageView
-                    android:id="@+id/imageView13"
-                    android:layout_width="23dp"
-                    android:layout_height="23dp"
-                    android:layout_marginStart="300dp"
-                    android:elevation="11dp"
-                    android:src="@drawable/ic_dropdown_arrow"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.431"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.599" />
-
                 <TextView
                     android:id="@+id/textView5"
                     android:layout_width="wrap_content"
@@ -64,26 +50,41 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.242" />
 
-                <Spinner
-                    android:id="@+id/et_season3"
-                    android:layout_width="340dp"
-                    android:layout_height="43dp"
-                    android:background="@drawable/main_edit_text"
-                    android:drawableEnd="@drawable/ic_dropdown_arrow"
-                    android:elevation="10dp"
-                    android:ems="10"
-                    android:entries="@array/season"
-                    android:focusable="false"
-                    android:hint="Season"
-                    android:inputType="textPersonName"
-                    android:paddingEnd="10dp"
-                    android:spinnerMode="dropdown"
+                <RadioGroup
+                    android:layout_width="339dp"
+                    android:layout_height="125dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.492"
+                    app:layout_constraintHorizontal_bias="0.493"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.604" />
+                    app:layout_constraintVertical_bias="0.63">
+
+                    <RadioButton
+                        android:id="@+id/choiceOne"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Winter" />
+
+                    <RadioButton
+                        android:id="@+id/choiceTwo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Spring" />
+
+                    <RadioButton
+                        android:id="@+id/choiceThree"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Summer" />
+
+                    <RadioButton
+                        android:id="@+id/choiceFour"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Autumn" />
+                </RadioGroup>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>

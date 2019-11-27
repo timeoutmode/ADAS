@@ -14,6 +14,7 @@
         <activity android:name=".GuessingObjects.NamingObjects"></activity>
         <activity android:name=".GuessingObjects.NamingObjetcs" />
         <activity android:name=".GuessingObjects.MainActivity" />
+        <activity android:name=".GuessingObjects.MainActivity" />
         <activity android:name=".GuessingObjects.HighScoreActivity" />
         <activity android:name=".GuessingObjects.HigestScoreActivity" />
         <activity android:name=".GuessingObjects.StartImageGame" />
@@ -35,6 +36,9 @@
         <activity android:name=".GuessingObjects.NamingFingers" />
         <activity android:name=".Orientation.OrientationViewPager" />
         <activity android:name=".SpeechComprehension.SpeechTask" />
+        <activity
+            android:name=".NumberCancellation.NumberCancellationActivity"
+            android:configChanges="orientation|screenSize" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,6 +46,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".SpokenLanguage.SpokenLanguageActivity"/>
 
         <meta-data
             android:name="com.google.geo.API_KEY"

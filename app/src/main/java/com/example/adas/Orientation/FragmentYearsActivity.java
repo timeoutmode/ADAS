@@ -25,12 +25,14 @@ public class FragmentYearsActivity extends Fragment {
     Button button;
     Spinner year1;
     private int oScore;
+    private OrientationViewPager activity;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.activity_fragment_years, container, false);
+        activity = (OrientationViewPager) getActivity();
 
         button = view.findViewById(R.id.submit7);
         year1 = view.findViewById(R.id.year_spinner);
@@ -67,11 +69,12 @@ public class FragmentYearsActivity extends Fragment {
                     //int yrs = c.get(Calendar.YEAR);
 
                     if (strYear.equals(chosenYear)) {
-                        Toast.makeText(getActivity(), "Correct!", Toast.LENGTH_SHORT).show();
-                        oScore++;
-                    } else {
-                        Toast.makeText(getActivity(), "Sorry not correct!", Toast.LENGTH_SHORT).show();
+                        activity.score++;
                     }
+
+
+                    int index = activity.pager.getCurrentItem();
+                    activity.pager.setCurrentItem(++index);
 
                 }
             });

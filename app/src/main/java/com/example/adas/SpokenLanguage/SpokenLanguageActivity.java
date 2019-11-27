@@ -44,6 +44,7 @@ public class SpokenLanguageActivity extends AppCompatActivity {
     private Handler handler;
     private boolean isLoaded = false;
     private Result result;
+    private final static String TAG = "SpokenLanguageActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +59,11 @@ public class SpokenLanguageActivity extends AppCompatActivity {
         loadNextSentence();
 
         Intent intent = getIntent();
-        result = intent.getParcelableExtra("result");
+        if(intent.hasExtra("result")) {
+            result = intent.getParcelableExtra("result");
+            Log.e(TAG, String.valueOf(result.getNamingScore()));
+
+        }
 
     }
 

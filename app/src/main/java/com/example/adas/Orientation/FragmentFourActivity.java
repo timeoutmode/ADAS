@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.adas.Model.Patient;
+import com.example.adas.Model.Result;
 import com.example.adas.R;
 
 import java.util.Calendar;
@@ -22,12 +24,15 @@ public class FragmentFourActivity extends Fragment {
     View view;
     TextView firstName, lastName;
     private int oScore;
+    private OrientationViewPager activity;
+    private Patient patient;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.activity_fragment_four, container, false);
+        activity = (OrientationViewPager) getActivity();
         button = view.findViewById(R.id.submit4);
         firstName = view.findViewById(R.id.tv_name);
         lastName = view.findViewById(R.id.tv_name1);
@@ -36,21 +41,21 @@ public class FragmentFourActivity extends Fragment {
             @Override
             public void onClick(View v) {
 
-                String name1 = firstName.getText().toString();
-                String name2 = lastName.getText().toString();
+                String name1 = firstName.getText().toString().toLowerCase().trim();
+                String name2 = lastName.getText().toString().toLowerCase().trim();
 
-                //test is only a place holder
-                if(name1.equals( "test") && name2.equals("test"))
-                {
-                    Toast.makeText(getActivity(),"Correct!",Toast.LENGTH_SHORT).show();
-                    oScore ++;
+
+                if(activity.result instanceof Result) {
+                    if(activity.result.patient instanceof Patient) {
+                        patient = activity.result.getPatient();
+                        if(name1.equals(patient.getFirstName().toLowerCase().trim()) && name2.equals(patient.getLastName().toLowerCase().trim()))
+                        {
+                            activity.score++;
+                        }
+                    }
                 }
-
-                else
-                {
-                    Toast.makeText(getActivity(),"Sorry not correct!",Toast.LENGTH_SHORT).show();
-                }
-
+                int index = activity.pager.getCurrentItem();
+                activity.pager.setCurrentItem(++index);
             }
         });
         return view;

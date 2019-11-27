@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -42,10 +43,11 @@ public class SpeechTask extends AppCompatActivity {
     private String mAnswer;
     private int mScore = 0;
     private int mQuestionNumber = 0;
-    int counter = 6;
+    int counter = 5;
     int itemcounter = 0;
     boolean isInitialized = false;
     Result result;
+    private final static String TAG = "SpeechTaskActivity";
 
 
     private SpeechRecogntionQuestion mquestion;
@@ -135,9 +137,13 @@ public class SpeechTask extends AppCompatActivity {
         setContentView(R.layout.speech_task);
 
         Intent intent = getIntent();
-        result = intent.getParcelableExtra("result");
+        if(intent.hasExtra("result")) {
+            result = intent.getParcelableExtra("result");
+            Log.e(TAG,String.valueOf(result.getOrientationScore()));
+        }
+
+
         initializeQuestion();
-        mScoreView = findViewById(R.id.score);
         mQuestionView =  findViewById((R.id.question));
         mButtonChoice1 =  findViewById(R.id.choice1);
         mButtonChoice2 =  findViewById(R.id.choice2);
@@ -156,21 +162,20 @@ public class SpeechTask extends AppCompatActivity {
                 if (counter != 0)
                 {
                     counter--;
-                    if (checkAnswer())
-                    {
-                    mScore = mScore + 1;
-                    updateScore(mScore);
-                    updateQuestion();
+                    if (checkAnswer()){
+                        updateQuestion();
                     } else {
-                    Toast.makeText(SpeechTask.this, "WRONG", Toast.LENGTH_SHORT).show();
-                    updateQuestion();
+                        mScore = mScore + 1;
+                        updateQuestion();
                     }
                    // itemcounter++;
                 } else{
-                    result.setComprehensionScore(mScore);
                     Intent intent = new Intent(SpeechTask.this, StartImageGame.class);
+                    if(result != null) {
+                        result.setComprehensionScore(mScore);
+                    }
                     intent.putExtra("result", result);
-
+                    startActivity(intent);
                 }
             }
         });
@@ -253,12 +258,12 @@ public class SpeechTask extends AppCompatActivity {
 
     }
 
-    private void updateScore(int point) {
-        mScoreView.setText("" + mScore);
-    }
 
     private boolean checkAnswer(){
         int selectedId = radiogroup.getCheckedRadioButtonId();
+        if(selectedId == -1) {
+            return false;
+        }
         RadioButton rb = radiogroup.findViewById(selectedId);
         String tempAnswer = rb.getText().toString();
         String rightanswer = mquestion.getListofitems().get(itemcounter).getAnswer();

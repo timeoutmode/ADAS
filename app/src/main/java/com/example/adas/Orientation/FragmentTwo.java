@@ -33,17 +33,20 @@ import java.util.GregorianCalendar;
 
 public class FragmentTwo extends Fragment {
 
-//    Button button;
     View view;
-//    Spinner season;
-   private int oScore;
-
+    private int oScore;
     private RadioGroup radioGroup;
     private RadioButton choice1, choice2, choice3, choice4;
+    private OrientationViewPager activity;
+    private Button button;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.activity_fragment_two, container, false);
+        activity = (OrientationViewPager) getActivity();
+        button = view.findViewById(R.id.submit2);
+        radioGroup = view.findViewById(R.id.selectedSeason);
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -82,13 +85,15 @@ public class FragmentTwo extends Fragment {
                     }
 
 
+
+
             }
         });
         // Inflate the layout for this fragment
 
-          view = inflater.inflate(R.layout.activity_fragment_two, container, false);
+
 //        Button = view.findViewById(R.id.submit2);
-          radioGroup = view.findViewById(R.id.selectedSeason);
+
 //        season = view.findViewById(R.id.season_spinner);
 //        String text = season.getSelectedItem().toString();
 //
@@ -135,7 +140,7 @@ public class FragmentTwo extends Fragment {
 //                if(chosenDay == dayOfWeek)
 //                {
 //                    Toast.makeText(getActivity(),"Correct!",Toast.LENGTH_SHORT).show();
-//                    oScore ++;
+//                    score ++;
 //                }
 //
 //                else
@@ -183,6 +188,11 @@ public class FragmentTwo extends Fragment {
 
 
             }
+        });
+
+        button.setOnClickListener(c -> {
+            int index = activity.pager.getCurrentItem();
+            activity.pager.setCurrentItem(++index);
         });
         return view;
 

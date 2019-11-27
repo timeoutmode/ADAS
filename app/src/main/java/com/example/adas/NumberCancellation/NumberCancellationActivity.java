@@ -31,6 +31,7 @@ public class NumberCancellationActivity extends AppCompatActivity {
     Result  result;
     Runnable timer, hideInstruction;
     Handler handler;
+    private final static String TAG = "NumbersActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +48,10 @@ public class NumberCancellationActivity extends AppCompatActivity {
 
         // get Result from intent
         Intent intent = getIntent();
-        result = intent.getParcelableExtra("result");
-
+        if(intent.hasExtra("result")) {
+            result = intent.getParcelableExtra("result");
+            Log.e(TAG, String.valueOf(result.getSpokenLanguageScore()));
+        }
 
         // hide instructions after 30secs
         handler = new Handler();

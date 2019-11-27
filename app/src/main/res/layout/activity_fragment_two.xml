@@ -89,7 +89,7 @@
                     android:id="@+id/submit2"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:text="Submit"
+                    android:text="Next"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.498"
@@ -137,41 +137,6 @@
 <!--                    app:layout_constraintStart_toStartOf="parent"-->
 <!--                    app:layout_constraintTop_toTopOf="parent"-->
 <!--                    app:layout_constraintVertical_bias="0.604" />-->
-
-                <RadioGroup
-                    android:layout_width="339dp"
-                    android:layout_height="125dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.493"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.63">
-
-                    <RadioButton
-                        android:id="@+id/choiceOne"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Winter" />
-
-                    <RadioButton
-                        android:id="@+id/choiceTwo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Spring" />
-
-                    <RadioButton
-                        android:id="@+id/choiceThree"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Summer" />
-
-                    <RadioButton
-                        android:id="@+id/choiceFour"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Autumn" />
-                </RadioGroup>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>

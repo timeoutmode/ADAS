@@ -29,6 +29,7 @@ public class WordRecall extends AppCompatActivity {
     private int counter =0, trial =0, correctAnswer = 0;
     private ArrayList<String> wordBankArray;
     private Result result;
+    private static final String TAG = "WordRecallActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,11 +53,8 @@ public class WordRecall extends AppCompatActivity {
         correctAnswer = intent.getIntExtra("correctAnswer", 0);
         if(intent.hasExtra("result")) {
             result = intent.getParcelableExtra("result");
+            Log.e(TAG, String.valueOf(result.getConstructionalPraxisScore()));
         }
-
-        Log.e("SCORE", String.valueOf(correctAnswer));
-        Log.e("TRIAL", String.valueOf(trial));
-
     }
 
     private void setOnClickListeners() {
@@ -70,6 +68,7 @@ public class WordRecall extends AppCompatActivity {
                     } else {
                         Intent intent = new Intent(WordRecall.this, WordRecallAns.class);
                         intent.putExtra("trial", trial);
+                        intent.putExtra("result", result);
                         intent.putExtra("correctAnswer", correctAnswer);
                         startActivity(intent);
                     }

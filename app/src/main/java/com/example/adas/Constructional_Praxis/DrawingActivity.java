@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.adas.Model.Result;
 import com.example.adas.R;
 import com.example.adas.WordRecall.WordRecall;
 
@@ -22,6 +23,8 @@ public class DrawingActivity extends AppCompatActivity implements View.OnClickLi
     TextView textView17;
     private Bitmap canvasBitmap;
     int click = 0;
+    private static final String TAG = "DrawingActivity";
+    private Result result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +51,12 @@ public class DrawingActivity extends AppCompatActivity implements View.OnClickLi
         shapes.setImageResource(R.drawable.circle);
         textView17.setText("Draw a Circle");
 
+        // grab the intent
+        Intent intent = getIntent();
+        if(intent.hasExtra("result")) {
+            result = intent.getParcelableExtra("result");
+        }
+
        
 
     }
@@ -69,28 +78,25 @@ public class DrawingActivity extends AppCompatActivity implements View.OnClickLi
 
     public void go_btn_submit(View view) {
         if (click == 0){
-
             shapes.setImageResource(R.drawable.cube);
             textView17.setText("Draw a Cube");
             paintView.clear();
-            Toast.makeText(this, "Correct", Toast.LENGTH_SHORT).show();
-
-
 
         }else if (click == 1){
             shapes.setImageResource(R.drawable.diamond);
             textView17.setText("Draw a Diamond");
             paintView.clear();
-            Toast.makeText(this, "Correct", Toast.LENGTH_SHORT).show();
 
         }else if (click == 2){
             shapes.setImageResource(R.drawable.overlappingrectangles);
             textView17.setText("Draw two Overlapping Rectangles ");
             paintView.clear();
-            Toast.makeText(this, "Correct", Toast.LENGTH_SHORT).show();
 
         }else if (click == 3){
             Intent intent = new Intent(DrawingActivity.this, WordRecall.class);
+            Result result = new Result();
+            result.setConstructionalPraxisScore(-1);
+            intent.putExtra("result", result);
             startActivity(intent);
         }
 

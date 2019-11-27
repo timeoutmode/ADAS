@@ -22,7 +22,7 @@ public class FrgamentThreeActivity extends Fragment {
     Button button;
     Spinner month;
     View view;
-    private int oScore;
+    private OrientationViewPager activity;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,6 +38,8 @@ public class FrgamentThreeActivity extends Fragment {
         if(text.toLowerCase().equals(dayLongName.toLowerCase())) {
         }
 
+        activity = (OrientationViewPager) getActivity();
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,14 +49,11 @@ public class FrgamentThreeActivity extends Fragment {
 
                 if(month == chosenMonth)
                 {
-                    Toast.makeText(getActivity(),"Correct!",Toast.LENGTH_SHORT).show();
-                    oScore ++;
+                    activity.score++;
                 }
 
-                else
-                {
-                    Toast.makeText(getActivity(),"Sorry not correct!",Toast.LENGTH_SHORT).show();
-                }
+                int index = activity.pager.getCurrentItem();
+                activity.pager.setCurrentItem(++index);
 
             }
         });

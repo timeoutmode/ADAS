@@ -8,7 +8,7 @@ public class Result implements Parcelable {
     ideationalPraxisScore, orientationScore, wordRecognitionTaskScore, rememberingTestInstructionsScore,
     spokenLanguageScore, wordFindingScore, comprehensionScore, executiveFunctionScore, numberCancellationScore;
     private int numberCancellationErrors, numberCancellationTargetHits, numberCancellationTaskReminder;
-    private Patient patient;
+    public Patient patient;
 
     public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
         @Override

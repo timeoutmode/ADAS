@@ -21,6 +21,7 @@ import com.example.adas.Model.Score_2;
 import com.example.adas.Model.TotalScore;
 import com.example.adas.R;
 import com.example.adas.SpeechComprehension.SpeechTask;
+import com.example.adas.SpokenLanguage.SpokenLanguageActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -60,6 +61,7 @@ public class NamingFingers extends AppCompatActivity  {
     int sc;
 
 
+    private static final String TAG = "NamingFingersActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,8 +70,13 @@ public class NamingFingers extends AppCompatActivity  {
 
 
         Intent intent = getIntent();
-        result = intent.getParcelableExtra("result");
-        Log.e("Score", String.valueOf(result.getNamingScore()));
+        if(intent.hasExtra("result")) {
+            result = intent.getParcelableExtra("result");
+            Log.e("Score", String.valueOf(result.getNamingScore()));
+        }
+
+
+
 
 
         initialiseViews();
@@ -246,14 +253,14 @@ public class NamingFingers extends AppCompatActivity  {
         } else {
             //When all th questions are finished
 
-            Result result = new Result();
             //int totalScore = result.getNamingScore() + score;
 
 
-            result.setNamingScore(actualScroe);
-
-            Intent intent = new Intent(NamingFingers.this, SpeechTask.class);
-            intent.putExtra("result", result);
+            Intent intent = new Intent(NamingFingers.this, SpokenLanguageActivity.class);
+            if(result != null) {
+                result.setNamingScore(actualScroe);
+                intent.putExtra("result", result);
+            }
             startActivity(intent);
 
 
@@ -288,11 +295,6 @@ public class NamingFingers extends AppCompatActivity  {
                 counter++;
                 nextQuestion();
                 editText.getText().clear();
-
-
-
-
-
             }
 
         }, 10000);

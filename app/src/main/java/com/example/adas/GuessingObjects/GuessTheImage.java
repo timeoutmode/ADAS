@@ -57,6 +57,7 @@ public class GuessTheImage extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore db;
+    private static final String TAG = "GuessTheImageActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +68,11 @@ public class GuessTheImage extends AppCompatActivity {
         //Receiving score from previous activity
 
         Intent intent = getIntent();
-        result = intent.getParcelableExtra("result");
+        if(intent.hasExtra("result")) {
+            result = intent.getParcelableExtra("result");
+            Log.e(TAG, String.valueOf(result.getComprehensionScore()));
+        }
+
 
 
         initialise();
@@ -307,16 +312,17 @@ public class GuessTheImage extends AppCompatActivity {
 ////                startActivity(intent1);
 
 
-                Result result = new Result();
-                result.setNamingScore(score);
+
 
                 Intent intent = new Intent(GuessTheImage.this, NamingFingers.class);
                 // Bundle bundle = new Bundle();
 //                bundle.putInt("ImageScore", score);
                 //  bundle.putParcelable("result", result);
                 // intent.putExtras(bundle);
-
-                intent.putExtra("result", result);
+                if(result != null) {
+                    result.setNamingScore(score);
+                    intent.putExtra("result", result);
+                }
                 startActivity(intent);
 
                 //result.setNamingScore(score);

@@ -23,12 +23,14 @@ public class FragmentSixActivity extends Fragment {
     Button button;
     Spinner hour;
     private int oScore;
+    private  OrientationViewPager activity;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.activity_fragment_six, container, false);
+        activity = (OrientationViewPager) getActivity();
         button = view.findViewById(R.id.submit6);
         hour = view.findViewById(R.id.hour_spinner);
         String text = hour.getSelectedItem().toString();
@@ -50,14 +52,11 @@ public class FragmentSixActivity extends Fragment {
 
                 if( hrs >= minHour && hrs <= maxHour)
                 {
-                    Toast.makeText(getActivity(),"Correct!",Toast.LENGTH_SHORT).show();
-                    oScore ++;
+                    activity.score++;
                 }
 
-                else
-                {
-                    Toast.makeText(getActivity(),"Sorry not correct!",Toast.LENGTH_SHORT).show();
-                }
+                int index = activity.pager.getCurrentItem();
+                activity.pager.setCurrentItem(++index);
 
             }
         });

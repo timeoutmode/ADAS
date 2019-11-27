@@ -20,7 +20,7 @@ public class IdeationalPraxisActivity extends AppCompatActivity {
     private MazeView mazeView;
     private TextView mTimerTextView;
     private Result result;
-
+    private static final String TAG = "IdeaPraxisActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,8 +28,12 @@ public class IdeationalPraxisActivity extends AppCompatActivity {
 
         initialiseObjects();
 
-        //Intent intent = getIntent();
-        //result = intent.getParcelableExtra("result");
+        Intent intent = getIntent();
+        if(intent.hasExtra("result")) {
+            result = intent.getParcelableExtra("result");
+            Log.e(TAG, String.valueOf(result.getWordRecallScore()));
+        }
+
 
         Patient patient = new Patient();
 
@@ -46,7 +50,6 @@ public class IdeationalPraxisActivity extends AppCompatActivity {
     public void sendIntent() {
         Intent intent = new Intent(this, OrientationViewPager.class);
         intent.putExtra("result", result);
-
         startActivity(intent);
     }
 

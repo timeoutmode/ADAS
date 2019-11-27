@@ -7,16 +7,18 @@ public class User {
     private String name;
     private String address;
     private Date createDate;
+    private String assessmentPlace;
 
     public User() {
 
     }
 
-    public User(String userId, String name, String address, Date createDate) {
+    public User(String userId, String name, String address, Date createDate, String assessmentPlace) {
         this.userId = userId;
         this.name = name;
         this.address = address;
         this.createDate = createDate;
+        this.assessmentPlace = assessmentPlace;
     }
 
     public String getUserId() {
@@ -49,5 +51,13 @@ public class User {
 
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
+    }
+
+    public String getAssessmentPlace() {
+        return assessmentPlace;
+    }
+
+    public void setAssessmentPlace(String assessmentPlace) {
+        this.assessmentPlace = assessmentPlace;
     }
 }

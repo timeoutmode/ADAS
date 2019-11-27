@@ -38,21 +38,6 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.88" />
 
-                <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="88dp"
-                    android:text="What is the Day of the Week?"
-                    android:textAlignment="center"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                    android:textColor="#F9F9F9"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
                 <!--<RadioButton
                     android:id="@+id/choice1"
                     android:layout_width="414dp"
@@ -70,7 +55,22 @@
                     app:layout_constraintTop_toBottomOf="@+id/question" />-->
 
 
-                 <Spinner
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="352dp"
+                    android:layout_height="91dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="92dp"
+                    android:text="What is the day of the week?"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textColor="#F9F9F9"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.387"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Spinner
                      android:id="@+id/dayOfWeek"
                      android:layout_width="340dp"
                      android:layout_height="43dp"

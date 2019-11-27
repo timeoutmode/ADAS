@@ -46,6 +46,11 @@ public class WordRecall extends AppCompatActivity {
         randtv =  findViewById(R.id.randWord);
         randbtn = findViewById(R.id.btn_generate);
 
+
+        Intent intent = getIntent();
+        trial = intent.getIntExtra("TRIAL", 0);
+
+
         randbtn.setOnClickListener(new View.OnClickListener() {
             @Override    public void onClick(View v) {
                 if (trial != 3) {
@@ -55,9 +60,11 @@ public class WordRecall extends AppCompatActivity {
                         randtv.setText(wordbank[num]);
                         count++;
                     } else {
-                        Intent answerWR = new Intent(WordRecall.this, WordRecallAns.class);
-                        startActivity(answerWR);
                         trial++;
+                        Intent answerWR = new Intent(WordRecall.this, WordRecallAns.class);
+                        answerWR.putExtra("TRIAL", (trial));
+                        startActivity(answerWR);
+                        Log.e("TRIAL NUMBER", String.valueOf(trial));
                     }
                 } else {
                     Intent resultWR = new Intent(WordRecall.this, WordRecallResults.class);

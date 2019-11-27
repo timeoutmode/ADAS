@@ -21,8 +21,10 @@ import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
+import com.example.adas.Constructional_Praxis.DrawingActivity;
 import com.example.adas.Helper.Helpers;
 import com.example.adas.Model.Patient;
+import com.example.adas.Model.Result;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -49,6 +51,7 @@ public class AddPatientActivity extends AppCompatActivity {
     private Button btnAddPatient;
     private ProgressBar progressBar;
     private Date birthDate;
+    private boolean isAssessment = false;
 
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore db;
@@ -60,6 +63,10 @@ public class AddPatientActivity extends AppCompatActivity {
 
         initialiseObjects();
         setOnClickListeners();
+
+        if(getIntent().hasExtra("assessment")) {
+            isAssessment = true;
+        }
     }
 
     private void initialiseObjects() {
@@ -85,7 +92,7 @@ public class AddPatientActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         // initialise Places SDK
-        //Places.initialize(getApplicationContext(), getResources().getString(R.string.places_api_key));
+        Places.initialize(getApplicationContext(), getResources().getString(R.string.places_api_key));
     }
 
     private void setOnClickListeners() {
@@ -131,6 +138,16 @@ public class AddPatientActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(Void aVoid) {
                             Log.d(TAG, "DocumentSnapshot successfully written!");
+                            if(isAssessment) {
+                                Result result = new Result();
+                                result.setPatient(patient);
+                                Intent intent = new Intent(AddPatientActivity.this, DrawingActivity.class);
+                                intent.putExtra("result", result);
+                                startActivity(intent);
+                            } else {
+                                Intent intent = new Intent(AddPatientActivity.this, PatientActivity.class);
+                                startActivity(intent);
+                            }
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {

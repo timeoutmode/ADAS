@@ -14,7 +14,7 @@
             android:id="@+id/cardView"
             android:layout_width="match_parent"
             android:layout_height="450dp"
-            app:cardBackgroundColor="#669ED3"
+            app:cardBackgroundColor="#9A1CC6"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -24,10 +24,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <Button
+                    android:id="@+id/submit3"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="Submit"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.858" />
+
                 <Spinner
-                    android:id="@+id/et_month5"
-                    android:layout_width="327dp"
-                    android:layout_height="59dp"
+                    android:id="@+id/month_spinner"
+                    android:layout_width="340dp"
+                    android:layout_height="46dp"
                     android:layout_marginBottom="172dp"
                     android:background="@drawable/main_edit_text"
                     android:drawableEnd="@drawable/ic_dropdown_arrow"
@@ -48,16 +60,16 @@
 
                 <TextView
                     android:id="@+id/textView4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="366dp"
+                    android:layout_height="94dp"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="60dp"
-                    android:text="What is the Month Currently?"
+                    android:layout_marginTop="72dp"
+                    android:text="What is the current month?"
                     android:textAlignment="center"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                     android:textColor="#FFFFFF"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintHorizontal_bias="0.342"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 

@@ -10,20 +10,17 @@ import android.widget.CheckBox;
 import android.util.Log;
 import android.widget.TextView;
 import com.example.adas.R;
-import com.google.firebase.database.core.Tag;
-import com.google.firebase.firestore.core.SyncEngine;
 
 import java.util.ArrayList;
 
 public class WordRecallAns extends AppCompatActivity {
 
-
+    ArrayList<Integer> scoreArray = new ArrayList<Integer>();
     ArrayList<String> selected = new ArrayList<String>();
    // CheckBox CB1, CB2, CB3, CB4, CB5, CB6, CB7, CB8, CB9, CB10;
     Button sbmit;
     TextView txt;
-    int count=0,total=0 ;
-
+    int count,total=0,trial =0, res1,res2, res3, finalans=0,sum = 0;
 
 
      final String TAG = WordRecallAns.class.getSimpleName();
@@ -38,20 +35,49 @@ public class WordRecallAns extends AppCompatActivity {
         txt.setEnabled(false);
         System.out.println("TAG =" + TAG );
 
+        Intent activity1 = getIntent();
+        trial = activity1.getIntExtra("TRIAL",0);
+        res1 = activity1.getIntExtra("RES1",0);
+        res2 = activity1.getIntExtra("RES2",0);
+        res3 = activity1.getIntExtra("RES3",0);
+
+
         sbmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //finalAnswer(v);
-                Log.e(TAG,"running" + total);
-                Intent next = new Intent(WordRecallAns.this, WordRecall.class);
-                startActivity(next);
+                if (trial != 4) {
+                    if (trial == 1) {
+                        res1 = count;
+                        Log.e(TAG, "result 1: " + count);
+                        Intent next = new Intent(WordRecallAns.this, WordRecall.class);
+                        next.putExtra("TRIAL", (trial));
+                        next.putExtra("RES1",(res1));
+                        startActivity(next);
+                    } else if (trial == 2) {
+                        res2 = count;
+                        Log.e(TAG, "result 2: " + count);
+                        Intent next = new Intent(WordRecallAns.this, WordRecall.class);
+                        next.putExtra("TRIAL", (trial));
+                        next.putExtra("RES2",(res2));
+                        startActivity(next);
+                    } else if (trial == 3) {
+                        res3 = count;
+                        Log.e(TAG, "result 3: " + count);
+                        Intent next1 = new Intent(WordRecallAns.this, WordRecallResults.class);
+                        next1.putExtra("TOTAL", (total));
+                        next1.putExtra("TRIAL", (trial));
+                        next1.putExtra("RES3",(res3));
+                        startActivity(next1);
+
+                    }
+                }
             }
         });
 
-
     }
 
-        public void correctAns(View view){
+
+    public void correctAns(View view){
         boolean checked = ((CheckBox) view) .isChecked();
             switch (view.getId())
             {

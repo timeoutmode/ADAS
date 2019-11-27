@@ -60,7 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
-        android:text="Button3"
+        android:text="Speech Task"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/button_2" />
 
@@ -69,7 +69,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Button4"
+        android:text="Orientation Task"
         app:layout_constraintStart_toStartOf="@+id/button_1"
         app:layout_constraintTop_toBottomOf="@+id/button_1" />
 
@@ -103,7 +103,7 @@
         android:id="@+id/button_8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button8"
+        android:text="Word Recognition"
         app:layout_constraintEnd_toStartOf="@+id/button_9"
         app:layout_constraintStart_toEndOf="@+id/button_7"
         app:layout_constraintTop_toTopOf="@+id/button_7" />

@@ -31,6 +31,7 @@ public class WordRecogAns extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_word_recog_ans);
 
+
         sbmit = findViewById(R.id.btnsub);
         txt = findViewById(R.id.textView3);
         txt.setEnabled(false);
@@ -185,3 +186,4 @@ public class WordRecogAns extends AppCompatActivity {
 
     }
 }
+

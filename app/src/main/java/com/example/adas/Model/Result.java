@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Result implements Parcelable {
-    private int wordRecallScore, namingScore , commandsScore, constructionalPraxisScore,
+    private int wordRecallScore, namingScore, namingScore1, commandsScore, constructionalPraxisScore,
     ideationalPraxisScore, orientationScore, wordRecognitionTaskScore, rememberingTestInstructionsScore,
     spokenLanguageScore, wordFindingScore, comprehensionScore, executiveFunctionScore, numberCancellationScore;
     private int numberCancellationErrors, numberCancellationTargetHits, numberCancellationTaskReminder;
@@ -19,12 +19,16 @@ public class Result implements Parcelable {
         @Override
         public Object[] newArray(int i) {
             return new Result[i];
-        }
+    }
     };
 
-    public Result(int wordRecallScore, int namingScore, int commandsScore, int constructionalPraxisScore, int ideationalPraxisScore, int orientationScore, int wordRecognitionTaskScore, int rememberingTestInstructionsScore, int spokenLanguageScore, int wordFindingScore, int comprehensionScore, int executiveFunctionScore, int numberCancellationScore, int numberCancellationErrors, int numberCancellationTargetHits, int numberCancellationTaskReminder, Patient patient) {
+    public Result() {
+    }
+
+    public Result(int wordRecallScore, int namingScore,int namingScore1, int commandsScore, int constructionalPraxisScore, int ideationalPraxisScore, int orientationScore, int wordRecognitionTaskScore, int rememberingTestInstructionsScore, int spokenLanguageScore, int wordFindingScore, int comprehensionScore, int executiveFunctionScore, int numberCancellationScore, int numberCancellationErrors, int numberCancellationTargetHits, int numberCancellationTaskReminder, Patient patient) {
         this.wordRecallScore = wordRecallScore;
         this.namingScore = namingScore;
+        this.namingScore1 = namingScore1;
         this.commandsScore = commandsScore;
         this.constructionalPraxisScore = constructionalPraxisScore;
         this.ideationalPraxisScore = ideationalPraxisScore;
@@ -46,6 +50,7 @@ public class Result implements Parcelable {
     public Result(Parcel parcel) {
         this.wordRecallScore = parcel.readInt();
         this.namingScore = parcel.readInt();
+        this.namingScore1 = parcel.readInt();
         this.commandsScore = parcel.readInt();
         this.constructionalPraxisScore = parcel.readInt();
         this.ideationalPraxisScore = parcel.readInt();
@@ -67,6 +72,7 @@ public class Result implements Parcelable {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeInt(this.wordRecallScore);
         parcel.writeInt(this.namingScore);
+        parcel.writeInt(this.namingScore1);
         parcel.writeInt(this.commandsScore);
         parcel.writeInt(this.constructionalPraxisScore);
         parcel.writeInt(this.ideationalPraxisScore);
@@ -120,6 +126,8 @@ public class Result implements Parcelable {
     public void setConstructionalPraxisScore(int constructionalPraxisScore) {
         this.constructionalPraxisScore = constructionalPraxisScore;
     }
+
+
 
     public int getIdeationalPraxisScore() {
         return ideationalPraxisScore;

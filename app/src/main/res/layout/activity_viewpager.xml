@@ -61,6 +61,32 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/pager" />
+
+<!--        <TextView-->
+<!--            android:id="@+id/score1_text"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Score:"-->
+<!--            app:layout_constraintBottom_toTopOf="@+id/pager"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.463"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/constraintLayout3"-->
+<!--            app:layout_constraintVertical_bias="0.483" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/score1"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="100dp"-->
+<!--            android:text="0  "-->
+<!--            app:layout_constraintBottom_toTopOf="@+id/pager"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.052"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/score1_text"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/constraintLayout3"-->
+<!--            app:layout_constraintVertical_bias="0.483" />-->
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

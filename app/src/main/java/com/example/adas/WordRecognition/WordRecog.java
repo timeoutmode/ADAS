@@ -55,7 +55,6 @@ public class WordRecog extends AppCompatActivity {
         Intent intent = getIntent();
         if(intent.hasExtra("result")) {
             result = intent.getParcelableExtra("result");
-            Log.e(TAG, String.valueOf(result.getNumberCancellationTargetHits()));
         }
 
         randbtnWRC.setOnClickListener(new View.OnClickListener() {

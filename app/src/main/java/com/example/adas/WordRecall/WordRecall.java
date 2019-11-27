@@ -53,7 +53,6 @@ public class WordRecall extends AppCompatActivity {
         correctAnswer = intent.getIntExtra("correctAnswer", 0);
         if(intent.hasExtra("result")) {
             result = intent.getParcelableExtra("result");
-            Log.e(TAG, String.valueOf(result.getConstructionalPraxisScore()));
         }
     }
 

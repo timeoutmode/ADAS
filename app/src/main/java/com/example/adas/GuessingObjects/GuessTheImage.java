@@ -70,7 +70,6 @@ public class GuessTheImage extends AppCompatActivity {
         Intent intent = getIntent();
         if(intent.hasExtra("result")) {
             result = intent.getParcelableExtra("result");
-            Log.e(TAG, String.valueOf(result.getComprehensionScore()));
         }
 
 
@@ -274,7 +273,6 @@ public class GuessTheImage extends AppCompatActivity {
         String answer = editText.getText().toString().toLowerCase().trim();
         if (currentImage.checkAnswer(answer)) {
             editText.setText("");
-            result = new Result();
             result.setNamingScore(score);
             score++;
             counter++;

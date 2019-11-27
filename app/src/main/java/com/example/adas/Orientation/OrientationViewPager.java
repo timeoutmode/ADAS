@@ -71,7 +71,6 @@ public class OrientationViewPager extends AppCompatActivity {
         Intent intent = getIntent();
         if(intent.hasExtra("result")) {
             result = intent.getParcelableExtra("result");
-            Log.e(TAG, String.valueOf(result.getIdeationalPraxisScore()));
         }
 
 

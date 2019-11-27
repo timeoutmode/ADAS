@@ -72,7 +72,6 @@ public class NamingFingers extends AppCompatActivity  {
         Intent intent = getIntent();
         if(intent.hasExtra("result")) {
             result = intent.getParcelableExtra("result");
-            Log.e("Score", String.valueOf(result.getNamingScore()));
         }
 
 

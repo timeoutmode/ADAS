@@ -45,9 +45,9 @@ public class Patient implements Parcelable {
         this.address = parcel.readString();
         this.ethnicity = parcel.readString();
         this.gender = parcel.readString();
-        if(parcel.readLong() != -1L) {
-            this.birthDate =  new Date(parcel.readLong());
-        }
+        //if(parcel.readLong() != -1L) {
+        //    this.birthDate =  new Date(parcel.readLong());
+        //}
     }
 
 
@@ -64,7 +64,7 @@ public class Patient implements Parcelable {
         parcel.writeString(this.address);
         parcel.writeString(this.ethnicity);
         parcel.writeString(this.gender);
-        parcel.writeLong(this.birthDate != null ? birthDate.getTime() : -1L);
+        //parcel.writeLong(this.birthDate != null ? birthDate.getTime() : -1L);
     }
 
     public String getPatientID() {

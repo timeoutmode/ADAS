@@ -49,8 +49,8 @@ public class WordRecallAns extends AppCompatActivity {
         correctAnswer = intent.getIntExtra("correctAnswer", 0);
         if(intent.hasExtra("result")) {
             result = intent.getParcelableExtra("result");
-            Log.e("WORDRECALLRESULT", "result");
         }
+
 
 //        sbmit.setOnClickListener(new View.OnClickListener() {
 //            @Override

@@ -100,7 +100,7 @@ public class AssessmentLandingPageActivity extends AppCompatActivity {
 
 
         btn12.setOnClickListener(c -> {
-                    navigateToActivity(NumberCancellationActivity.class);
+                    navigateToActivity(ResultActitivy.class);
         });
 
         btn8.setOnClickListener(c ->{

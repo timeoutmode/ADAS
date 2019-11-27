@@ -61,10 +61,7 @@ public class SpokenLanguageActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if(intent.hasExtra("result")) {
             result = intent.getParcelableExtra("result");
-            Log.e(TAG, String.valueOf(result.getNamingScore()));
-
         }
-
     }
 
     private void initaliseObjects() {

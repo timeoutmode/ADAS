@@ -51,7 +51,6 @@ public class NumberCancellationActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if(intent.hasExtra("result")) {
             result = intent.getParcelableExtra("result");
-            Log.e(TAG, String.valueOf(result.getSpokenLanguageScore()));
         }
 
         // hide instructions after 30secs
@@ -157,7 +156,6 @@ public class NumberCancellationActivity extends AppCompatActivity {
             @Override
             public void run() {
                 // save data and start next activity
-                result = new Result();
                 result.setNumberCancellationErrors(errors);
                 result.setNumberCancellationTargetHits(hits);
                 result.setNumberCancellationTaskReminder(reminders);

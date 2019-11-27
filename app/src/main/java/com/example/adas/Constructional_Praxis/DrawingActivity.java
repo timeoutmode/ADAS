@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -57,8 +58,6 @@ public class DrawingActivity extends AppCompatActivity implements View.OnClickLi
             result = intent.getParcelableExtra("result");
         }
 
-       
-
     }
 
 
@@ -94,7 +93,6 @@ public class DrawingActivity extends AppCompatActivity implements View.OnClickLi
 
         }else if (click == 3){
             Intent intent = new Intent(DrawingActivity.this, WordRecall.class);
-            Result result = new Result();
             result.setConstructionalPraxisScore(-1);
             intent.putExtra("result", result);
             startActivity(intent);

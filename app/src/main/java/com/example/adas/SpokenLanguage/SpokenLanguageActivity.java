@@ -1,47 +1,58 @@
-package com.example.adas;
+package com.example.adas.SpokenLanguage;
 
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.example.adas.R;
 
 import java.util.ArrayList;
 import java.util.Locale;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-public class SpeechRecognition extends AppCompatActivity {
-    EditText editText;
+public class SpokenLanguageActivity extends AppCompatActivity {
+    EditText etAnswer;
+    Button btnSubmit;
+    ImageView ivRecord;
     SpeechRecognizer mSpeechRecognizer;
     Intent mSpeechRecognizerIntent;
+    private static final int REQUEST_CODE = 1234;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.comprehension_speech);
+        setContentView(R.layout.activity_spoken_language);
 
-        checkPermission();
+        verifyPermissions();
+        initaliseObjects();
+        setOnClickListeners();
 
-        editText = findViewById(R.id.editText);
+    }
+
+    private void initaliseObjects() {
+        btnSubmit = findViewById(R.id.btn_submit);
+        etAnswer = findViewById(R.id.et_answer);
+        ivRecord = findViewById(R.id.iv_record);
+
         mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
-
         mSpeechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
         mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+    }
 
+    private void setOnClickListeners() {
         mSpeechRecognizer.setRecognitionListener(new RecognitionListener() {
             @Override
             public void onReadyForSpeech(Bundle bundle) {
@@ -76,10 +87,9 @@ public class SpeechRecognition extends AppCompatActivity {
             @Override
             public void onResults(Bundle bundle) {
                 ArrayList<String> matches = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-
                 if(matches != null)
                 {
-                    editText.setText(matches.get(0));
+                    etAnswer.setText(matches.get(0));
                 }
             }
 
@@ -92,35 +102,47 @@ public class SpeechRecognition extends AppCompatActivity {
             public void onEvent(int i, Bundle bundle) {
 
             }
-
-
         });
-        findViewById(R.id.button2).setOnTouchListener((view, motionEvent) -> {
+
+        ivRecord.setOnTouchListener((view, motionEvent) -> {
             switch(motionEvent.getAction()){
 
                 case MotionEvent.ACTION_UP:
                     mSpeechRecognizer.stopListening();
-                    editText.setText("You will see input here");
+                    etAnswer.setText("Your answer will show up here.");
                     break;
                 case MotionEvent.ACTION_DOWN:
-                    editText.setText("");
-                    editText.setText("listening...");
+                    etAnswer.setText("");
+                    etAnswer.setText("Listening...");
                     mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
                     break;
             }
             return false;
         });
 
+    }
+
+    public void verifyPermissions() {
+        String[] permissions = {android.Manifest.permission.READ_EXTERNAL_STORAGE,
+                android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.CAMERA, Manifest.permission.CALL_PHONE,
+                Manifest.permission.RECORD_AUDIO};
+
+        boolean allPermissionsGranted = true;
+        for (String permission : permissions)
+            if (ContextCompat.checkSelfPermission(this.getApplicationContext(), permission) != PackageManager.PERMISSION_GRANTED) {
+                allPermissionsGranted = false;
+                break;
+            }
+        if (!allPermissionsGranted) {
+
+            ActivityCompat.requestPermissions(
+                    SpokenLanguageActivity.this,
+                    permissions,
+                    REQUEST_CODE
+            );
         }
 
-    private void checkPermission(){
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-            if(!(ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)== PackageManager.PERMISSION_GRANTED))
-            {
-                Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:" + getPackageName()));
-                startActivity(intent);
-                finish();
-            }
-        }
+
     }
-    }
+}

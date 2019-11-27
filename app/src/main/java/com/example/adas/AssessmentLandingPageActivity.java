@@ -17,6 +17,7 @@ import com.example.adas.GuessingObjects.NamingFingers;
 import com.example.adas.Orientation.OrientationViewPager;
 import com.example.adas.SpeechComprehension.SpeechTask;
 import com.example.adas.WordRecall.WordRecall;
+import com.example.adas.WordRecognition.WordRecognition;
 
 import java.util.Locale;
 
@@ -75,6 +76,10 @@ public class AssessmentLandingPageActivity extends AppCompatActivity {
 
         btn7.setOnClickListener(c ->{
             navigateToActivity(DelayedRecall.class);
+        });
+
+        btn8.setOnClickListener(c ->{
+            navigateToActivity(WordRecognition.class);
         });
 
     }

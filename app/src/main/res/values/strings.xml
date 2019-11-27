@@ -27,12 +27,13 @@
     <!-- Day of the week  -->
     <string-array name="week">
         <item>Day of the Week</item>
+        <item>Sunday</item>
         <item>Monday</item>
         <item>Tuesday</item>
         <item>Thursday</item>
         <item>Friday</item>
         <item>Saturday</item>
-        <item>Sunday</item>
+
     </string-array>
 
     <!-- Season  -->
@@ -69,6 +70,13 @@
     <string name="Guess_the_finger_title">
          Now I am going to point to a part of your hand and I want
     you to tell me what it’s called. What is this?
+
+    </string>
+
+    <string name="Guess_the_image_instructions">
+       Now I am going to show you some objects. I want you to
+        tell me what their names are.
+
 
     </string>
 </resources>

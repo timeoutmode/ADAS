@@ -2,6 +2,7 @@ package com.example.adas.Constructional_Praxis;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.adas.R;
+import com.example.adas.WordRecall.WordRecall;
 
 public class DrawingActivity extends AppCompatActivity implements View.OnClickListener {
     PaintView paintView;
@@ -66,18 +68,30 @@ public class DrawingActivity extends AppCompatActivity implements View.OnClickLi
 
 
     public void go_btn_submit(View view) {
-        if (click == 1){
+        if (click == 0){
 
-            shapes.setImageResource(R.drawable.brush);
+            shapes.setImageResource(R.drawable.cube);
             textView17.setText("Draw a Cube");
             paintView.clear();
+            Toast.makeText(this, "Correct", Toast.LENGTH_SHORT).show();
 
 
-        }else if (click == 2){
-            shapes.setImageResource(R.drawable.bed);
+
+        }else if (click == 1){
+            shapes.setImageResource(R.drawable.diamond);
             textView17.setText("Draw a Diamond");
             paintView.clear();
+            Toast.makeText(this, "Correct", Toast.LENGTH_SHORT).show();
 
+        }else if (click == 2){
+            shapes.setImageResource(R.drawable.overlappingrectangles);
+            textView17.setText("Draw two Overlapping Rectangles ");
+            paintView.clear();
+            Toast.makeText(this, "Correct", Toast.LENGTH_SHORT).show();
+
+        }else if (click == 3){
+            Intent intent = new Intent(DrawingActivity.this, WordRecall.class);
+            startActivity(intent);
         }
 
         click++;

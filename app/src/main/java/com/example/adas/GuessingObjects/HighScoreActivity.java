@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.example.adas.Model.Result;
@@ -28,6 +29,7 @@ public class HighScoreActivity extends AppCompatActivity {
     private DocumentReference documentReference;
 
     TextView imageRight, fingersRight,totalRight;
+    Result result;
 
 
     @Override
@@ -39,19 +41,29 @@ public class HighScoreActivity extends AppCompatActivity {
         initialiseFirebase();
         initialiseViews();
         totalRight  = findViewById(R.id.totalscore);
-       // loadData();
+        // loadData();
+
+//        result = new Result();
+//        Intent intent = getIntent();
+//     Result result = intent.getParcelableExtra("result");
+
+
 
         Intent intent = getIntent();
-        Result result = intent.getParcelableExtra("result");
-
-//        int wordRecallScore = result.getWordRecallScore();
+        result = intent.getParcelableExtra("result");
+        Log.e("Score", String.valueOf(result.getNamingScore()));
+        Log.e("Patient Name", result.getPatient().getFirstName());
         int namingScore = result.getNamingScore();
+
 
         totalRight.setText(String.valueOf(namingScore));
 
 
 
+
+
     }
+
 
 
 //    private void loadData(){

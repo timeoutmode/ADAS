@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -14,10 +15,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.adas.Model.FingerQuestions;
+import com.example.adas.Model.Patient;
 import com.example.adas.Model.Result;
 import com.example.adas.Model.Score_2;
 import com.example.adas.Model.TotalScore;
 import com.example.adas.R;
+import com.example.adas.SpeechComprehension.SpeechTask;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -44,11 +47,17 @@ public class NamingFingers extends AppCompatActivity  {
     Random r;
     Result result;
 
-    int score = 0;
+
+    int score  = 0;
     int counter = 0;
+    int totalScore = 0;
+    int wrongS ;
     int actualScroe = 0;
+
+
     int len;
     int s;
+    int sc;
 
 
 
@@ -56,6 +65,12 @@ public class NamingFingers extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_naming_fingers);
+
+
+        Intent intent = getIntent();
+        result = intent.getParcelableExtra("result");
+        Log.e("Score", String.valueOf(result.getNamingScore()));
+
 
         initialiseViews();
         initialise();
@@ -67,13 +82,12 @@ public class NamingFingers extends AppCompatActivity  {
         nextQuestion();
 
         //Receiving score from image guessing activity
-        Bundle b = getIntent().getExtras();
-        s = b.getInt("ImageScore");
+//        Bundle b = getIntent().getExtras();
+//        s = b.getInt("ImageScore");
 
 
 
-        Intent intent = getIntent();
-        Result result = intent.getParcelableExtra("result");
+
 
 
 
@@ -120,83 +134,47 @@ public class NamingFingers extends AppCompatActivity  {
 
         image2.setImageId(R.drawable.index);
         image2.setAnsList(new String[]{
-                "Index","forefinger", "pointer"
+                "Index","forefinger", "pointer","Index finger"
         });
         image2.setClue("What is another name for this finger");
 
         image3.setImageId(R.drawable.middel);
         image3.setAnsList(new String[]{
-                "middle"
+                "middle",  "middle finger"
         });
         image3.setClue("What is another name for this finger");
 
 
         image4.setImageId(R.drawable.ring);
         image4.setAnsList(new String[]{
-                "ring"
+                "ring", "ring finger"
         });
         image4.setClue("What is another name for this finger");
 
         image5.setImageId(R.drawable.pinky);
         image5.setAnsList(new String[]{
-                "pinky"
+                "pinky",  "last finger"
         });
         image5.setClue("What is another name for this finger");
 
-         fingerQuestionsArrayList = new ArrayList<>();
-         fingerQuestionsArrayList.add(image1);
-         fingerQuestionsArrayList.add(image2);
-         fingerQuestionsArrayList.add(image3);
-         fingerQuestionsArrayList.add(image4);
-         fingerQuestionsArrayList.add(image5);
+        fingerQuestionsArrayList = new ArrayList<>();
+        fingerQuestionsArrayList.add(image1);
+        fingerQuestionsArrayList.add(image2);
+        fingerQuestionsArrayList.add(image3);
+        fingerQuestionsArrayList.add(image4);
+        fingerQuestionsArrayList.add(image5);
 
-         Collections.shuffle(fingerQuestionsArrayList);
+        Collections.shuffle(fingerQuestionsArrayList);
 
 
     }
 
 
-    private void nextQuestion() {
-//        img.setImageResource(myList.get(number - 1).getImage());
-        if(counter < len) {
-            Log.e("NewQuestion", "Called");
-           FingerQuestions temp = fingerQuestionsArrayList.get(counter);
-            displyQuery.setText("");
-            img.setImageResource(temp.getImageId());
-        } else {
-            //When all th questions are finished
-            Intent intent = new Intent(NamingFingers.this, HighScoreActivity.class);
-            int totalScore = result.getNamingScore() + score;
 
-
-            if(totalScore >= 15 && totalScore <= 17){
-                actualScroe = 5;
-            }else if (totalScore >= 14 && totalScore <= 12){
-                actualScroe = 4;
-
-
-            }else if (totalScore >= 11 && totalScore <= 9 ){
-                actualScroe = 3;
-            }else if (totalScore >= 8 && totalScore <= 6 ){
-                actualScroe = 2;
-            }else if (totalScore >= 5 && totalScore <= 3 ){
-                actualScroe = 1;
-            }else if (totalScore >= 2 && totalScore <= 0 ){
-                actualScroe = 0;
-            }
-
-
-            result.setNamingScore(actualScroe);
-            intent.putExtra("result",result );
-
-            startActivity(intent);
-            // message that it's finished
-            Log.e("NewQuestion", "Counter > Length");
-        }
-    }
 
 
     public void button_submit(View view) {
+
 
         image();
 
@@ -209,28 +187,82 @@ public class NamingFingers extends AppCompatActivity  {
         String answer = editText.getText().toString().toLowerCase();
         if(currentFinger.checkAnswer(answer)) {
             editText.setText("");
-             score = score + 1;
-             // adding score from images and fingers together
-            int total = s + score;
-            result = new Result();
+            score = score + 1;
+            // adding score from images and fingers together
 
-            // Setting the total to the Results model class
-            result.setNamingScore(total);
-           // score++;
+            //   totalScore = s + score;
+
+            //  totalScore = result.getNamingScore() + score;
+            sc = result.getNamingScore();
+
+            totalScore = sc + score;
+            Log.e("TotalScore", String.valueOf(totalScore));
+
+            if(totalScore >= 15 && totalScore <= 17) {
+                actualScroe = 5;
+
+            }else if (totalScore >= 12 && totalScore <= 14){
+                actualScroe = 4;
+            }else if (totalScore >= 9 && totalScore <= 11 ){
+                actualScroe = 3;
+            }else if (totalScore >= 6 && totalScore <= 8 ){
+                actualScroe = 2;
+            }else if (totalScore >= 3 && totalScore <= 5 ){
+                actualScroe = 1;
+            }else if (totalScore >= 0 && totalScore <= 2 ){
+                actualScroe = 0;
+            }
+
+
+
+
+
             counter++;
-            addToFirebase();
-            addTotalToFirebase();
             nextQuestion();
             Toast.makeText(NamingFingers.this, "Correct", Toast.LENGTH_LONG).show();
+
             handler.removeCallbacksAndMessages(null);
         } else if (currentFinger.checkClue(answer)) {
 
             Toast.makeText(NamingFingers.this, "Yes that is the function, but what is the name?", Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(NamingFingers.this, "Incorrect", Toast.LENGTH_LONG).show();
+
+
+
+
             showClue();
         }
 
+    }
+
+    private void nextQuestion() {
+//        img.setImageResource(myList.get(number - 1).getImage());
+        if(counter < len) {
+            Log.e("NewQuestion", "Called");
+            FingerQuestions temp = fingerQuestionsArrayList.get(counter);
+            displyQuery.setText("");
+            img.setImageResource(temp.getImageId());
+        } else {
+            //When all th questions are finished
+
+            Result result = new Result();
+            //int totalScore = result.getNamingScore() + score;
+
+
+            result.setNamingScore(actualScroe);
+
+            Intent intent = new Intent(NamingFingers.this, SpeechTask.class);
+            intent.putExtra("result", result);
+            startActivity(intent);
+
+
+
+
+            // startActivity(intent);
+            // message that it's finished
+            Log.e("NewQuestion", "Counter > Length");
+        }
     }
 
     private void showClue() {
@@ -238,7 +270,7 @@ public class NamingFingers extends AppCompatActivity  {
 
         handler.postDelayed(new Runnable() {
             public void run() {
-               FingerQuestions temp = fingerQuestionsArrayList.get(counter);
+                FingerQuestions temp = fingerQuestionsArrayList.get(counter);
                 displyQuery .setText(temp.getClue());
                 moveToNextQuestion();
             }
@@ -256,11 +288,16 @@ public class NamingFingers extends AppCompatActivity  {
                 counter++;
                 nextQuestion();
                 editText.getText().clear();
+
+
+
+
+
             }
 
         }, 10000);
 
-    }
+    }//10000
 
     private void addToFirebase(){
 
@@ -277,7 +314,7 @@ public class NamingFingers extends AppCompatActivity  {
         //uidRef.collection("Naming_Task_Scores").document("Fingers_Scores").set(fingerScore);
 
         uidRef.collection("Fingers_Scores").document("Scores").set(fingerScore);
-                //document("Fingers_Scores").set(fingerScore);
+        //document("Fingers_Scores").set(fingerScore);
         //add(ImageScore);
 
 
@@ -297,6 +334,7 @@ public class NamingFingers extends AppCompatActivity  {
         uidRef.collection("Total_Scores").document("Scores").set(totalScore);
 
     }
+
 
 
 

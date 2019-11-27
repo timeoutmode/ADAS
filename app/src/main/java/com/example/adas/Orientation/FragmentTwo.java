@@ -29,6 +29,7 @@ private RadioButton choice1, choice2, choice3, choice4;
         // Required empty public constructor
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -36,6 +37,8 @@ private RadioButton choice1, choice2, choice3, choice4;
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) { //values of radio buttons
+
+
                 String monthSeasons[] = {
                         "Winter", "Winter",
                         "Spring", "Spring", "Spring",
@@ -49,7 +52,25 @@ private RadioButton choice1, choice2, choice3, choice4;
                 cal.setTime(date);
                 int month = cal.get(Calendar.MONTH);// gets current month
 
-                System.out.println("This is the current season:"+ monthSeasons[month]); // checks the current season 
+
+
+                    int selectedSeason = radioGroup.getCheckedRadioButtonId();
+                    RadioButton radiobutton = radioGroup.findViewById(selectedSeason);
+                    String tempAnswer = radiobutton.getText().toString();//gets selecvted answer from radio button
+                    String rightAnswer = monthSeasons[month];//gets current season
+
+                    // should be connected to next button to submit answer
+                    if(tempAnswer.equals(rightAnswer))// compares picked answer from radiobutton from answer
+                    {
+                        // score++
+                        // next fragment
+                    }
+                    else
+                    {
+                        //next fragment
+                    }
+
+
             }
         });
         // Inflate the layout for this fragment

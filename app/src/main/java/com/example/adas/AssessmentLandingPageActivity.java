@@ -13,6 +13,7 @@ import com.example.adas.Constructional_Praxis.DrawingActivity;
 import com.example.adas.DelayedRecall.DelayedRecall;
 
 import com.example.adas.GuessingObjects.StartImageGame;
+import com.example.adas.IdeationalPraxis.IdeationalPraxisActivity;
 import com.example.adas.Model.Result;
 import com.example.adas.NumberCancellation.NumberCancellationActivity;
 import com.example.adas.Orientation.OrientationViewPager;

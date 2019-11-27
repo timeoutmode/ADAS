@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.adas">
 
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
@@ -10,13 +11,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".GuessingObjects.NamingObjects"></activity>
-        <activity android:name=".GuessingObjects.NamingObjetcs" />
-        <activity android:name=".GuessingObjects.MainActivity" />
-        <activity android:name=".GuessingObjects.MainActivity" />
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".GuessingObjects.HighScoreActivity" />
-        <activity android:name=".GuessingObjects.HigestScoreActivity" />
         <activity android:name=".GuessingObjects.StartImageGame" />
         <activity android:name=".Constructional_Praxis.DrawingActivity" />
         <activity android:name=".DelayedRecall.DelayedRecallResults" />
@@ -36,7 +33,7 @@
         <activity android:name=".Orientation.OrientationViewPager" />
         <activity android:name=".SpeechComprehension.SpeechTask" />
         <activity android:name=".IdeationalPraxis.IdeationalPraxisActivity" />
-        <activity android:name=".AssessmentLandingPageActivity" >
+        <activity android:name=".AssessmentLandingPageActivity" />
         <activity
             android:name=".NumberCancellation.NumberCancellationActivity"
             android:configChanges="orientation|screenSize" />

@@ -71,7 +71,7 @@
                 android:layout_marginBottom="16dp"
 
                 android:textAlignment="center"
-                android:textSize="15sp"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/ImageView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"

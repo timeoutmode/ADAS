@@ -33,37 +33,81 @@
                     app:layout_constraintHorizontal_bias="0.498"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.935" />
+                    app:layout_constraintVertical_bias="0.838" />
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/textView18"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="What is The Date, Month, and Year Currently?"
+                    android:text="What is the time?"
                     android:textAlignment="center"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                     android:textColor="#FFFFFF"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.11" />
-
-                <DatePicker
-                    android:id="@+id/datePicker1"
-                    android:layout_width="254dp"
-                    android:layout_height="166dp"
-                    android:layout_marginTop="150dp"
-                    android:background="#FFFFFF"
-                    android:calendarViewShown="false"
-                    android:datePickerMode="spinner"
+                    android:textSize="36sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.496"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.089" />
+                    app:layout_constraintVertical_bias="0.227" />
+
+                <Spinner
+                    android:id="@+id/hour_spinner"
+                    android:layout_width="340dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/main_edit_text"
+                    android:drawableEnd="@drawable/ic_dropdown_arrow"
+                    android:elevation="10dp"
+                    android:ems="10"
+                    android:entries="@array/hour"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imageView14"
+                    android:layout_width="23dp"
+                    android:layout_height="23dp"
+                    android:layout_marginStart="300dp"
+                    android:elevation="11dp"
+                    android:src="@drawable/ic_dropdown_arrow"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.488"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.501" />
+
+                <!--                <TextView-->
+<!--                    android:id="@+id/textView5"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="What is The Date, Month, and Year Currently?"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"-->
+<!--                    android:textColor="#FFFFFF"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintHorizontal_bias="0.0"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                    app:layout_constraintVertical_bias="0.11" />-->
+
+<!--                <DatePicker-->
+<!--                    android:id="@+id/datePicker1"-->
+<!--                    android:layout_width="254dp"-->
+<!--                    android:layout_height="166dp"-->
+<!--                    android:layout_marginTop="150dp"-->
+<!--                    android:background="#FFFFFF"-->
+<!--                    android:calendarViewShown="false"-->
+<!--                    android:datePickerMode="spinner"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintHorizontal_bias="0.496"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                    app:layout_constraintVertical_bias="0.089" />-->
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>

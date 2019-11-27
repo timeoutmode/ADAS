@@ -44,7 +44,7 @@ public class OrientationViewPager extends AppCompatActivity {
         list.add(new FragmentTwo());
         list.add(new FragmentFourActivity());
         list.add(new FragmentFiveActivity());
-        
+
 
         pager = findViewById(R.id.pager);
         pagerAdapter = new SlidePagerAdapter(getSupportFragmentManager(), list);

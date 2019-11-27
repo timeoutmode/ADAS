@@ -20,6 +20,8 @@ import com.example.adas.Orientation.OrientationViewPager;
 import com.example.adas.SpeechComprehension.SpeechTask;
 import com.example.adas.SpokenLanguage.SpokenLanguageActivity;
 import com.example.adas.WordRecall.WordRecall;
+import com.example.adas.WordRecognition.WordRecognition;
+
 
 public class AssessmentLandingPageActivity extends AppCompatActivity {
 
@@ -40,7 +42,6 @@ public class AssessmentLandingPageActivity extends AppCompatActivity {
             Log.e("Hits", String.valueOf(result.getNumberCancellationTargetHits()));
             Log.e("Reminders", String.valueOf(result.getNumberCancellationTaskReminder()));
         }
-
     }
 
     private void initialiseObjects() {
@@ -88,7 +89,7 @@ public class AssessmentLandingPageActivity extends AppCompatActivity {
         });
 
 
-        btn8.setOnClickListener(c ->{
+        btn9.setOnClickListener(c ->{
             navigateToActivity(IdeationalPraxisActivity.class);
         });
 
@@ -97,7 +98,11 @@ public class AssessmentLandingPageActivity extends AppCompatActivity {
         });
 
         btn12.setOnClickListener(c -> {
-            navigateToActivity(NumberCancellationActivity.class);
+                    navigateToActivity(NumberCancellationActivity.class);
+                });
+
+        btn8.setOnClickListener(c ->{
+            navigateToActivity(WordRecognition.class);
         });
 
     }

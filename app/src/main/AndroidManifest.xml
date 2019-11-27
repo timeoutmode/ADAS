@@ -16,6 +16,8 @@
         <activity android:name=".GuessingObjects.HighScoreActivity" />
         <activity android:name=".GuessingObjects.StartImageGame" />
         <activity android:name=".Constructional_Praxis.DrawingActivity" />
+        <activity android:name=".WordRecognition.WordRecogAns"></activity>
+        <activity android:name=".WordRecognition.WordRecognition" />
         <activity android:name=".DelayedRecall.DelayedRecallResults" />
         <activity android:name=".DelayedRecall.DelayedRecallAns" />
         <activity android:name=".DelayedRecall.DelayedRecall" />

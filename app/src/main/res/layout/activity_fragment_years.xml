@@ -4,14 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Orientation.FrgamentThreeActivity">
+    tools:context=".Orientation.FragmentYearsActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
             android:layout_width="match_parent"
             android:layout_height="450dp"
             app:cardBackgroundColor="#9A1CC6"
@@ -24,8 +23,54 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="343dp"
+                    android:layout_height="98dp"
+                    android:text="What is the current year?"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textColor="#FFFFFF"
+                    android:textSize="34sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.488"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.203" />
+
+                <Spinner
+                    android:id="@+id/year_spinner"
+                    android:layout_width="343dp"
+                    android:layout_height="44dp"
+                    android:background="@drawable/main_edit_text"
+                    android:drawableEnd="@drawable/ic_dropdown_arrow"
+                    android:elevation="10dp"
+                    android:ems="10"
+                    android:entries="@array/year"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.492"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.534" />
+
+                <ImageView
+                    android:id="@+id/imageView11"
+                    android:layout_width="23dp"
+                    android:layout_height="23dp"
+                    android:layout_marginStart="300dp"
+                    android:elevation="11dp"
+                    android:src="@drawable/ic_dropdown_arrow"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.431"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.533" />
+
                 <Button
-                    android:id="@+id/submit3"
+                    android:id="@+id/submit7"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:text="Submit"
@@ -35,57 +80,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.858" />
-
-                <Spinner
-                    android:id="@+id/month_spinner"
-                    android:layout_width="340dp"
-                    android:layout_height="46dp"
-                    android:layout_marginBottom="172dp"
-                    android:background="@drawable/main_edit_text"
-                    android:drawableEnd="@drawable/ic_dropdown_arrow"
-                    android:elevation="10dp"
-                    android:ems="10"
-                    android:entries="@array/month"
-                    android:focusable="false"
-                    android:hint="Month"
-                    android:inputType="textPersonName"
-                    android:paddingEnd="10dp"
-                    android:spinnerMode="dropdown"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.492"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/constraintLayout3"
-                    app:layout_constraintVertical_bias="0.568" />
-
-                <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="366dp"
-                    android:layout_height="94dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="72dp"
-                    android:text="What is the current month?"
-                    android:textAlignment="center"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                    android:textColor="#FFFFFF"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.342"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/imageView12"
-                    android:layout_width="23dp"
-                    android:layout_height="23dp"
-                    android:layout_marginStart="300dp"
-                    android:elevation="11dp"
-                    android:src="@drawable/ic_dropdown_arrow"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.407"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.566" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>

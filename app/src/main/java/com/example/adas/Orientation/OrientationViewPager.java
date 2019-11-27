@@ -25,8 +25,8 @@ public class OrientationViewPager extends AppCompatActivity {
     private Button mainButton;
     private Spinner spinner;
     private int counter = 1;
-    private TextView oScoreView;
-    private int oScore = 0;
+    public TextView oScoreView;
+    public int oScore = 0;
 
 
     @Override
@@ -34,15 +34,17 @@ public class OrientationViewPager extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_viewpager);
 
-        oScoreView = (TextView) findViewById(R.id.score1);
+        //oScoreView = (TextView) findViewById(R.id.score1);
 
         List<Fragment> list = new ArrayList <>();
         list.add(new FragmentOneActivity());
-        list.add(new FragmentTwo());
         list.add(new FrgamentThreeActivity());
+        list.add(new FragmentYearsActivity());
+        list.add(new FragmentSixActivity());
+        list.add(new FragmentTwo());
         list.add(new FragmentFourActivity());
         list.add(new FragmentFiveActivity());
-        list.add(new FragmentSixActivity());
+        
 
         pager = findViewById(R.id.pager);
         pagerAdapter = new SlidePagerAdapter(getSupportFragmentManager(), list);

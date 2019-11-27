@@ -8,22 +8,58 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.adas.R;
 
+import java.util.Calendar;
+import java.util.Locale;
+
 public class FrgamentThreeActivity extends Fragment {
 
-
-    public FrgamentThreeActivity() {
-        // Required empty public constructor
-    }
-
+    Button button;
+    Spinner month;
+    View view;
+    private int oScore;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.activity_frgament_three, container, false);
+        view = inflater.inflate(R.layout.activity_frgament_three, container, false);
+        button = view.findViewById(R.id.submit3);
+        month = view.findViewById(R.id.month_spinner);
+        String text = month.getSelectedItem().toString();
+
+        Calendar nowCalendar = Calendar.getInstance();
+        String dayLongName = nowCalendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault());
+        if(text.toLowerCase().equals(dayLongName.toLowerCase())) {
+        }
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int chosenMonth = month.getSelectedItemPosition() -1;
+                Calendar c = Calendar.getInstance();
+                int month = c.get(Calendar.MONTH);
+
+                if(month == chosenMonth)
+                {
+                    Toast.makeText(getActivity(),"Correct!",Toast.LENGTH_SHORT).show();
+                    oScore ++;
+                }
+
+                else
+                {
+                    Toast.makeText(getActivity(),"Sorry not correct!",Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+        return view;
     }
+
 
 }

@@ -25,6 +25,7 @@
                 android:layout_height="match_parent">
 
                 <Button
+                    android:id="@+id/submit3"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:text="Submit"
@@ -36,9 +37,9 @@
                     app:layout_constraintVertical_bias="0.858" />
 
                 <Spinner
-                    android:id="@+id/et_month5"
-                    android:layout_width="327dp"
-                    android:layout_height="59dp"
+                    android:id="@+id/month_spinner"
+                    android:layout_width="340dp"
+                    android:layout_height="46dp"
                     android:layout_marginBottom="172dp"
                     android:background="@drawable/main_edit_text"
                     android:drawableEnd="@drawable/ic_dropdown_arrow"

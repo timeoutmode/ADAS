@@ -9,11 +9,15 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.adas.Model.Result;
 import com.example.adas.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 import android.os.Handler;
 
@@ -22,49 +26,52 @@ public class WordRecall extends AppCompatActivity {
 
     TextView randtv;
     Button randbtn;
-    private int count =0, trial =0;
-
-
-    private String wordbank[] =
-                     {
-                    "bottle",
-                    "potato",
-                    "girl",
-                    "temple",
-                    "star",
-                    "animal",
-                    "forest",
-                    "lake",
-                    "clock",
-                    "office"};
+    private int counter =0, trial =0, correctAnswer = 0;
+    private ArrayList<String> wordBankArray;
+    private Result result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wordrecall);
 
-        randtv =  findViewById(R.id.randWord);
-        randbtn = findViewById(R.id.btn_generate);
+        // initalise array of words
+        initialiseWordBank();
 
+        // shuffles word bank array
+        Collections.shuffle(wordBankArray);
+
+        // intialise view objects
+        initialiseObjects();
+
+        // set OnClick listeners
+        setOnClickListeners();
 
         Intent intent = getIntent();
-        trial = intent.getIntExtra("TRIAL", 0);
+        trial = intent.getIntExtra("trial", 0);
+        correctAnswer = intent.getIntExtra("correctAnswer", 0);
+        if(intent.hasExtra("result")) {
+            result = intent.getParcelableExtra("result");
+        }
 
+        Log.e("SCORE", String.valueOf(correctAnswer));
+        Log.e("TRIAL", String.valueOf(trial));
 
+    }
+
+    private void setOnClickListeners() {
         randbtn.setOnClickListener(new View.OnClickListener() {
             @Override    public void onClick(View v) {
                 if (trial != 3) {
-                    if (count != 10) {
-                        Random random = new Random();
-                        int num = random.nextInt(wordbank.length);
-                        randtv.setText(wordbank[num]);
-                        count++;
+                    if (counter < wordBankArray.size()) {
+                        String word = wordBankArray.get(counter);
+                        randtv.setText(word);
+                        counter++;
                     } else {
-                        trial++;
-                        Intent answerWR = new Intent(WordRecall.this, WordRecallAns.class);
-                        answerWR.putExtra("TRIAL", (trial));
-                        startActivity(answerWR);
-                        Log.e("TRIAL NUMBER", String.valueOf(trial));
+                        Intent intent = new Intent(WordRecall.this, WordRecallAns.class);
+                        intent.putExtra("trial", trial);
+                        intent.putExtra("correctAnswer", correctAnswer);
+                        startActivity(intent);
                     }
                 } else {
                     Intent resultWR = new Intent(WordRecall.this, WordRecallResults.class);
@@ -75,6 +82,28 @@ public class WordRecall extends AppCompatActivity {
         });
     }
 
+    private void initialiseWordBank() {
+        wordBankArray = new ArrayList<>();
+        wordBankArray.add("bottle");
+        wordBankArray.add("potato");
+        wordBankArray.add("girl");
+        wordBankArray.add("temple");
+        wordBankArray.add("star");
+        wordBankArray.add("animal");
+        wordBankArray.add("forest");
+        wordBankArray.add("lake");
+        wordBankArray.add("clock");
+        wordBankArray.add("office");
     }
+
+    private void initialiseObjects() {
+        randtv =  findViewById(R.id.randWord);
+        randbtn = findViewById(R.id.btn_generate);
+
+        // initialise the first word
+        randtv.setText(wordBankArray.get(counter++));
+    }
+
+}
 
 

@@ -38,9 +38,10 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         clAssessment.setOnClickListener(c -> {
-            Intent intent = new Intent(this, AddPatientActivity.class);
-            intent.putExtra("assessment", true);
-            startActivity(intent);
+//            Intent intent = new Intent(this, AddPatientActivity.class);
+//            intent.putExtra("assessment", true);
+//            startActivity(intent);
+            navigateToActivity(AssessmentLandingPageActivity.class);
         });
 
         clAccount.setOnClickListener(c -> {

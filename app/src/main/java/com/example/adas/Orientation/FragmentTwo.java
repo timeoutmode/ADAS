@@ -20,17 +20,6 @@ import com.example.adas.R;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
-
-public class FragmentTwo extends Fragment {
-
-//    Button button;
-    View view;
-//    Spinner season;
-   private int oScore;
-
-    private RadioGroup radioGroup;
-    private RadioButton choice1, choice2, choice3, choice4;
-
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -44,11 +33,13 @@ import java.util.GregorianCalendar;
 
 public class FragmentTwo extends Fragment {
 
-private RadioGroup radioGroup;
-private RadioButton choice1, choice2, choice3, choice4;
+//    Button button;
+    View view;
+//    Spinner season;
+   private int oScore;
 
-
-
+    private RadioGroup radioGroup;
+    private RadioButton choice1, choice2, choice3, choice4;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -195,7 +186,7 @@ private RadioButton choice1, choice2, choice3, choice4;
         });
         return view;
 
-        return inflater.inflate(R.layout.activity_fragment_two, container, false);
+        //return inflater.inflate(R.layout.activity_fragment_two, container, false);
 
 
 

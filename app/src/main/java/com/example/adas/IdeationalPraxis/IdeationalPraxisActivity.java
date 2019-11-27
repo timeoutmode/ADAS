@@ -33,7 +33,7 @@ public class IdeationalPraxisActivity extends AppCompatActivity {
 
         Patient patient = new Patient();
 
-        result = new Result(5, 5, 5, 5, 0, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, patient);
+        //result = new Result(5, 5, 5, 5, 0, 5, 5, 5, 5, 5, 5, 5, 5, 0, 0, 0, patient);
 
         mazeView.getTextView(mTimerTextView);
     }

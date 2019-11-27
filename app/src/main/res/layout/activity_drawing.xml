@@ -97,14 +97,15 @@
     </com.example.adas.Constructional_Praxis.PaintView>
 
     <Button
-        android:layout_width="158dp"
-        android:layout_height="49dp"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="wrap_content"
         android:layout_marginTop="1dp"
         android:layout_marginBottom="16dp"
 
-        android:background="@color/colorPrimary"
+        android:background="@drawable/main_button"
         android:onClick="go_btn_submit"
-        android:text="SUBMIT"
+        android:text="Next"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

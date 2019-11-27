@@ -35,24 +35,16 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/iv_info"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_information" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/word"
             android:layout_width="match_parent"
-            android:layout_height="500dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
+            android:layout_marginBottom="8dp"
             android:background="@drawable/main_white_frame"
             android:elevation="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -67,14 +59,14 @@
                 android:layout_width="239dp"
                 android:layout_height="28dp"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="32dp"
+                android:onClick="correctAns"
                 android:text="Bottle"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView3"
-                android:onClick="correctAns"/>
+                app:layout_constraintTop_toBottomOf="@+id/textView22" />
 
             <CheckBox
                 android:id="@+id/checkBoxPotato"
@@ -83,12 +75,12 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="32dp"
+                android:onClick="correctAns"
                 android:text="Potato"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBoxBottle"
-                android:onClick="correctAns"/>
+                app:layout_constraintTop_toBottomOf="@+id/checkBoxBottle" />
 
             <CheckBox
                 android:id="@+id/checkBoxGirl"
@@ -97,12 +89,12 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="32dp"
+                android:onClick="correctAns"
                 android:text="Girl"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBoxPotato"
-                android:onClick="correctAns"/>
+                app:layout_constraintTop_toBottomOf="@+id/checkBoxPotato" />
 
             <CheckBox
                 android:id="@+id/checkBoxTemple"
@@ -111,12 +103,12 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="32dp"
+                android:onClick="correctAns"
                 android:text="Temple"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBoxGirl"
-                android:onClick="correctAns"/>
+                app:layout_constraintTop_toBottomOf="@+id/checkBoxGirl" />
 
             <CheckBox
                 android:id="@+id/checkBoxStar"
@@ -125,12 +117,12 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="32dp"
+                android:onClick="correctAns"
                 android:text="Star"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBoxTemple"
-                android:onClick="correctAns"/>
+                app:layout_constraintTop_toBottomOf="@+id/checkBoxTemple" />
 
             <CheckBox
                 android:id="@+id/checkBoxAnimal"
@@ -139,12 +131,12 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="32dp"
+                android:onClick="correctAns"
                 android:text="Animal"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBoxStar"
-                android:onClick="correctAns"/>
+                app:layout_constraintTop_toBottomOf="@+id/checkBoxStar" />
 
             <CheckBox
                 android:id="@+id/checkBoxForest"
@@ -153,12 +145,12 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="32dp"
+                android:onClick="correctAns"
                 android:text="Forest"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBoxOffice"
-                android:onClick="correctAns"/>
+                app:layout_constraintTop_toBottomOf="@+id/checkBoxOffice" />
 
             <CheckBox
                 android:id="@+id/checkBoxLake"
@@ -167,12 +159,12 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="32dp"
+                android:onClick="correctAns"
                 android:text="Lake"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBoxForest"
-                android:onClick="correctAns"/>
+                app:layout_constraintTop_toBottomOf="@+id/checkBoxForest" />
 
             <CheckBox
                 android:id="@+id/checkBoxClock"
@@ -181,12 +173,12 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="32dp"
+                android:onClick="correctAns"
                 android:text="Clock"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBoxLake"
-                android:onClick="correctAns"/>
+                app:layout_constraintTop_toBottomOf="@+id/checkBoxLake" />
 
             <CheckBox
                 android:id="@+id/checkBoxOffice"
@@ -195,43 +187,41 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="32dp"
+                android:onClick="correctAns"
                 android:text="Office"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBoxAnimal"
-                android:onClick="correctAns"/>
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="184dp"
-                android:layout_height="42dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="32dp"
-                android:gravity="center"
-                android:text="Score"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/checkBoxAnimal" />
 
             <Button
                 android:id="@+id/btnsub"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/button_width"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="32dp"
-                android:layout_marginBottom="10dp"
-                android:text="SUBMIT"
+                android:layout_marginBottom="16dp"
+                android:onClick="finalAnswer"
+                android:text="Next"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBoxClock"
-                android:onClick="finalAnswer"/>
+                app:layout_constraintTop_toBottomOf="@+id/checkBoxClock" />
+
+            <TextView
+                android:id="@+id/textView22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Please tick the words you remember."
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.467"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

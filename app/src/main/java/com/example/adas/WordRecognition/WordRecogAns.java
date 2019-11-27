@@ -12,7 +12,9 @@ import android.widget.TextView;
 
 import com.example.adas.DelayedRecall.DelayedRecallAns;
 import com.example.adas.DelayedRecall.DelayedRecallResults;
+import com.example.adas.Model.Result;
 import com.example.adas.R;
+import com.example.adas.ResultActitivy;
 
 import java.util.ArrayList;
 
@@ -23,6 +25,7 @@ public class WordRecogAns extends AppCompatActivity {
     Button sbmit;
     TextView txt;
     int count = 0, total = 0;
+    private Result result;
 
     final String TAG = WordRecogAns.class.getSimpleName();
 
@@ -37,14 +40,22 @@ public class WordRecogAns extends AppCompatActivity {
         txt.setEnabled(false);
         System.out.println("TAG =" + TAG);
 
+        Intent intent = getIntent();
+        if(intent.hasExtra("result")) {
+            result = intent.getParcelableExtra("result");
+        }
+
         sbmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //finalAnswer(v);
                 Log.e(TAG, "running " + total);
-                Intent next = new Intent(WordRecogAns.this, DelayedRecallResults.class);
-                next.putExtra("COUNT", String.valueOf(total));
-                startActivity(next);
+                Intent intent = new Intent(WordRecogAns.this, ResultActitivy.class);
+                if(result != null) {
+                    result.setWordRecognitionTaskScore(total);
+                    intent.putExtra("result", result);
+                }
+                startActivity(intent);
             }
         });
 

@@ -91,6 +91,7 @@ public class AssessmentLandingPageActivity extends AppCompatActivity {
 
         btn11.setOnClickListener(c ->{
             navigateToActivity(WordRecog.class);
+        });
 
 
         btn9.setOnClickListener(c ->{
@@ -100,11 +101,10 @@ public class AssessmentLandingPageActivity extends AppCompatActivity {
 
         btn12.setOnClickListener(c -> {
                     navigateToActivity(NumberCancellationActivity.class);
-                });
+        });
 
         btn8.setOnClickListener(c ->{
             navigateToActivity(WordRecognition.class);
-
         });
 
     }

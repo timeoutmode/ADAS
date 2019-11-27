@@ -191,7 +191,7 @@ public class NamingFingers extends AppCompatActivity  {
 
     private void image() {
         FingerQuestions currentFinger = fingerQuestionsArrayList.get(counter);
-        String answer = editText.getText().toString().toLowerCase();
+        String answer = editText.getText().toString().toLowerCase().trim();
         if(currentFinger.checkAnswer(answer)) {
             editText.setText("");
             score = score + 1;

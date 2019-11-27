@@ -38,15 +38,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/iv_info"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_information" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -209,12 +200,13 @@
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="304dp"
-                android:layout_height="70dp"
+                android:layout_height="0dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="32dp"
                 android:gravity="center"
-                android:hint="Instruction: Mark Checkbox if the\n customer says he remember seing the\n word from the previous set."
+                android:hint="Tick all the words you remember."
+                android:text="Tick the words you remember."
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -222,14 +214,15 @@
 
             <Button
                 android:id="@+id/btnsub"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/button_width"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="32dp"
                 android:layout_marginBottom="10dp"
                 android:onClick="finalAnswer"
-                android:text="SUBMIT"
+                android:text="Next"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497"

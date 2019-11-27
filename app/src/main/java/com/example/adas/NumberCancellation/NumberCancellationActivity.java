@@ -17,6 +17,7 @@ import com.example.adas.AssessmentLandingPageActivity;
 import com.example.adas.Model.Patient;
 import com.example.adas.Model.Result;
 import com.example.adas.R;
+import com.example.adas.WordRecognition.WordRecog;
 import com.google.protobuf.StringValue;
 
 import java.util.ArrayList;
@@ -84,6 +85,7 @@ public class NumberCancellationActivity extends AppCompatActivity {
                 button.setBackgroundResource(R.drawable.number_cancellation_button);
                 button.setTextColor(Color.WHITE);
                 button.setElevation(0);
+                button.setTextSize(18);
                 // set button margin
                 LinearLayout.LayoutParams buttonLayoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 buttonLayoutParams.bottomMargin = 12;
@@ -159,7 +161,7 @@ public class NumberCancellationActivity extends AppCompatActivity {
                 result.setNumberCancellationErrors(errors);
                 result.setNumberCancellationTargetHits(hits);
                 result.setNumberCancellationTaskReminder(reminders);
-                Intent intent = new Intent(getApplicationContext(), AssessmentLandingPageActivity.class);
+                Intent intent = new Intent(getApplicationContext(), WordRecog.class);
                 intent.putExtra("result", result);
                 startActivity(intent);
             }

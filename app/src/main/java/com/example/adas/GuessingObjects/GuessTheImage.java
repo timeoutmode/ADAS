@@ -271,7 +271,7 @@ public class GuessTheImage extends AppCompatActivity {
 
     private void image() {
         ImageQuestion currentImage = imageQuestionArrayList.get(counter);
-        String answer = editText.getText().toString().toLowerCase();
+        String answer = editText.getText().toString().toLowerCase().trim();
         if (currentImage.checkAnswer(answer)) {
             editText.setText("");
             result = new Result();

@@ -88,8 +88,6 @@ public class WordRecallAns extends AppCompatActivity {
 
     private void initialiseObjects() {
         sbmit = findViewById(R.id.btnsub);
-        txt = findViewById(R.id.textView3);
-        txt.setEnabled(false);
 
         cbBottle = findViewById(R.id.checkBoxBottle);
         cbPotato = findViewById(R.id.checkBoxPotato);

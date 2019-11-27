@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.adas.Model.FingerQuestions;
+import com.example.adas.Model.Patient;
 import com.example.adas.Model.Result;
 import com.example.adas.Model.Score_2;
 import com.example.adas.Model.TotalScore;
@@ -44,11 +45,17 @@ public class NamingFingers extends AppCompatActivity  {
     Random r;
     Result result;
 
-    int score = 0;
+
+    int score  = 0;
     int counter = 0;
+    int totalScore = 0;
+    int wrongS ;
+    int actualScroe = 0;
+
 
     int len;
     int s;
+    int sc;
 
 
 
@@ -57,7 +64,12 @@ public class NamingFingers extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_naming_fingers);
 
-        result = new Result();
+
+        Intent intent = getIntent();
+        result = intent.getParcelableExtra("result");
+        Log.e("Score", String.valueOf(result.getNamingScore()));
+
+
         initialiseViews();
         initialise();
         initialiseFirebase();
@@ -73,8 +85,7 @@ public class NamingFingers extends AppCompatActivity  {
 
 
 
-        Intent intent = getIntent();
-        Result result = intent.getParcelableExtra("result");
+
 
 
 
@@ -157,28 +168,7 @@ public class NamingFingers extends AppCompatActivity  {
     }
 
 
-    private void nextQuestion() {
-//        img.setImageResource(myList.get(number - 1).getImage());
-        if(counter < len) {
-            Log.e("NewQuestion", "Called");
-           FingerQuestions temp = fingerQuestionsArrayList.get(counter);
-            displyQuery.setText("");
-            img.setImageResource(temp.getImageId());
-        } else {
-            //When all th questions are finished
-            Intent intent = new Intent(NamingFingers.this, HighScoreActivity.class);
-           // int totalScore = result.getNamingScore() + score;
 
-            result = new Result();
-
-
-            intent.putExtra("result",result );
-
-            startActivity(intent);
-            // message that it's finished
-            Log.e("NewQuestion", "Counter > Length");
-        }
-    }
 
 
     public void button_submit(View view) {
@@ -194,46 +184,84 @@ public class NamingFingers extends AppCompatActivity  {
         String answer = editText.getText().toString().toLowerCase();
         if(currentFinger.checkAnswer(answer)) {
             editText.setText("");
-            score++;
+            score = score + 1;
              // adding score from images and fingers together
-          //  int total = s + score;
-            int totalScore = result.getNamingScore() + score;
-            int actualScroe = 0;
 
-            if(totalScore >= 15 && totalScore <= 17){
+          //   totalScore = s + score;
+
+           //  totalScore = result.getNamingScore() + score;
+              sc = result.getNamingScore();
+
+            totalScore = sc + score;
+            Log.e("TotalScore", String.valueOf(totalScore));
+
+            if(totalScore >= 15 && totalScore <= 17) {
                 actualScroe = 5;
-            }else if (totalScore >= 14 && totalScore <= 12){
+
+            }else if (totalScore >= 12 && totalScore <= 14){
                 actualScroe = 4;
-            }else if (totalScore >= 11 && totalScore <= 9 ){
+            }else if (totalScore >= 9 && totalScore <= 11 ){
                 actualScroe = 3;
-            }else if (totalScore >= 8 && totalScore <= 6 ){
+            }else if (totalScore >= 6 && totalScore <= 8 ){
                 actualScroe = 2;
-            }else if (totalScore >= 5 && totalScore <= 3 ){
+            }else if (totalScore >= 3 && totalScore <= 5 ){
                 actualScroe = 1;
-            }else if (totalScore >= 2 && totalScore <= 0 ){
+            }else if (totalScore >= 0 && totalScore <= 2 ){
                 actualScroe = 0;
             }
 
 
-            result.setNamingScore(actualScroe);
 
 
 
-           // score++;
             counter++;
-//            addToFirebase();
-//            addTotalToFirebase();
             nextQuestion();
             Toast.makeText(NamingFingers.this, "Correct", Toast.LENGTH_LONG).show();
+
             handler.removeCallbacksAndMessages(null);
         } else if (currentFinger.checkClue(answer)) {
 
             Toast.makeText(NamingFingers.this, "Yes that is the function, but what is the name?", Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(NamingFingers.this, "Incorrect", Toast.LENGTH_LONG).show();
+
+
+
+
             showClue();
         }
 
+    }
+
+    private void nextQuestion() {
+//        img.setImageResource(myList.get(number - 1).getImage());
+        if(counter < len) {
+            Log.e("NewQuestion", "Called");
+            FingerQuestions temp = fingerQuestionsArrayList.get(counter);
+            displyQuery.setText("");
+            img.setImageResource(temp.getImageId());
+        } else {
+            //When all th questions are finished
+
+            Result result = new Result();
+           //int totalScore = result.getNamingScore() + score;
+
+
+            result.setNamingScore(actualScroe);
+            Patient patient = new Patient();
+            result.setPatient(patient);
+            result.getPatient().setFirstName("Brian");
+            Intent intent = new Intent(NamingFingers.this, HighScoreActivity.class);
+            intent.putExtra("result", result);
+            startActivity(intent);
+
+
+
+
+             // startActivity(intent);
+            // message that it's finished
+            Log.e("NewQuestion", "Counter > Length");
+        }
     }
 
     private void showClue() {
@@ -259,11 +287,16 @@ public class NamingFingers extends AppCompatActivity  {
                 counter++;
                 nextQuestion();
                 editText.getText().clear();
+
+
+
+
+
             }
 
-        }, 10000);
+        }, 1000);
 
-    }
+    }//10000
 
     private void addToFirebase(){
 

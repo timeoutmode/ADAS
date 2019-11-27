@@ -11,12 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".GuessingObjects.MainActivity"></activity>
+        <activity android:name=".GuessingObjects.NamingObjetcs"></activity>
+        <activity android:name=".GuessingObjects.MainActivity" />
         <activity android:name=".GuessingObjects.HighScoreActivity" />
         <activity android:name=".GuessingObjects.HigestScoreActivity" />
         <activity android:name=".GuessingObjects.StartImageGame" />
         <activity android:name=".Constructional_Praxis.DrawingActivity" />
-        <activity android:name=".DelayedRecall.DelayedRecallResults"></activity>
+        <activity android:name=".DelayedRecall.DelayedRecallResults" />
         <activity android:name=".DelayedRecall.DelayedRecallAns" />
         <activity android:name=".DelayedRecall.DelayedRecall" />
         <activity android:name=".WordRecall.WordRecallResults" />
@@ -36,6 +37,7 @@
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

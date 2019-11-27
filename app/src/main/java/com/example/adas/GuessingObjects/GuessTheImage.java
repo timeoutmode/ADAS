@@ -9,6 +9,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -41,32 +43,17 @@ public class GuessTheImage extends AppCompatActivity {
     EditText editText;
     ImageView img;
 
-
-
-
     int score = 0;
-
     int turn = 1;
     int counter = 0;
     int length;
     int len;
-
     Handler handler;
 
-   // ArrayList<Result> result;
+
 
     private ArrayList<ImageQuestion> imageQuestionArrayList;
-
-    List<TotalScore> score_total;
-    int score_total_len;
-
    Result result;
-
-
-
-
-
-
 
 
     private FirebaseAuth firebaseAuth;
@@ -80,7 +67,13 @@ public class GuessTheImage extends AppCompatActivity {
 
 
 
-        result = new Result();
+
+        //Receiving score from previous activity
+
+        Intent intent = getIntent();
+        result = intent.getParcelableExtra("result");
+
+
 
         initialise();
         initialiseFirebase();
@@ -90,11 +83,7 @@ public class GuessTheImage extends AppCompatActivity {
         length = imageQuestionArrayList.size();
         newQuestion();
 
-        //Receiving score from previous activity
 
-        Intent intent = getIntent();
-
-        Result result = intent.getParcelableExtra("result");
 
 
 
@@ -140,46 +129,7 @@ public class GuessTheImage extends AppCompatActivity {
 
 
 
-    private void arletinstructions(){
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(GuessTheImage.this, R.style.MyDialogTheme);
-        alertDialog.setTitle("Guess the Finger");
-        alertDialog.setMessage("“Now I am going to point to a part of your hand and I want\n" +
-                         "you to tell me what it’s called.");
 
-        alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Intent intent1 = new Intent(GuessTheImage.this, NamingFingers.class);
-//                result = new Result();
-//                result.setNamingScore(score);
-//                Bundle bundle = new Bundle();
-//                bundle.putInt("ImageScore", score);
-               // intent1.putExtra("result",result );
-//                Result tempResult = new Result();
-//                tempResult.setNamingScore(score);
-//
-//                Result result = new Result();
-//                result.setCommandsScore(1);
-//                result.setComprehensionScore(1);
-//                Patient patient = new Patient();
-//                result.setPatient(patient);
-//                result.getPatient().setFirstName("Brian");
-//                Intent intent = new Intent(this, DemoActivity.class);
-//                intent.putExtra("result", result);
-               // startActivity(intent);
-                intent1.putExtra("result",result );
-
-                startActivity(intent1);
-
-            }
-        });
-
-
-
-
-        alertDialog.create().show();
-
-    }
 
     private void initialiseImages() {
         ImageQuestion image1 = new ImageQuestion();
@@ -337,14 +287,10 @@ public class GuessTheImage extends AppCompatActivity {
         String answer = editText.getText().toString().toLowerCase();
         if(currentImage.checkAnswer(answer)) {
             editText.setText("");
-            score++;
-
-
+            result = new Result();
             result.setNamingScore(score);
-
+            score++;
             counter++;
-            //addToFirebase();
-            //addTotalToFirebase();
             newQuestion();
             Toast.makeText(GuessTheImage.this, "Correct", Toast.LENGTH_LONG).show();
             handler.removeCallbacksAndMessages(null);
@@ -357,7 +303,65 @@ public class GuessTheImage extends AppCompatActivity {
         }
 
     }
+    private void arletinstructions(){
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(GuessTheImage.this, R.style.MyDialogTheme);
+        alertDialog.setTitle("Guess the Finger");
+        alertDialog.setMessage("“Now I am going to point to a part of your hand and I want\n" +
+                "you to tell me what it’s called.");
 
+        alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+               // Intent intent1 = new Intent(GuessTheImage.this, NamingFingers.class);
+                //result = new Result();
+//
+
+
+//                result.setNamingScore(score);
+////                //intent1.putExtra("result", result);
+////                intent1.putExtra("result", result);
+////
+////                startActivity(intent1);
+
+
+                Result result = new Result();
+                result.setNamingScore(score);
+                Patient patient = new Patient();
+                result.setPatient(patient);
+                Intent intent = new Intent(GuessTheImage.this, NamingFingers.class);
+               // Bundle bundle = new Bundle();
+//                bundle.putInt("ImageScore", score);
+              //  bundle.putParcelable("result", result);
+               // intent.putExtras(bundle);
+                result.getPatient().setFirstName("Brian");
+                intent.putExtra("result", result);
+                startActivity(intent);
+
+                //result.setNamingScore(score);
+
+                // intent1.putExtra("result",result );
+//                Result tempResult = new Result();
+//                tempResult.setNamingScore(score);
+//
+
+//                result.setCommandsScore(1);
+//                result.setComprehensionScore(1);
+//                Patient patient = new Patient();
+//                result.setPatient(patient);
+//                result.getPatient().setFirstName("Brian");
+
+                // intent.putExtra("result", result);
+                // startActivity(intent);
+
+            }
+        });
+
+
+
+
+        alertDialog.create().show();
+
+    }
     private void showClue() {
 
 
@@ -392,9 +396,9 @@ public class GuessTheImage extends AppCompatActivity {
                 editText.getText().clear();
             }
 
-        }, 10000);
+        }, 3000);
 
-    }
+    }//10000
 
 
     public void buttonClicked(View view) {
